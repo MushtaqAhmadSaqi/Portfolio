@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mushtaq Ahmad Saqi — Full-Stack Developer & AI Enthusiast</title>
+  <meta name="description" content="Portfolio of Mushtaq Ahmad Saqi — CS Student at COMSATS University, Full-Stack Developer, and AI Enthusiast building impactful platforms for education." />
+  <meta name="author" content="Mushtaq Ahmad Saqi" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mushtaq Ahmad Saqi — Portfolio" />
+  <meta property="og:description" content="CS Student | Full-Stack Developer in Progress | AI Enthusiast" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ LOADER ═══════════════ -->
+  <div class="loader" id="loader">
+    <div class="loader__initials">MAS</div>
+    <div class="loader__bar">
+      <div class="loader__bar-fill"></div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════ CUSTOM CURSOR ═══════════════ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#hero" class="navbar__logo">MAS</a>
+      <ul class="navbar__links">
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#projects" class="navbar__link">Projects</a></li>
+        <li><a href="#skills" class="navbar__link">Skills</a></li>
+        <li><a href="#vision" class="navbar__link">Vision</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+      </ul>
+      <div class="navbar__burger" id="navBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-menu__link">About</a>
+    <a href="#projects" class="mobile-menu__link">Projects</a>
+    <a href="#skills" class="mobile-menu__link">Skills</a>
+    <a href="#vision" class="mobile-menu__link">Vision</a>
+    <a href="#contact" class="mobile-menu__link">Contact</a>
+  </div>
+
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero section" id="hero">
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+
+    <div class="hero__content">
+      <p class="hero__greeting">Hi, I'm</p>
+      <h1 class="hero__name" id="heroName">
+        <span class="word" data-word="Mushtaq">Mushtaq</span>
+        <span class="word" data-word="Ahmad">Ahmad</span>
+        <span class="word" data-word="Saqi">Saqi</span>
+      </h1>
+      <p class="hero__title">
+        CS Student @ <span class="highlight">COMSATS University</span> · Full-Stack Developer in Progress · <span class="highlight">AI Enthusiast</span>
+      </p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">
+          View My Work
+          <span class="btn__arrow">→</span>
+        </a>
+        <a href="#contact" class="btn btn--secondary">
+          Contact Me
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__scroll" id="heroScroll">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ ABOUT ═══════════════ -->
+  <section class="about section" id="about">
+    <div class="section__inner">
+      <span class="section__label reveal">About Me</span>
+      <div class="about__grid">
+        <div class="about__text">
+          <h2 class="section__title reveal">Building systems<br />that <span class="gradient-text">matter</span>.</h2>
+          <p class="reveal reveal-delay-1">
+            I'm a university student at <strong>COMSATS University, Pakistan</strong>, passionate about building impactful platforms for students and society. I don't just learn — I <strong>build, ship, and iterate</strong>.
+          </p>
+          <p class="reveal reveal-delay-2">
+            From <strong>AI-powered educational tools</strong> to <strong>open-source test prep platforms</strong>, every project I take on is driven by a simple belief: technology should solve real problems for real people.
+          </p>
+          <p class="reveal reveal-delay-3">
+            I lead, I ship, and I'm always learning. Whether it's <strong>full-stack development</strong>, <strong>machine learning</strong>, or <strong>systems design</strong>, I'm constantly pushing myself to grow and contribute meaningfully.
+          </p>
+
+          <div class="about__stats reveal reveal-delay-4">
+            <div class="about__stat">
+              <div class="about__stat-number">3+</div>
+              <div class="about__stat-label">Projects Built</div>
+            </div>
+            <div class="about__stat">
+              <div class="about__stat-number">2.1K+</div>
+              <div class="about__stat-label">MCQs Created</div>
+            </div>
+            <div class="about__stat">
+              <div class="about__stat-number">∞</div>
+              <div class="about__stat-label">Curiosity</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__visual reveal">
+          <div class="about__avatar-wrapper">
+            <div class="about__avatar-inner">
+              <span class="about__avatar-placeholder">MAS</span>
+            </div>
+            <div class="about__floating-badge about__floating-badge--top">
+              🚀 Always Shipping
+            </div>
+            <div class="about__floating-badge about__floating-badge--bottom">
+              💡 AI Enthusiast
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ PROJECTS ═══════════════ -->
+  <section class="section" id="projects">
+    <div class="section__inner">
+      <span class="section__label reveal">Featured Work</span>
+      <h2 class="section__title reveal">Projects I've<br /><span class="gradient-text">brought to life</span>.</h2>
+      <p class="section__description reveal reveal-delay-1">
+        Each project is built with purpose — solving real problems for real students.
+      </p>
+
+      <div class="projects__grid">
+
+        <!-- Project Card 1 -->
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card__icon">📚</div>
+          <span class="project-card__tag">Making premium education free</span>
+          <h3 class="project-card__title">OpenPrep Platform</h3>
+          <p class="project-card__desc">
+            Open-source test preparation platform for Pakistani students preparing for IBA, MDCAT, and ECAT entrance exams.
+          </p>
+          <p class="project-card__meta">
+            2,100+ MCQs · Community contribution system · Growing daily
+          </p>
+          <div class="project-card__stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">Flask</span>
+            <span class="stack-badge">HTML/CSS</span>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card reveal reveal-delay-1" data-tilt>
+          <div class="project-card__icon">🎮</div>
+          <span class="project-card__tag">Teaching through play</span>
+          <h3 class="project-card__title">EduGame — Kids Learning</h3>
+          <p class="project-card__desc">
+            Interactive educational web game for children aged 6–9 with math quizzes, an Angry Birds-style Pygame game, leaderboards, and save/load functionality.
+          </p>
+          <p class="project-card__meta">
+            Math quizzes · Pygame integration · Gamified learning
+          </p>
+          <div class="project-card__stack">
+            <span class="stack-badge">Python</span>
+            <span class="stack-badge">Flask</span>
+            <span class="stack-badge">Pygame</span>
+            <span class="stack-badge">HTML</span>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card reveal reveal-delay-2" data-tilt>
+          <div class="project-card__icon">📄</div>
+          <span class="project-card__tag">Every student deserves resources</span>
+          <h3 class="project-card__title">Student Resource Hub</h3>
+          <p class="project-card__desc">
+            A central hub for past papers, solutions, and study material — designed to be the most accessible resource platform for students.
+          </p>
+          <p class="project-card__meta">
+            Full UI design · Past papers · Solutions repository
+          </p>
+          <div class="project-card__stack">
+            <span class="stack-badge">HTML</span>
+            <span class="stack-badge">CSS</span>
+            <span class="stack-badge">Backend WIP</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ SKILLS ═══════════════ -->
+  <section class="skills section" id="skills">
+    <div class="section__inner">
+      <span class="section__label reveal">Toolkit</span>
+      <h2 class="section__title reveal">Skills & <span class="gradient-text">Technologies</span>.</h2>
+      <p class="section__description reveal reveal-delay-1">
+        The tools and technologies I use to bring ideas to life.
+      </p>
+
+      <div class="skills__categories">
+
+        <!-- Languages -->
+        <div class="reveal">
+          <h3 class="skill-category__title">Languages</h3>
+          <div class="skill-category__grid">
+            <span class="skill-badge" style="--float-delay: 0s"><span class="skill-badge__dot"></span>Python</span>
+            <span class="skill-badge" style="--float-delay: 0.4s"><span class="skill-badge__dot"></span>Java</span>
+            <span class="skill-badge" style="--float-delay: 0.8s"><span class="skill-badge__dot"></span>HTML</span>
+            <span class="skill-badge" style="--float-delay: 1.2s"><span class="skill-badge__dot"></span>CSS</span>
+            <span class="skill-badge" style="--float-delay: 1.6s"><span class="skill-badge__dot"></span>JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Frameworks -->
+        <div class="reveal reveal-delay-1">
+          <h3 class="skill-category__title">Frameworks</h3>
+          <div class="skill-category__grid">
+            <span class="skill-badge" style="--float-delay: 0.2s"><span class="skill-badge__dot"></span>Flask</span>
+          </div>
+        </div>
+
+        <!-- Areas -->
+        <div class="reveal reveal-delay-2">
+          <h3 class="skill-category__title">Areas of Focus</h3>
+          <div class="skill-category__grid">
+            <span class="skill-badge" style="--float-delay: 0s"><span class="skill-badge__dot"></span>Frontend Dev</span>
+            <span class="skill-badge" style="--float-delay: 0.3s"><span class="skill-badge__dot"></span>Backend Dev</span>
+            <span class="skill-badge" style="--float-delay: 0.6s"><span class="skill-badge__dot"></span>Machine Learning / AI</span>
+            <span class="skill-badge" style="--float-delay: 0.9s"><span class="skill-badge__dot"></span>Data Structures & Algorithms</span>
+            <span class="skill-badge" style="--float-delay: 1.2s"><span class="skill-badge__dot"></span>Web Scraping</span>
+          </div>
+        </div>
+
+        <!-- Currently Learning -->
+        <div class="reveal reveal-delay-3">
+          <h3 class="skill-category__title">Currently Learning</h3>
+          <div class="skill-category__grid">
+            <span class="skill-badge skill-badge--learning" style="--float-delay: 0.1s"><span class="skill-badge__dot"></span>Full-Stack Development</span>
+            <span class="skill-badge skill-badge--learning" style="--float-delay: 0.5s"><span class="skill-badge__dot"></span>AI / ML</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ VISION ═══════════════ -->
+  <section class="vision section" id="vision">
+    <div class="section__inner">
+      <span class="section__label reveal" style="justify-content: center;">My Vision</span>
+      <div class="vision__quote reveal">
+        I want to start an AI Society at my university and build platforms that make education free for every Pakistani student.
+      </div>
+      <p class="vision__author reveal reveal-delay-1">
+        — <strong>Mushtaq Ahmad Saqi</strong>, always building for impact.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ CONTACT ═══════════════ -->
+  <section class="contact section" id="contact">
+    <div class="section__inner">
+      <span class="section__label reveal">Get In Touch</span>
+      <h2 class="section__title reveal">Let's build something<br /><span class="gradient-text">great together</span>.</h2>
+
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <p>
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of something impactful. Whether you have a question or just want to say hi — feel free to reach out!
+          </p>
+          <div class="contact__socials">
+            <!-- GitHub -->
+            <a href="https://github.com/" target="_blank" rel="noopener" class="social-link" id="githubLink" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/" target="_blank" rel="noopener" class="social-link" id="linkedinLink" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:mushtaq@example.com" class="social-link" id="emailLink" aria-label="Email">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact__form reveal reveal-delay-1" id="contactForm">
+          <div class="form__group">
+            <label class="form__label" for="formName">Your Name</label>
+            <input class="form__input" type="text" id="formName" placeholder="John Doe" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="formEmail">Your Email</label>
+            <input class="form__input" type="email" id="formEmail" placeholder="john@example.com" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="formMessage">Message</label>
+            <textarea class="form__textarea" id="formMessage" placeholder="Tell me about your project or idea..." required></textarea>
+          </div>
+          <button class="form__submit" type="submit" id="formSubmit">
+            Send Message →
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <p class="footer__text">
+      Designed & built by <span>Mushtaq Ahmad Saqi</span> · © 2026
+    </p>
+  </footer>
+
+
+  <!-- ═══════════════ SCRIPTS ═══════════════ -->
+  <!-- Three.js for 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="main.js"></script>
+
+</body>
+</html>
