@@ -420,7 +420,9 @@
     burger.addEventListener('click', () => {
       burger.classList.toggle('active');
       menu.classList.toggle('open');
-      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+      const isOpen = menu.classList.contains('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      burger.setAttribute('aria-expanded', String(isOpen));
     });
 
     // Close on link click
@@ -429,6 +431,7 @@
         burger.classList.remove('active');
         menu.classList.remove('open');
         document.body.style.overflow = '';
+        burger.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -502,7 +505,7 @@
         btn.style.background = '#ef4444';
       } finally {
         setTimeout(() => {
-          btn.textContent = 'Send Message →';
+          btn.textContent = originalText;
           btn.style.background = '';
           btn.style.boxShadow = '';
           btn.disabled = false;
@@ -608,6 +611,49 @@
 
 
   // ──────────────────────────────────────────
+  //  13. THEME TOGGLE (DARK / LIGHT)
+  // ──────────────────────────────────────────
+  function initThemeToggle() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    // Restore saved preference on load
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  }
+
+
+  // ──────────────────────────────────────────
+  //  14. BACK TO TOP
+  // ──────────────────────────────────────────
+  function initBackToTop() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+
+  // ──────────────────────────────────────────
   //  INITIALIZATION
   // ──────────────────────────────────────────
   function init() {
@@ -621,6 +667,18 @@
     initSmoothScroll();
     initContactForm();
     initActiveNavHighlight();
+    initThemeToggle();
+    initBackToTop();
+
+    // Graceful photo fallback — hide broken img, show initials
+    const aboutPhoto = document.querySelector('.about__photo');
+    if (aboutPhoto) {
+      aboutPhoto.addEventListener('error', () => {
+        aboutPhoto.style.display = 'none';
+        const placeholder = aboutPhoto.nextElementSibling;
+        if (placeholder) placeholder.style.display = '';
+      });
+    }
 
     // Delay GSAP scroll effects to ensure DOM is ready
     setTimeout(initGSAPScrollEffects, 100);
