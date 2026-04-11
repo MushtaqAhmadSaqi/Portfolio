@@ -461,9 +461,10 @@
   // ──────────────────────────────────────────
   function initContactForm() {
     const form = document.getElementById('contactForm');
+    const btn = document.getElementById('formSubmit');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('formName').value.trim();
@@ -472,23 +473,41 @@
 
       if (!name || !email || !message) return;
 
-      // Compose mailto link as fallback
-      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:mushtaq@example.com?subject=${subject}&body=${body}`;
+      // Update button state to show loading
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
 
-      // Visual feedback
-      const btn = document.getElementById('formSubmit');
-      btn.textContent = '✓ Opening email client...';
-      btn.style.background = '#22c55e';
-      btn.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.35)';
+      try {
+        // Replace this URL with your actual Formspree endpoint
+        const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
 
-      setTimeout(() => {
-        btn.textContent = 'Send Message →';
-        btn.style.background = '';
-        btn.style.boxShadow = '';
-        form.reset();
-      }, 2500);
+        if (response.ok) {
+          btn.textContent = '✓ Message Sent!';
+          btn.style.background = '#22c55e';
+          btn.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.35)';
+          form.reset();
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        btn.textContent = '✕ Error sending';
+        btn.style.background = '#ef4444';
+      } finally {
+        setTimeout(() => {
+          btn.textContent = 'Send Message →';
+          btn.style.background = '';
+          btn.style.boxShadow = '';
+          btn.disabled = false;
+        }, 3000);
+      }
     });
   }
 
