@@ -611,26 +611,62 @@
 
 
   // ──────────────────────────────────────────
-  //  13. THEME TOGGLE (DARK / LIGHT)
+  //  13. THEME TOGGLE (DARK / LIGHT JELLY SWITCH)
   // ──────────────────────────────────────────
   function initThemeToggle() {
     const toggle = document.getElementById('themeToggle');
-    if (!toggle) return;
+    const thumb = document.getElementById('jellyThumb');
+    if (!toggle || !thumb) return;
+
+    // The maximum travel distance for the thumb
+    // total width = 72, thumb = 26, left = 4, right = 4 -> total movement = 72 - 26 - 8 = 38
+    const TRAVEL_X = 38;
+
+    function applyThumbPosition(isLight, animate = false) {
+      const targetX = isLight ? TRAVEL_X : 0;
+      
+      if (animate && typeof gsap !== 'undefined') {
+        const tl = gsap.timeline();
+        tl.to(thumb, {
+          duration: 0.2,
+          scaleX: 1.5,
+          ease: "power2.out"
+        })
+        .to(thumb, {
+          duration: 0.6,
+          x: targetX,
+          scaleX: 1,
+          ease: "elastic.out(1, 0.4)"
+        }, "-=0.1");
+      } else {
+        if (typeof gsap !== 'undefined') {
+          gsap.set(thumb, { x: targetX, scaleX: 1 });
+        } else {
+          thumb.style.transform = `translateX(${targetX}px)`;
+        }
+      }
+    }
 
     // Restore saved preference on load
     const saved = localStorage.getItem('theme');
-    if (saved === 'light') {
+    const initialLight = saved === 'light';
+    if (initialLight) {
       document.documentElement.setAttribute('data-theme', 'light');
     }
+    
+    // Set initial position without animating
+    applyThumbPosition(initialLight, false);
 
     toggle.addEventListener('click', () => {
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       if (isLight) {
         document.documentElement.removeAttribute('data-theme');
         localStorage.setItem('theme', 'dark');
+        applyThumbPosition(false, true);
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
+        applyThumbPosition(true, true);
       }
     });
   }
