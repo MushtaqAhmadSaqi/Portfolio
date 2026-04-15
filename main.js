@@ -12,16 +12,11 @@
       lerpFactor: 0.12,      // Lower = more lag / smoother follow
       dotLerp: 0.35,         // Inner dot follows faster
     },
-    three: {
-      particleCount: 1200,
-      meshRotationSpeed: 0.003,
-      mouseInfluence: 0.0005,
-    },
     nav: {
       hideThreshold: 80,     // px scrolled before nav hides
     },
     loader: {
-      minDuration: 2200,     // Minimum loader display time (ms)
+      minDuration: 1300,     // Minimum loader display time (ms)
     },
   };
 
@@ -128,125 +123,6 @@
   }
 
 
-  // ──────────────────────────────────────────
-  //  3.  THREE.JS — 3D HERO SCENE
-  // ──────────────────────────────────────────
-  function initThreeScene() {
-    const canvas = document.getElementById('heroCanvas');
-    if (!canvas || typeof THREE === 'undefined') return;
-
-    // Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 5;
-
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: true,
-    });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // ─── Icosahedron (wireframe mesh) ───
-    const icoGeometry = new THREE.IcosahedronGeometry(1.6, 1);
-    const icoMaterial = new THREE.MeshBasicMaterial({
-      color: 0x6C63FF,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.12,
-    });
-    const icosahedron = new THREE.Mesh(icoGeometry, icoMaterial);
-    scene.add(icosahedron);
-
-    // ─── Inner glow mesh ───
-    const innerGeo = new THREE.IcosahedronGeometry(1.3, 2);
-    const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x6C63FF,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.04,
-    });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    scene.add(innerMesh);
-
-    // ─── Particle field ───
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = CONFIG.three.particleCount;
-    const positions = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-      positions[i3]     = (Math.random() - 0.5) * 14;
-      positions[i3 + 1] = (Math.random() - 0.5) * 14;
-      positions[i3 + 2] = (Math.random() - 0.5) * 14;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-      color: 0x6C63FF,
-      size: 0.015,
-      transparent: true,
-      opacity: 0.6,
-      sizeAttenuation: true,
-    });
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particles);
-
-    // ─── Mouse tracking for 3D ───
-    const mouseTarget = { x: 0, y: 0 };
-
-    document.addEventListener('mousemove', (e) => {
-      mouseTarget.x = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouseTarget.y = -(e.clientY / window.innerHeight - 0.5) * 2;
-    });
-
-    // ─── Resize handler ───
-    function onResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
-    window.addEventListener('resize', onResize);
-
-    // ─── Animation loop ───
-    const clock = new THREE.Clock();
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      const elapsed = clock.getElapsedTime();
-
-      // Rotate meshes
-      icosahedron.rotation.x += CONFIG.three.meshRotationSpeed;
-      icosahedron.rotation.y += CONFIG.three.meshRotationSpeed * 0.7;
-
-      innerMesh.rotation.x -= CONFIG.three.meshRotationSpeed * 0.5;
-      innerMesh.rotation.y -= CONFIG.three.meshRotationSpeed * 0.3;
-
-      // Subtle scale breathing
-      const breathe = 1 + Math.sin(elapsed * 0.8) * 0.04;
-      icosahedron.scale.set(breathe, breathe, breathe);
-
-      // Mouse influence on rotation
-      icosahedron.rotation.x += mouseTarget.y * CONFIG.three.mouseInfluence;
-      icosahedron.rotation.y += mouseTarget.x * CONFIG.three.mouseInfluence;
-
-      // Rotate particles slowly
-      particles.rotation.y += 0.0003;
-      particles.rotation.x += 0.0001;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-  }
 
 
   // ──────────────────────────────────────────
@@ -294,6 +170,12 @@
       opacity: 1,
       y: 0,
       duration: 0.8,
+    }, '-=0.5');
+
+    tl.to('.hero__subtitle', {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
     }, '-=0.5');
 
     // CTA buttons
@@ -577,6 +459,33 @@
       duration: 1.2,
       ease: 'expo.out',
     });
+
+    // Skills terminal-style reveal
+    gsap.utils.toArray('.skill-badge').forEach((badge, i) => {
+      gsap.from(badge, {
+        scrollTrigger: {
+          trigger: badge,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 0,
+        y: 20,
+        duration: 0.15,
+        delay: i * 0.08,
+        ease: 'power2.out',
+        onComplete: () => {
+          // Add typing effect
+          const dot = badge.querySelector('.skill-badge__dot');
+          if (dot) {
+            gsap.from(dot, {
+              scale: 0,
+              duration: 0.1,
+              ease: 'back.out(1.7)',
+            });
+          }
+        }
+      });
+    });
   }
 
 
@@ -598,9 +507,8 @@
         if (entry.isIntersecting) {
           const id = entry.target.id;
           navLinks.forEach((link) => {
-            link.style.color = link.getAttribute('href') === `#${id}`
-              ? 'var(--accent-light)'
-              : '';
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('active', isActive);
           });
         }
       });
@@ -693,12 +601,17 @@
   //  INITIALIZATION
   // ──────────────────────────────────────────
   function init() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     initLoader();
-    initCursor();
-    initThreeScene();
+    if (!prefersReducedMotion) {
+      initCursor();
+    }
     initScrollReveals();
     initNavScroll();
-    initCardTilt();
+    if (!prefersReducedMotion) {
+      initCardTilt();
+    }
     initMobileMenu();
     initSmoothScroll();
     initContactForm();
@@ -717,7 +630,9 @@
     }
 
     // Delay GSAP scroll effects to ensure DOM is ready
-    setTimeout(initGSAPScrollEffects, 100);
+    if (!prefersReducedMotion) {
+      setTimeout(initGSAPScrollEffects, 100);
+    }
   }
 
   // Run on DOM ready

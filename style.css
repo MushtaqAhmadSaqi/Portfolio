@@ -6,19 +6,19 @@
 /* ── Design Tokens ────────────────────────── */
 :root {
   /* Background layers */
-  --bg-primary:    #0a0a0f;
-  --bg-secondary:  #111118;
-  --bg-card:       #15151e;
-  --bg-card-hover: #1a1a25;
-  --bg-elevated:   #1e1e2a;
+  --bg-primary:    #111116;
+  --bg-secondary:  #15151e;
+  --bg-card:       #1a1a25;
+  --bg-card-hover: #222235;
+  --bg-elevated:   #252536;
 
   /* Accent palette */
-  --accent:        #6C63FF;
-  --accent-light:  #8B83FF;
-  --accent-glow:   rgba(108, 99, 255, 0.35);
-  --accent-subtle: rgba(108, 99, 255, 0.08);
-  --accent-dark:   #4a42d4;
-  --accent-gradient: linear-gradient(135deg, #6C63FF 0%, #48b1ff 100%);
+  --accent:        #14b8a6;
+  --accent-light:  #2dd4bf;
+  --accent-glow:   rgba(20, 184, 166, 0.35);
+  --accent-subtle: rgba(20, 184, 166, 0.08);
+  --accent-dark:   #0f766e;
+  --accent-gradient: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
 
   /* Text hierarchy */
   --text-primary:   #ededf0;
@@ -325,6 +325,14 @@ button, input, textarea {
   width: 100%;
 }
 
+.navbar__link.active {
+  color: var(--accent-light);
+}
+
+.navbar__link.active::after {
+  width: 100%;
+}
+
 /* Mobile burger */
 .navbar__burger {
   display: none;
@@ -451,47 +459,15 @@ button, input, textarea {
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   padding-top: var(--nav-height);
+  overflow: hidden;
 }
 
-.hero__canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
 
-/* Atmospheric gradient overlays */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -20%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(to top, var(--bg-primary), transparent);
-  z-index: 2;
-  pointer-events: none;
-}
 
 .hero__content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   text-align: center;
   max-width: 900px;
   padding: 0 var(--space-xl);
@@ -533,11 +509,20 @@ button, input, textarea {
 .hero__title {
   font-size: var(--text-lg);
   color: var(--text-secondary);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-md);
   max-width: 620px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
+  opacity: 0;
+}
+
+.hero__subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto var(--space-xl);
+  line-height: 1.8;
   opacity: 0;
 }
 
@@ -608,7 +593,7 @@ button, input, textarea {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -622,6 +607,7 @@ button, input, textarea {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   writing-mode: vertical-rl;
+  z-index: 2;
 }
 
 .hero__scroll-line {
@@ -708,6 +694,17 @@ button, input, textarea {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.about__note {
+  margin-top: var(--space-lg);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.about__note strong {
+  color: var(--text-primary);
 }
 
 .about__visual {
@@ -803,10 +800,33 @@ button, input, textarea {
   cursor: pointer;
 }
 
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: border-color var(--duration-base),
+              box-shadow var(--duration-base),
+              opacity var(--duration-base);
+  cursor: pointer;
+}
+
+/* Focus mode: dim other cards when one is hovered */
+.project-card-wrapper {
+  transition: opacity var(--duration-base) var(--ease-out-expo);
+}
+
+.project-card-wrapper:hover .project-card:not(:hover) {
+  opacity: 0.4;
+}
+
 .project-card:hover {
-  border-color: rgba(108, 99, 255, 0.3);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
-              0 0 40px var(--accent-glow);
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28),
+              0 0 24px var(--accent-glow);
 }
 
 /* Gradient shine line at top */
@@ -1284,6 +1304,10 @@ button, input, textarea {
     align-items: center;
   }
 
+  .hero__subtitle {
+    margin-bottom: var(--space-lg);
+  }
+
   .btn {
     width: 100%;
     max-width: 280px;
@@ -1350,6 +1374,26 @@ button, input, textarea {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring,
+  body::after {
+    display: none !important;
+  }
+}
+
 
 /* ── Utility: Gradient Text ───────────────── */
 .gradient-text {
@@ -1357,6 +1401,23 @@ button, input, textarea {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ── Hand-drawn Annotation Style ───────────── */
+.annotation {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9em;
+  color: var(--accent-light);
+  transform: rotate(-1deg);
+  display: inline-block;
+  margin: 0.5rem 0;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.annotation:hover {
+  transform: rotate(0deg) scale(1.05);
+  opacity: 1;
 }
 
 /* ── Noise Texture Overlay ────────────────── */
@@ -1378,6 +1439,69 @@ body::after {
   }
 }
 
+
+/* ── Hero 3D Geometric Shapes ─────────────── */
+.hero__shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__shape {
+  position: absolute;
+  opacity: 0.1;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  animation: shapeFloat 20s infinite ease-in-out;
+}
+
+.hero__shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -100px;
+  animation-delay: 0s;
+  border-color: var(--accent);
+}
+
+.hero__shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -50px;
+  animation-delay: 5s;
+  border-color: var(--accent-light);
+  border-radius: 50%;
+}
+
+.hero__shape-3 {
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  right: 10%;
+  animation-delay: 10s;
+  transform: rotate(45deg);
+  border-color: var(--accent);
+}
+
+@keyframes shapeFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
 
 /* ── Light Theme ──────────────────────────── */
 [data-theme="light"] {

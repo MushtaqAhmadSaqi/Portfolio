@@ -49,7 +49,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap"
     rel="stylesheet" />
 
   <!-- Stylesheet -->
@@ -126,8 +126,11 @@
 
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero section" id="hero">
-    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
-
+    <div class="hero__shapes">
+      <div class="hero__shape hero__shape-1"></div>
+      <div class="hero__shape hero__shape-2"></div>
+      <div class="hero__shape hero__shape-3"></div>
+    </div>
     <div class="hero__content">
       <p class="hero__greeting">Hi, I'm</p>
       <h1 class="hero__name" id="heroName">
@@ -136,8 +139,10 @@
         <span class="word" data-word="Saqi">Saqi</span>
       </h1>
       <p class="hero__title">
-        CS Student @ <span class="highlight">COMSATS University</span> · Full-Stack Developer in Progress · <span
-          class="highlight">AI Enthusiast</span>
+        AI/CS student at <span class="highlight">COMSATS University Islamabad</span>, juggling core engineering concepts with full-stack web development.
+      </p>
+      <p class="hero__subtitle">
+        I care about clean UX, honest problem-solving, and shipping projects people can actually use.
       </p>
       <div class="hero__cta">
         <a href="#projects" class="btn btn--primary">
@@ -163,27 +168,26 @@
       <span class="section__label reveal">About Me</span>
       <div class="about__grid">
         <div class="about__text">
-          <h2 class="section__title reveal">Writing code<br />to solve <span class="gradient-text">real problems</span>.
+          <h2 class="section__title reveal">Building useful products<br />for <span class="gradient-text">real
+              people</span>.
           </h2>
           <p class="reveal reveal-delay-1">
-            I'm a university student at <strong>COMSATS University, Pakistan</strong>, passionate about building
-            impactful platforms for students and society. I don't just learn — I <strong>build, ship, and
-              iterate</strong>.
+            I'm a university student at <strong>COMSATS University, Pakistan</strong>. Most of my work focuses on
+            education: reducing friction for students and making quality resources easier to access.
           </p>
           <p class="reveal reveal-delay-2">
-            From <strong>AI-powered educational tools</strong> to <strong>open-source test prep platforms</strong>,
-            every project I take on is driven by a simple belief: technology should solve real problems for real people.
+            I enjoy turning rough ideas into working products, then improving them through user feedback. My process is
+            simple: <strong>listen, build, measure, improve</strong>.
           </p>
           <p class="reveal reveal-delay-3">
-            I lead, I ship, and I'm always learning. Whether it's <strong>full-stack development</strong>,
-            <strong>machine learning</strong>, or <strong>systems design</strong>, I'm constantly pushing myself to grow
-            and contribute meaningfully.
+            Right now, I'm growing in <strong>full-stack development</strong>, <strong>backend architecture</strong>, and
+            <strong>applied AI</strong> while contributing to open-source learning tools.
           </p>
 
           <div class="about__stats reveal reveal-delay-4">
             <div class="about__stat">
-              <div class="about__stat-number">3+</div>
-              <div class="about__stat-label">Projects Built</div>
+              <div class="about__stat-number">4+</div>
+              <div class="about__stat-label">Projects Shipped</div>
             </div>
             <div class="about__stat">
               <div class="about__stat-number">2.1K+</div>
@@ -193,6 +197,9 @@
               <div class="about__stat-number">500+</div>
               <div class="about__stat-label">Commits Made</div>
             </div>
+          </div>
+          <div class="about__note reveal reveal-delay-4">
+            <strong>Currently:</strong> Open to internship opportunities and freelance education-focused web projects.
           </div>
           <!-- TODO: Replace assets/resume.pdf with your actual resume file -->
           <a href="assets/resume.pdf" download class="btn btn--primary about__resume reveal reveal-delay-4">
@@ -227,22 +234,26 @@
       <span class="section__label reveal">Featured Work</span>
       <h2 class="section__title reveal">Things I've<br /><span class="gradient-text">built recently</span>.</h2>
       <p class="section__description reveal reveal-delay-1">
-        Each project is built with purpose — solving real problems for real students.
+        A few projects I'm proud of. Each one targets a specific student pain point.
       </p>
 
       <div class="projects__grid">
+        <!-- Project Card 1 -->
+        <div class="project-card-wrapper">
+          <div class="project-card" data-tilt">
 
         <!-- Project Card 1 -->
-        <div class="project-card" data-tilt>
+        <div class="project-card-wrapper">
+          <div class="project-card" data-tilt>
           <div class="project-card__icon">📚</div>
-          <span class="project-card__tag">Making premium education free</span>
+          <span class="project-card__tag">Reducing friction in test prep</span>
           <h3 class="project-card__title">OpenPrep Platform</h3>
           <p class="project-card__desc">
-            Open-source test preparation platform for Pakistani students preparing for IBA, MDCAT, and ECAT entrance
-            exams.
+            Co-founded with <strong>Mehdi</strong> to build an open-source test prep platform helping Pakistani students conquer entrance exams.
+            <span class="annotation">Our mission: make quality education accessible to everyone.</span>
           </p>
           <p class="project-card__meta">
-            2,100+ MCQs · Community contribution system · Growing daily
+            2,100+ MCQs · Contribution workflow · Built for scale
           </p>
           <div class="project-card__stack">
             <span class="stack-badge">Python</span>
@@ -265,14 +276,14 @@
         <!-- Project Card 2 -->
         <div class="project-card" data-tilt>
           <div class="project-card__icon">🎮</div>
-          <span class="project-card__tag">Teaching through play</span>
+          <span class="project-card__tag">Learning by interaction</span>
           <h3 class="project-card__title">EduGame — Kids Learning</h3>
           <p class="project-card__desc">
             Interactive educational web game for children aged 6–9 with math quizzes, an Angry Birds-style Pygame game,
             leaderboards, and save/load functionality.
           </p>
           <p class="project-card__meta">
-            Math quizzes · Pygame integration · Gamified learning
+            Math quizzes · Pygame integration · Child-friendly UX
           </p>
           <div class="project-card__stack">
             <span class="stack-badge">Python</span>
@@ -296,14 +307,14 @@
         <!-- Project Card 3 -->
         <div class="project-card" data-tilt>
           <div class="project-card__icon">📄</div>
-          <span class="project-card__tag">Every student deserves resources</span>
+          <span class="project-card__tag">One place for study resources</span>
           <h3 class="project-card__title">Student Resource Hub</h3>
           <p class="project-card__desc">
             A central hub for past papers, solutions, and study material — designed to be the most accessible resource
             platform for students.
           </p>
           <p class="project-card__meta">
-            Full UI design · Past papers · Solutions repository
+            UI design system · Past papers library · Backend in progress
           </p>
           <div class="project-card__stack">
             <span class="stack-badge">HTML</span>
@@ -321,6 +332,37 @@
               Code
             </a>
           </div>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div class="project-card" data-tilt>
+          <div class="project-card__icon">🏨</div>
+          <span class="project-card__tag">Object-Oriented Programming in action</span>
+          <h3 class="project-card__title">Java Hotel Management System</h3>
+          <p class="project-card__desc">
+            Comprehensive hotel management application built with core OOP principles — inheritance, polymorphism, and encapsulation in full display.
+          </p>
+          <p class="project-card__meta">
+            OOP architecture · Room booking · Staff management
+          </p>
+          <div class="project-card__stack">
+            <span class="stack-badge">Java</span>
+            <span class="stack-badge">Swing</span>
+            <span class="stack-badge">MySQL</span>
+            <span class="stack-badge">OOP</span>
+          </div>
+          <!-- TODO: Update href to the actual GitHub repo URL -->
+          <div class="project-card__links">
+            <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener" class="project-card__link"
+              aria-label="View Hotel Management System source code on GitHub">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
         </div>
 
       </div>
@@ -398,46 +440,45 @@
   </section>
 
 
-  <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
-  <!-- TODO: Replace the sample quotes below with real testimonials from colleagues, professors, or users -->
+  <!-- ═══════════════ JOURNEY ═══════════════ -->
   <section class="testimonials section" id="testimonials">
     <div class="section__inner">
-      <span class="section__label reveal">Kind Words</span>
-      <h2 class="section__title reveal">What people <span class="gradient-text">say</span>.</h2>
+      <span class="section__label reveal">Journey</span>
+      <h2 class="section__title reveal">How I'm <span class="gradient-text">growing</span>.</h2>
       <div class="testimonials__grid">
 
         <div class="testimonial-card reveal">
-          <p class="testimonial-card__quote">"Mushtaq is one of the most dedicated students I've taught. His ability to
-            build full-stack applications while maintaining academic excellence is remarkable."</p>
+          <p class="testimonial-card__quote">Started by building static websites, then moved into Flask apps with auth,
+            CRUD workflows, and deployment basics.</p>
           <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">PA</div>
+            <div class="testimonial-card__avatar">01</div>
             <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Prof. Ahmed</div>
-              <div class="testimonial-card__role">Lecturer, COMSATS University</div>
+              <div class="testimonial-card__name">Foundation</div>
+              <div class="testimonial-card__role">HTML, CSS, JavaScript, Flask</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card reveal reveal-delay-1">
-          <p class="testimonial-card__quote">"Working with Mushtaq on OpenPrep was inspiring. He shipped features faster
-            than anyone I've collaborated with and always kept users in mind."</p>
+          <p class="testimonial-card__quote">Built student-focused products and learned to prioritize user feedback over
+            unnecessary features or visual noise.</p>
           <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">SR</div>
+            <div class="testimonial-card__avatar">02</div>
             <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Saqib Raza</div>
-              <div class="testimonial-card__role">Collaborator, OpenPrep</div>
+              <div class="testimonial-card__name">Product Thinking</div>
+              <div class="testimonial-card__role">User-first development mindset</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card reveal reveal-delay-2">
-          <p class="testimonial-card__quote">"The EduGame platform genuinely made learning fun for my 7-year-old. It's
-            rare to see a student project with this level of polish and care."</p>
+          <p class="testimonial-card__quote">Now focusing on stronger backend systems, AI-assisted features, and code
+            quality to ship production-ready projects.</p>
           <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">FM</div>
+            <div class="testimonial-card__avatar">03</div>
             <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Farhan Malik</div>
-              <div class="testimonial-card__role">Parent & Early User</div>
+              <div class="testimonial-card__name">Current Focus</div>
+              <div class="testimonial-card__role">Backend, AI features, maintainable code</div>
             </div>
           </div>
         </div>
@@ -472,8 +513,8 @@
       <div class="contact__grid">
         <div class="contact__info reveal">
           <p>
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of something
-            impactful. Whether you have a question or just want to say hi — feel free to reach out!
+            If you're building in education, student productivity, or social impact tech, I'd love to connect. Send me a
+            message and I'll get back to you as soon as I can.
           </p>
           <div class="contact__socials">
             <!-- GitHub -->
@@ -494,8 +535,7 @@
               </svg>
             </a>
             <!-- Email -->
-            <!-- TODO: Replace with your actual email address -->
-            <a href="mailto:mushtaq@example.com" class="social-link" id="emailLink" aria-label="Send Email">
+            <a href="mailto:mushtaqahmadsaqi@gmail.com" class="social-link" id="emailLink" aria-label="Send Email">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -545,10 +585,6 @@
 
 
   <!-- ═══════════════ SCRIPTS ═══════════════ -->
-  <!-- Three.js for 3D -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-    integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"
-    crossorigin="anonymous"></script>
 
   <!-- GSAP for animations -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
