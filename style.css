@@ -127,6 +127,18 @@ button, input, textarea {
   color: var(--bg-primary);
 }
 
+/* ── 3D Canvas Background ─────────────────── */
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bg-primary);
+}
+
 
 /* ── Page Loader ──────────────────────────── */
 .loader {
@@ -796,8 +808,28 @@ button, input, textarea {
   overflow: hidden;
   transform-style: preserve-3d;
   transition: border-color var(--duration-base),
-              box-shadow var(--duration-base);
+              box-shadow var(--duration-base),
+              transform 0.5s var(--ease-out-quint);
   cursor: pointer;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+              0 0 20px var(--accent-subtle);
+}
+
+.project-card__icon,
+.project-card__tag,
+.project-card__title,
+.project-card__desc,
+.project-card__stack,
+.project-card__links {
+  transform: translateZ(20px);
+}
+
+.project-card__title {
+  transform: translateZ(40px);
 }
 
 .project-card {

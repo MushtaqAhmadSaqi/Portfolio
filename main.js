@@ -264,10 +264,10 @@
   //  7.  PROJECT CARD 3D TILT EFFECT
   // ──────────────────────────────────────────
   function initCardTilt() {
-    const cards = document.querySelectorAll('[data-tilt]');
+    const cards = document.querySelectorAll('.project-card');
 
     cards.forEach((card) => {
-      const maxTilt = 8; // degrees
+      const maxTilt = 15; // Increased for better effect
 
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -279,14 +279,129 @@
         const rotateX = ((y - centerY) / centerY) * -maxTilt;
         const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        card.style.transition = 'transform 0.1s ease';
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
       });
 
       card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        card.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
       });
+    });
+  }
+
+
+  // ──────────────────────────────────────────
+  //  7.5. THREE.JS 3D BACKGROUND
+  // ──────────────────────────────────────────
+  function initThreeJS() {
+    if (typeof THREE === 'undefined') return;
+
+    const container = document.getElementById('canvas-container');
+    if (!container) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Particles
+    const particlesCount = 200;
+    const posArray = new Float32Array(particlesCount * 3);
+    
+    for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 12;
+    }
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0x14b8a6,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Connections (lines)
+    const lineMaterial = new THREE.LineBasicMaterial({ 
+        color: 0x14b8a6, 
+        transparent: true, 
+        opacity: 0.1 
+    });
+    
+    const lineGeometry = new THREE.BufferGeometry();
+    const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lineMesh);
+
+    camera.position.z = 4;
+
+    // Mouse movement parallax
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      targetMouseX = (e.clientX / window.innerWidth - 0.5);
+      targetMouseY = (e.clientY / window.innerHeight - 0.5);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Smooth mouse follow
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
+
+      particlesMesh.rotation.y += 0.0005;
+      particlesMesh.rotation.x += 0.0002;
+
+      // Dynamic line connections (update a few every frame)
+      const positions = particlesGeometry.attributes.position.array;
+      const linePositions = [];
+      const threshold = 1.8;
+
+      for (let i = 0; i < particlesCount; i++) {
+          for (let j = i + 1; j < particlesCount; j++) {
+              const dx = positions[i * 3] - positions[j * 3];
+              const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
+              const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
+              const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+              if (dist < threshold) {
+                  linePositions.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                  linePositions.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+              }
+          }
+          // Limit lines to prevent performance drop
+          if (linePositions.length > 1000) break;
+      }
+      
+      lineGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePositions), 3));
+      lineMesh.rotation.y = particlesMesh.rotation.y;
+      lineMesh.rotation.x = particlesMesh.rotation.x;
+
+      // Camera parallax
+      camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
+      camera.position.y += (mouseY * -1.5 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
     });
   }
 
@@ -618,6 +733,7 @@
     initActiveNavHighlight();
     initThemeToggle();
     initBackToTop();
+    initThreeJS();
 
     // Graceful photo fallback — hide broken img, show initials
     const aboutPhoto = document.querySelector('.about__photo');
