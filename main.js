@@ -288,31 +288,10 @@
 
 
   // ──────────────────────────────────────────
-  //  7.  PROJECT CARD 3D TILT EFFECT
+  //  7.  PROJECT CARD 3D TILT EFFECT (DISABLED)
   // ──────────────────────────────────────────
   function initCardTilt() {
-    const cards = document.querySelectorAll('.project-card');
-
-    cards.forEach((card) => {
-      const maxTilt = 15; // Increased for better effect
-
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = ((y - centerY) / centerY) * -maxTilt;
-        const rotateY = ((x - centerX) / centerX) * maxTilt;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      });
-    });
+    // Tilt effect disabled as per user request in favor of horizontal scroll.
   }
 
 
@@ -573,21 +552,22 @@
       });
     });
 
-    // Project cards stagger
-    gsap.utils.toArray('.project-card').forEach((card, i) => {
-      gsap.from(card, {
+    // Project horizontal scroll
+    const pbWrapper = document.querySelector('.projects-scroll-wrapper');
+    const pbContainer = document.querySelector('.projects-container');
+    if (pbWrapper && pbContainer) {
+      gsap.to(pbContainer, {
+        x: () => -(pbContainer.scrollWidth - pbWrapper.clientWidth),
+        ease: "none",
         scrollTrigger: {
-          trigger: card,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        delay: i * 0.15,
-        ease: 'expo.out',
+          trigger: pbWrapper,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          end: () => "+=" + pbContainer.scrollWidth
+        }
       });
-    });
+    }
 
     // Vision quote scale-in
     gsap.from('.vision__quote', {
