@@ -54,6 +54,38 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      }
+    }
+  </script>
+  <style>
+    .reveal-mask {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      overflow: hidden;
+    }
+    /* Lenis Smooth Scroll Setup */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -590,6 +622,9 @@
 
   <!-- Three.js for 3D Background -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+
+  <!-- Lenis for Smooth Scrolling -->
+  <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
   <!-- GSAP for animations -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"

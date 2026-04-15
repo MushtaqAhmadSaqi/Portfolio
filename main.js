@@ -126,6 +126,33 @@
 
 
   // ──────────────────────────────────────────
+  //  1.5  LENIS SMOOTH SCROLLING
+  // ──────────────────────────────────────────
+  function initLenis() {
+    if (typeof Lenis === 'undefined') return;
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+    
+    // Connect GSAP ScrollTrigger to Lenis if needed
+    if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
+  }
+
+  // ──────────────────────────────────────────
   //  4.  HERO TEXT ANIMATIONS (GSAP)
   // ──────────────────────────────────────────
   function initHeroAnimations() {
@@ -719,6 +746,7 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     initLoader();
+    initLenis();
     if (!prefersReducedMotion) {
       initCursor();
     }
