@@ -552,22 +552,23 @@
       });
     });
 
-    // Project horizontal scroll
-    const pbWrapper = document.querySelector('.projects-scroll-wrapper');
-    const pbContainer = document.querySelector('.projects-container');
-    if (pbWrapper && pbContainer) {
-      gsap.to(pbContainer, {
-        x: () => -(pbContainer.scrollWidth - pbWrapper.clientWidth),
-        ease: "none",
+    // Project cards — staggered fade-up ScrollTrigger reveal
+    const projectCards = document.querySelectorAll('.gsap-project-card');
+    projectCards.forEach((card, i) => {
+      gsap.to(card, {
         scrollTrigger: {
-          trigger: pbWrapper,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-          end: () => "+=" + pbContainer.scrollWidth
-        }
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        delay: i * 0.12,
+        ease: 'expo.out',
       });
-    }
+    });
 
     // Vision quote scale-in
     gsap.from('.vision__quote', {

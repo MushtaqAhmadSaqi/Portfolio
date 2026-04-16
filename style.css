@@ -817,7 +817,7 @@ button, input, textarea {
   position: relative;
   width: 100%;
   margin-top: var(--space-2xl);
-  padding: 20px 0; /* extra padding for hover shadows */
+  padding: 20px 0;
 }
 
 .projects-container {
@@ -825,8 +825,68 @@ button, input, textarea {
   flex-wrap: nowrap;
   width: max-content;
   gap: var(--space-xl);
-  /* The padding-right gives space after the last card when scrolling horizontally */
   padding-right: var(--space-2xl);
+}
+
+/* ── Projects Grid (new responsive 3-col layout) ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding-bottom: var(--space-lg);
+}
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grid card variant — removes forced width from horizontal scroller */
+.project-card--grid {
+  width: auto !important;
+  max-width: 100% !important;
+  flex-shrink: unset;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push links to bottom of card */
+.project-card--grid .project-card__links {
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+/* Header row: icon + tag side by side */
+.project-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.project-card__header .project-card__icon {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.project-card__header .project-card__tag {
+  margin-bottom: 0;
+}
+
+/* GSAP initial state for scroll-reveal */
+.gsap-project-card {
+  opacity: 0;
+  transform: translateY(48px);
+  will-change: opacity, transform;
 }
 
 .project-card {
