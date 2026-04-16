@@ -1,0 +1,6 @@
+Mushtaq Ahmad Saqi
+Resume Placeholder
+Education: COMSATS University Islamabad
+Skills: Python, Java, HTML, CSS, JavaScript, Flask, React, Node.js, AI/ML
+Projects: OpenPrep Platform, EduGame, Student Resource Hub, Hotel Management System
+Contact: mushtaqahmadsaqi@gmail.com
