@@ -75,7 +75,7 @@
   <div class="site-shell">
     <header class="site-header" id="siteHeader">
       <div class="container header-inner">
-        <a class="brand" href="#hero" aria-label="Go to homepage">
+        <a class="brand" href="#hero" aria-label="Go to homepage" data-magnetic>
           <span class="brand-mark">MAS</span>
           <span class="brand-text">Mushtaq Ahmad Saqi</span>
         </a>
@@ -132,7 +132,10 @@
       <section class="hero section" id="hero">
         <div class="container hero-grid">
           <div class="hero-copy" data-reveal>
-            <p class="eyebrow">Full-Stack Developer · AI Enthusiast · COMSATS University</p>
+            <p class="eyebrow">
+              <span id="typewriter" class="typewriter" aria-live="polite"></span>
+              <span class="type-cursor" aria-hidden="true"></span>
+            </p>
             <h1>
               I build <span class="gradient-text">practical digital products</span> with clean UX,
               strong fundamentals, and a focus on <span class="gradient-text">real people</span>.
@@ -143,8 +146,8 @@
             </p>
 
             <div class="hero-actions">
-              <a class="button button-primary" href="#projects">View Projects</a>
-              <a class="button button-secondary" href="#contact">Let’s Connect</a>
+              <a class="button button-primary" href="#projects" data-magnetic>View Projects</a>
+              <a class="button button-secondary" href="#contact" data-magnetic>Let’s Connect</a>
             </div>
 
             <ul class="hero-points" aria-label="Highlights">
@@ -235,8 +238,8 @@
               </div>
 
               <div class="inline-actions">
-                <a class="button button-primary" href="assets/resume.txt" download>Download Resume</a>
-                <a class="button button-secondary" href="#contact">Start a Conversation</a>
+                <a class="button button-primary" href="assets/resume.txt" download data-magnetic>Download Resume</a>
+                <a class="button button-secondary" href="#contact" data-magnetic>Start a Conversation</a>
               </div>
             </article>
 
@@ -518,7 +521,7 @@
               </div>
 
               <div class="form-actions">
-                <button class="button button-primary" type="submit">Send via Email</button>
+                <button class="button button-primary" type="submit" data-magnetic>Send via Email</button>
                 <p class="form-note">
                   This form opens your email client with a prefilled message. Replace it with a
                   backend endpoint later if you want direct form submissions.
@@ -539,5 +542,7 @@
       </div>
     </footer>
   </div>
+  <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 </body>
 </html>
