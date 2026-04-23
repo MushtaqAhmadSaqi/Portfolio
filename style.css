@@ -1277,90 +1277,7 @@ body::after {
   50%, 100% { opacity: 0; }
 }
 
-/* ---------- Custom cursor ---------- */
-@media (hover: hover) and (pointer: fine) {
-  html, body { cursor: none; }
-
-  a, button, input, textarea, label,
-  .theme-toggle, .menu-toggle, .card {
-    cursor: none;
-  }
-
-  .cursor-dot,
-  .cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    translate: -50% -50%;
-    will-change: transform, width, height, opacity;
-  }
-
-  .cursor-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px var(--accent);
-    transition: width 200ms ease, height 200ms ease, opacity 200ms ease;
-  }
-
-  .cursor-ring {
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    background: transparent;
-    transition:
-      width 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      height 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      background 240ms ease,
-      border-color 240ms ease,
-      opacity 200ms ease;
-  }
-
-  /* Hover over clickable things → ring expands + fills softly */
-  .cursor-ring.is-hover {
-    width: 64px;
-    height: 64px;
-    background: var(--accent-soft);
-    border-color: transparent;
-    backdrop-filter: blur(2px);
-  }
-
-  .cursor-dot.is-hover {
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-
-  /* Click feedback */
-  .cursor-ring.is-click {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Text inputs → vertical caret-like cursor */
-  .cursor-ring.is-text {
-    width: 4px;
-    height: 28px;
-    border-radius: 2px;
-    background: var(--accent);
-    border-color: transparent;
-  }
-
-  .cursor-dot.is-text { opacity: 0; }
-
-  /* When pointer leaves window */
-  .cursor-dot.is-hidden,
-  .cursor-ring.is-hidden {
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .cursor-dot, .cursor-ring { display: none !important; }
   html, body { cursor: auto !important; }
 }
 
@@ -1414,14 +1331,55 @@ body::after {
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .cursor-ring.is-snapped {
-    width: 72px;
-    height: 72px;
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    mix-blend-mode: plus-lighter;
-  }
+
+
+
+
+/* ---------- Phase 2 ---------- */
+.project-preview {
+  margin: 1rem 0 1.1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface-3);
 }
 
+.project-preview img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-featured {
+  border: 1px solid var(--accent);
+  box-shadow: 0 20px 60px rgba(14, 165, 233, 0.18);
+}
+
+.project-featured .project-tag {
+  background: var(--accent);
+  color: white;
+}
+
+.project-proof {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.trust-strip {
+  padding-top: 0;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-links a::after {
+  content: "?";
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
 

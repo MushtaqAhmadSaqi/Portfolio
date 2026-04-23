@@ -291,10 +291,10 @@
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width;
         const y = (e.clientY - r.top) / r.height;
-        const rx = (y - 0.5) * -6;
-        const ry = (x - 0.5) * 6;
+        const rx = (y - 0.5) * -3;
+        const ry = (x - 0.5) * 3;
 
-        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
         card.style.setProperty("--mx", `${x * 100}%`);
         card.style.setProperty("--my", `${y * 100}%`);
       });
@@ -369,106 +369,7 @@
     tick();
   }
 
-  function initCustomCursor() {
-    const dot  = select("#cursorDot");
-    const ring = select("#cursorRing");
-    if (!dot || !ring) return;
 
-    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!fine || reduced) {
-      dot.remove();
-      ring.remove();
-      return;
-    }
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX  = mouseX;
-    let ringY  = mouseY;
-    let targetX = mouseX;
-    let targetY = mouseY;
-
-    const EASE = 0.18;
-    const SNAP_RADIUS = 60; // snap when within this many px of a magnetic element
-
-    window.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-
-      // Check for nearest magnetic target to snap ring to
-      const mags = document.querySelectorAll(".magnetic");
-      let snapped = false;
-      mags.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        const dist = Math.hypot(mouseX - cx, mouseY - cy);
-        if (dist < Math.max(SNAP_RADIUS, Math.max(r.width, r.height) * 0.55)) {
-          targetX = cx;
-          targetY = cy;
-          snapped = true;
-        }
-      });
-      if (!snapped) {
-        targetX = mouseX;
-        targetY = mouseY;
-      }
-      ring.classList.toggle("is-snapped", snapped);
-    });
-
-    const render = () => {
-      ringX += (targetX - ringX) * EASE;
-      ringY += (targetY - ringY) * EASE;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-      requestAnimationFrame(render);
-    };
-    render();
-
-    // Hover states
-    const hoverables = "a, button, .card, .theme-toggle, .menu-toggle, label, [role='button']";
-    const textInputs = "input, textarea";
-
-    document.addEventListener("mouseover", (e) => {
-      if (e.target.closest(textInputs)) {
-        ring.classList.add("is-text");
-        dot.classList.add("is-text");
-        ring.classList.remove("is-hover");
-        dot.classList.remove("is-hover");
-        return;
-      }
-      if (e.target.closest(hoverables)) {
-        ring.classList.add("is-hover");
-        dot.classList.add("is-hover");
-      }
-    });
-
-    document.addEventListener("mouseout", (e) => {
-      if (e.target.closest(textInputs)) {
-        ring.classList.remove("is-text");
-        dot.classList.remove("is-text");
-      }
-      if (e.target.closest(hoverables)) {
-        ring.classList.remove("is-hover");
-        dot.classList.remove("is-hover");
-      }
-    });
-
-    // Click pulse
-    document.addEventListener("mousedown", () => ring.classList.add("is-click"));
-    document.addEventListener("mouseup",   () => ring.classList.remove("is-click"));
-
-    // Hide when leaving the window
-    document.addEventListener("mouseleave", () => {
-      dot.classList.add("is-hidden");
-      ring.classList.add("is-hidden");
-    });
-    document.addEventListener("mouseenter", () => {
-      dot.classList.remove("is-hidden");
-      ring.classList.remove("is-hidden");
-    });
-  }
 
   function initMagneticButtons() {
     if (window.matchMedia("(hover: none)").matches) return;
@@ -477,9 +378,9 @@
     const buttons = selectAll(".magnetic");
     if (!buttons.length) return;
 
-    const STRENGTH = 0.35;     // how strongly the button follows the cursor (0–0.6)
-    const LABEL_LAG = 0.55;    // inner label moves further for depth
-    const FIELD = 80;          // px outside the button where the effect starts
+    const STRENGTH = 0.2;      // how strongly the button follows the cursor
+    const LABEL_LAG = 0.3;     // inner label moves slightly for depth
+    const FIELD = 40;          // px outside the button where the effect starts
 
     buttons.forEach((btn) => {
       const label = btn.querySelector(".button-label");
@@ -537,8 +438,8 @@
           // Soft pre-pull when cursor is near but not yet inside
           const cx = r.left + r.width / 2;
           const cy = r.top + r.height / 2;
-          const dx = (e.clientX - cx) * STRENGTH * 0.35;
-          const dy = (e.clientY - cy) * STRENGTH * 0.35;
+          const dx = (e.clientX - cx) * STRENGTH * 0.15;
+          const dy = (e.clientY - cy) * STRENGTH * 0.15;
           btn.style.transform = `translate(${dx}px, ${dy}px)`;
           btn.classList.add("is-near");
         } else if (!inside && !btn.matches(":hover")) {
@@ -559,11 +460,10 @@
     initContactForm();
     setCurrentYear();
     initCounters();
-    initCardTilt();
+    // initCardTilt();
     initScrollProgress();
     initTypewriter();
-    initCustomCursor();
-    initMagneticButtons();
+    // initMagneticButtons();
   }
 
   document.addEventListener("DOMContentLoaded", init);
