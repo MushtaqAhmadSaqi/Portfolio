@@ -241,42 +241,80 @@
     const nodes = selectAll("[data-count]");
     if (!nodes.length) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      nodes.forEach((n) => {
+        const d = Number(n.dataset.decimals || 0);
+        n.textContent = Number(n.dataset.count).toFixed(d) + (n.dataset.suffix || "");
+      });
+      return;
+    }
+
     const animate = (el) => {
       const target = Number(el.dataset.count);
       const suffix = el.dataset.suffix || "";
+      const decimals = Number(el.dataset.decimals || 0);
       const duration = 1600;
       const start = performance.now();
 
       const tick = (now) => {
         const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-        const value = Math.floor(eased * target);
-        el.textContent = value.toLocaleString() + (p === 1 ? suffix : "");
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (eased * target).toFixed(decimals) + (p === 1 ? suffix : "");
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
     };
 
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.6 });
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            animate(e.target);
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
 
     nodes.forEach((n) => io.observe(n));
   }
 
-  function initTilt() {
+  function initCardTilt() {
     if (window.matchMedia("(hover: none)").matches) return;
-    selectAll(".project-card, .skill-card, .profile-card, .hero-panel").forEach((card) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const cards = selectAll(".project-card, .skill-card, .timeline-item, .hero-panel, .profile-card");
+
+    cards.forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width  - 0.5;
-        const y = (e.clientY - r.top)  / r.height - 0.5;
-        card.style.transform = `translateY(-4px) rotateX(${(-y * 3).toFixed(2)}deg) rotateY(${(x * 3).toFixed(2)}deg)`;
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        const rx = (y - 0.5) * -6;
+        const ry = (x - 0.5) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        card.style.setProperty("--mx", `${x * 100}%`);
+        card.style.setProperty("--my", `${y * 100}%`);
       });
-      card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
     });
+  }
+
+  function initScrollProgress() {
+    const bar = select("#scrollProgress");
+    if (!bar) return;
+    const update = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      bar.style.width = `${scrolled}%`;
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
   }
 
   function init() {
@@ -289,7 +327,8 @@
     initContactForm();
     setCurrentYear();
     initCounters();
-    initTilt();
+    initCardTilt();
+    initScrollProgress();
   }
 
   document.addEventListener("DOMContentLoaded", init);

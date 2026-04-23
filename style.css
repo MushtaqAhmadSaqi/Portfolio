@@ -81,6 +81,8 @@ body {
     radial-gradient(circle at 85% 20%, rgba(14, 165, 233, 0.10), transparent 20%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
   line-height: 1.65;
+  position: relative;
+  overflow-x: hidden;
 }
 
 img {
@@ -825,14 +827,20 @@ button {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 500ms ease, transform 500ms ease;
+  transform: translateY(32px) scale(0.98);
+  filter: blur(4px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms ease;
   transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 
 [data-reveal].is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 @keyframes pulse {
@@ -925,13 +933,13 @@ button {
   }
 }
 
-/* ---------- PREMIUM UPGRADES ---------- */
+/* ---------- PREMIUM DESIGN SYSTEM ---------- */
 
 :root {
   --font-display: "Fraunces", "Space Grotesk", serif;
 }
 
-/* 1. Editorial serif accent used inside headings */
+/* 1. Editorial serif accent */
 .accent-serif {
   font-family: var(--font-display);
   font-style: italic;
@@ -942,88 +950,224 @@ button {
   background-clip: text;
   color: transparent;
   letter-spacing: -0.02em;
-  padding-right: 0.05em; /* prevent italic clipping */
+  padding-right: 0.05em;
 }
 
-/* 2. Aurora mesh + grain behind everything */
+/* 2. Aurora Background Blobs */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  inset: 0;
-  pointer-events: none;
+  width: 45rem;
+  height: 45rem;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
   z-index: -1;
+  pointer-events: none;
 }
 
 body::before {
-  background:
-    radial-gradient(40rem 40rem at 12% -10%, rgba(56, 189, 248, 0.22), transparent 60%),
-    radial-gradient(36rem 36rem at 90% 8%,  rgba(167, 139, 250, 0.20), transparent 60%),
-    radial-gradient(44rem 44rem at 50% 110%, rgba(244, 114, 182, 0.14), transparent 60%);
-  filter: blur(10px) saturate(1.1);
-  animation: aurora 18s ease-in-out infinite alternate;
-}
-
-:root[data-theme="light"] body::before {
-  opacity: 0.55;
+  top: -10rem;
+  left: -10rem;
+  background: radial-gradient(circle, var(--accent), transparent 60%);
+  animation: drift1 22s ease-in-out infinite alternate;
 }
 
 body::after {
-  /* SVG noise — adds tactile "paper" grain */
+  bottom: -15rem;
+  right: -10rem;
+  background: radial-gradient(circle, #a78bfa, transparent 60%);
+  animation: drift2 28s ease-in-out infinite alternate;
+}
+
+:root[data-theme="light"] body::before,
+:root[data-theme="light"] body::after {
+  opacity: 0.18;
+}
+
+@keyframes drift1 {
+  to { transform: translate(6rem, 4rem) scale(1.15); }
+}
+@keyframes drift2 {
+  to { transform: translate(-5rem, -3rem) scale(1.1); }
+}
+
+body::after {
+  /* Overlay tactile "paper" grain */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   mix-blend-mode: overlay;
   opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  animation: none;
 }
 
-@keyframes aurora {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-2%, 1%, 0) scale(1.05); }
+/* 3. Gradient Text */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    #a78bfa 25%,
+    #f472b6 50%,
+    #a78bfa 75%,
+    var(--accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 6s linear infinite;
 }
 
-/* 3. Bigger, tighter hero — premium = confident type */
+@keyframes gradientShift {
+  to { background-position: 200% center; }
+}
+
+/* 4. Hero Entrance */
 .hero h1 {
-  font-size: clamp(3rem, 8.5vw, 6.8rem);
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  animation: heroRise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.hero-lead {
-  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-  max-width: 40rem;
+.hero-lead       { animation: heroRise 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-actions    { animation: heroRise 900ms 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-points     { animation: heroRise 900ms 460ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-panel      { animation: heroRise 900ms 600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
 }
 
-.section { padding: 7rem 0; }
-.section-heading { margin-bottom: 3.5rem; }
-
-/* 4. Gradient-border cards on hover (uses mask trick) */
-.card {
+/* 5. Magnetic Buttons & Shimmer */
+.button {
   position: relative;
-  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.card::before {
+.button-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 700ms ease;
+  z-index: -1;
+}
+
+.button-primary:hover::before { transform: translateX(120%); }
+
+.button:active { transform: translateY(1px) scale(0.98); }
+
+/* 6. Card 3D Tilt & Glow */
+.project-card,
+.skill-card,
+.timeline-item,
+.hero-panel,
+.profile-card {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.project-card::after,
+.skill-card::after,
+.timeline-item::after,
+.hero-panel::after,
+.profile-card::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(56,189,248,0.6), rgba(167,139,250,0.6), rgba(244,114,182,0.4));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  background: radial-gradient(
+    400px circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-soft),
+    transparent 40%
+  );
   opacity: 0;
-  transition: opacity var(--transition-slow);
+  transition: opacity 300ms ease;
   pointer-events: none;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 30px 80px rgba(14, 165, 233, 0.18);
+.project-card:hover::after,
+.skill-card:hover::after,
+.timeline-item:hover::after,
+.hero-panel:hover::after,
+.profile-card:hover::after {
+  opacity: 1;
 }
 
-.card:hover::before { opacity: 1; }
+/* 7. Nav Underline Grow */
+.site-nav a {
+  position: relative;
+  padding: 0.4rem 0;
+}
 
-/* 5. Project number becomes a large ghost numeral */
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #a78bfa);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav a:hover::after,
+.site-nav a.is-active::after {
+  transform: scaleX(1);
+}
+
+/* 8. Tag Breathing Glow */
+.project-tag {
+  animation: tagGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes tagGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-soft); }
+  50%      { box-shadow: 0 0 0 8px transparent; }
+}
+
+/* 9. Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #a78bfa, #f472b6);
+  z-index: 100;
+  transition: width 80ms linear;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* 10. Theme Toggle Feedback */
+.theme-toggle-thumb {
+  transition: transform 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55),
+              background 300ms ease;
+}
+
+.theme-toggle:active .theme-toggle-thumb {
+  transform: scale(0.85);
+}
+
+:root[data-theme="light"] .theme-toggle:active .theme-toggle-thumb {
+  transform: translateX(1.25rem) scale(0.85);
+}
+
+/* 11. Ghost Numeral */
 .project-number {
   font-family: var(--font-display);
   font-size: 2.2rem;
@@ -1033,44 +1177,7 @@ body::after {
   opacity: 0.25;
 }
 
-/* 6. Buttons: premium shine on hover */
-.button-primary {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.button-primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 650ms ease;
-  z-index: -1;
-}
-
-.button-primary:hover::after { transform: translateX(120%); }
-
-.button-primary:hover {
-  box-shadow: 0 20px 45px rgba(14, 165, 233, 0.38);
-}
-
-/* 7. Stat numbers — editorial display face */
-.stat-grid strong,
-.timeline-step,
-.hero-metrics strong {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 2rem;
-  letter-spacing: -0.03em;
-  background: linear-gradient(180deg, var(--text) 0%, var(--accent) 140%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* 8. Marquee strip */
+/* 12. Marquee Styling */
 .marquee {
   overflow: hidden;
   border-top: 1px solid var(--line);
@@ -1100,13 +1207,7 @@ body::after {
   to   { transform: translateX(-50%); }
 }
 
-/* 9. Eyebrow gets a small glyph */
-.eyebrow::before {
-  content: "— ";
-  color: var(--accent);
-}
-
-/* 10. Vision blockquote: huge serif pull-quote */
+/* 13. Vision Pull-Quote */
 .vision-card blockquote {
   font-family: var(--font-display);
   font-style: italic;
@@ -1124,15 +1225,28 @@ body::after {
   margin-bottom: 1.5rem;
 }
 
-/* 11. Smoother form focus */
+/* 14. Stat numbers */
+.stat-grid strong,
+.timeline-step,
+.hero-metrics strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, var(--text) 0%, var(--accent) 140%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 15. Form Focus */
 .form-field input:focus,
 .form-field textarea:focus {
   box-shadow: 0 0 0 4px var(--focus-ring), 0 10px 30px rgba(14,165,233,0.12);
 }
 
-/* 12. Respect reduced motion */
+/* 16. Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   body::before,
   .marquee-track { animation: none !important; }
 }
-
