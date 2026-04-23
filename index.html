@@ -1,614 +1,535 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mushtaq Ahmad Saqi — Full-Stack Developer & AI Enthusiast</title>
-  <meta name="description"
-    content="Portfolio of Mushtaq Ahmad Saqi — CS Student at COMSATS University, Full-Stack Developer, and AI Enthusiast building impactful platforms for education." />
+  <meta
+    name="description"
+    content="Portfolio of Mushtaq Ahmad Saqi — a full-stack developer and AI-focused computer science student building practical products for education and real users."
+  />
   <meta name="author" content="Mushtaq Ahmad Saqi" />
-  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="theme-color" content="#0f172a" />
   <link rel="canonical" href="https://mushtaqahmadsaqi.github.io/Portfolio/" />
-
-  <!-- Favicon -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Mushtaq Ahmad Saqi — Portfolio" />
-  <meta property="og:description" content="CS Student | Full-Stack Developer in Progress | AI Enthusiast" />
+  <meta
+    property="og:description"
+    content="Full-stack developer and AI enthusiast building practical, student-focused products."
+  />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mushtaqahmadsaqi.github.io/Portfolio/" />
-  <!-- TODO: Create a 1200×630 og-image.png and place it in your repo root -->
   <meta property="og:image" content="https://mushtaqahmadsaqi.github.io/Portfolio/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Mushtaq Ahmad Saqi — Portfolio" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mushtaq Ahmad Saqi — Portfolio" />
-  <meta name="twitter:description" content="CS Student | Full-Stack Developer in Progress | AI Enthusiast" />
+  <meta
+    name="twitter:description"
+    content="Full-stack developer and AI enthusiast building practical, student-focused products."
+  />
   <meta name="twitter:image" content="https://mushtaqahmadsaqi.github.io/Portfolio/og-image.png" />
 
-  <!-- Structured Data -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem("theme");
+      const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      const theme = storedTheme || (prefersLight ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Mushtaq Ahmad Saqi",
     "url": "https://mushtaqahmadsaqi.github.io/Portfolio/",
-    "sameAs": ["https://github.com/MushtaqAhmadSaqi"],
-    "jobTitle": "Full-Stack Developer & AI Enthusiast",
-    "description": "CS Student at COMSATS University, Full-Stack Developer in Progress, and AI Enthusiast building impactful platforms for education.",
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "COMSATS University Pakistan" }
+    "sameAs": [
+      "https://github.com/MushtaqAhmadSaqi",
+      "https://linkedin.com/in/mushtaqahmadsaqi"
+    ],
+    "jobTitle": "Full-Stack Developer",
+    "description": "Computer science student and full-stack developer focused on practical products, education tools, and applied AI.",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "COMSATS University Islamabad"
+    }
   }
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap"
-    rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
 
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      corePlugins: {
-        preflight: false,
-      }
-    }
-  </script>
-  <style>
-    .reveal-mask {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-      overflow: hidden;
-    }
-    /* Lenis Smooth Scroll Setup */
-    html.lenis, html.lenis body {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
-    .lenis.lenis-smooth iframe {
-      pointer-events: none;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ═══════════════ LOADER ═══════════════ -->
-  <div class="loader" id="loader">
-    <div class="loader__initials">MAS</div>
-    <div class="loader__bar">
-      <div class="loader__bar-fill"></div>
-    </div>
-  </div>
-
-  <div id="canvas-container"></div>
-
-
-  <!-- ═══════════════ CUSTOM CURSOR ═══════════════ -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-
-  <!-- ═══════════════ NAVIGATION ═══════════════ -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="#hero" class="navbar__logo">MAS</a>
-      <ul class="navbar__links">
-        <li><a href="#about" class="navbar__link">About</a></li>
-        <li><a href="#projects" class="navbar__link">Projects</a></li>
-        <li><a href="#skills" class="navbar__link">Skills</a></li>
-        <li><a href="#testimonials" class="navbar__link">Testimonials</a></li>
-        <li><a href="#vision" class="navbar__link">Vision</a></li>
-        <li><a href="#contact" class="navbar__link">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
-        <div class="jelly-switch__track">
-          <div class="jelly-switch__thumb" id="jellyThumb"></div>
-          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            aria-hidden="true">
-            <circle cx="12" cy="12" r="5" />
-            <line x1="12" y1="1" x2="12" y2="3" />
-            <line x1="12" y1="21" x2="12" y2="23" />
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-            <line x1="1" y1="12" x2="3" y2="12" />
-            <line x1="21" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-          </svg>
-        </div>
-      </button>
-      <button class="navbar__burger" id="navBurger" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu Overlay -->
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-    <a href="#about" class="mobile-menu__link">About</a>
-    <a href="#projects" class="mobile-menu__link">Projects</a>
-    <a href="#skills" class="mobile-menu__link">Skills</a>
-    <a href="#testimonials" class="mobile-menu__link">Testimonials</a>
-    <a href="#vision" class="mobile-menu__link">Vision</a>
-    <a href="#contact" class="mobile-menu__link">Contact</a>
-  </nav>
-
-
-  <!-- ═══════════════ HERO ═══════════════ -->
-  <section class="hero section" id="hero">
-    <div class="hero__shapes">
-      <div class="hero__shape hero__shape-1"></div>
-      <div class="hero__shape hero__shape-2"></div>
-      <div class="hero__shape hero__shape-3"></div>
-    </div>
-    <div class="hero__content">
-      <p class="hero__greeting">Hi, I'm</p>
-      <h1 class="hero__name" id="heroName">
-        <span class="word" data-word="Mushtaq">Mushtaq</span>
-        <span class="word" data-word="Ahmad">Ahmad</span>
-        <span class="word" data-word="Saqi">Saqi</span>
-      </h1>
-      <p class="hero__title">
-        AI/CS student at <span class="highlight">COMSATS University Islamabad</span>, juggling core engineering concepts with full-stack web development.
-      </p>
-      <p class="hero__subtitle">
-        I care about clean UX, honest problem-solving, and shipping projects people can actually use.
-      </p>
-      <div class="hero__cta">
-        <a href="#projects" class="btn btn--primary">
-          View My Work
-          <span class="btn__arrow">→</span>
-        </a>
-        <a href="#contact" class="btn btn--secondary">
-          Contact Me
-        </a>
-      </div>
-    </div>
-
-    <div class="hero__scroll" id="heroScroll">
-      <span class="hero__scroll-text">Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ ABOUT ═══════════════ -->
-  <section class="about section" id="about">
-    <div class="section__inner">
-      <span class="section__label reveal">About Me</span>
-      <div class="about__grid">
-        <div class="about__text">
-          <h2 class="section__title reveal">Building useful products<br />for <span class="gradient-text">real
-              people</span>.
-          </h2>
-          <p class="reveal reveal-delay-1">
-            I'm a university student at <strong>COMSATS University, Pakistan</strong>. Most of my work focuses on
-            education: reducing friction for students and making quality resources easier to access.
-          </p>
-          <p class="reveal reveal-delay-2">
-            I enjoy turning rough ideas into working products, then improving them through user feedback. My process is
-            simple: <strong>listen, build, measure, improve</strong>.
-          </p>
-          <p class="reveal reveal-delay-3">
-            Right now, I'm growing in <strong>full-stack development</strong>, <strong>backend architecture</strong>, and
-            <strong>applied AI</strong> while contributing to open-source learning tools.
-          </p>
-
-          <div class="about__stats reveal reveal-delay-4">
-            <div class="about__stat">
-              <div class="about__stat-number">4+</div>
-              <div class="about__stat-label">Projects Shipped</div>
-            </div>
-            <div class="about__stat">
-              <div class="about__stat-number">2.1K+</div>
-              <div class="about__stat-label">MCQs Created</div>
-            </div>
-            <div class="about__stat">
-              <div class="about__stat-number">500+</div>
-              <div class="about__stat-label">Commits Made</div>
-            </div>
-          </div>
-          <div class="about__note reveal reveal-delay-4">
-            <strong>Currently:</strong> Open to internship opportunities and freelance education-focused web projects.
-          </div>
-          <!-- TODO: Replace assets/resume.pdf with your actual resume file -->
-          <a href="assets/resume.txt" download class="btn btn--primary about__resume reveal reveal-delay-4">
-            Download Resume
-            <span class="btn__arrow">↓</span>
-          </a>
-        </div>
-
-        <div class="about__visual reveal">
-          <div class="about__avatar-wrapper">
-            <div class="about__avatar-inner">
-              <img src="assets/photo.jpg" alt="Mushtaq Ahmad Saqi" class="about__photo" loading="lazy" />
-              <span class="about__avatar-placeholder">MAS</span>
-            </div>
-            <div class="about__floating-badge about__floating-badge--top">
-              👨‍💻 Full Stack Developer
-            </div>
-            <div class="about__floating-badge about__floating-badge--bottom">
-              💡 AI Enthusiast
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ PROJECTS ═══════════════ -->
-  <section class="section" id="projects">
-    <div class="section__inner">
-      <span class="section__label reveal">Featured Work</span>
-      <h2 class="section__title reveal">Things I've<br /><span class="gradient-text">built recently</span>.</h2>
-      <p class="section__description reveal reveal-delay-1">
-        A few projects I'm proud of. Each one targets a specific real-world problem.
-      </p>
-
-      <!-- ── Responsive Grid Layout ── -->
-      <div class="projects-grid" id="projectsGrid">
-
-        <!-- Card 1 — OpenPrep -->
-        <div class="project-card project-card--grid gsap-project-card
-                    transition-all duration-300 ease-out
-                    hover:scale-[1.03] hover:shadow-[0_8px_40px_rgba(20,184,166,0.35)]"
-             id="project-openprep">
-          <div class="project-card__header">
-            <div class="project-card__icon">📚</div>
-            <span class="project-card__tag">AI-Powered Education</span>
-          </div>
-          <h3 class="project-card__title">OpenPrep Platform</h3>
-          <p class="project-card__desc">
-            An <strong>AI-powered educational platform</strong> co-founded with Mehdi — helping Pakistani students
-            conquer entrance exams with smart MCQ practice, adaptive quizzes, and an open contribution workflow.
-            <span class="annotation">Mission: quality education, free for every student.</span>
-          </p>
-          <p class="project-card__meta">2,100+ MCQs · AI-assisted content · Built for scale</p>
-          <div class="project-card__stack">
-            <span class="stack-badge">Python</span>
-            <span class="stack-badge">Flask</span>
-            <span class="stack-badge">AI/ML</span>
-            <span class="stack-badge">HTML/CSS</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener"
-               class="project-card__link" aria-label="View OpenPrep source code on GitHub">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
-              Code
-            </a>
-          </div>
-        </div>
-
-        <!-- Card 2 — Java Hotel Management System -->
-        <div class="project-card project-card--grid gsap-project-card
-                    transition-all duration-300 ease-out
-                    hover:scale-[1.03] hover:shadow-[0_8px_40px_rgba(139,92,246,0.35)]"
-             id="project-hotel">
-          <div class="project-card__header">
-            <div class="project-card__icon">🏨</div>
-            <span class="project-card__tag">OOP in Action</span>
-          </div>
-          <h3 class="project-card__title">Java Hotel Management System</h3>
-          <p class="project-card__desc">
-            A <strong>comprehensive hotel management application</strong> built entirely in Java, showcasing
-            core OOP principles — inheritance, polymorphism, and encapsulation — across a full
-            room-booking and staff-management workflow.
-          </p>
-          <p class="project-card__meta">Room booking · Staff management · JSON data persistence</p>
-          <div class="project-card__stack">
-            <span class="stack-badge">Java</span>
-            <span class="stack-badge">Swing</span>
-            <span class="stack-badge">OOP</span>
-            <span class="stack-badge">JSON</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener"
-               class="project-card__link" aria-label="View Hotel Management System source code on GitHub">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
-              Code
-            </a>
-          </div>
-        </div>
-
-        <!-- Card 3 — COMSATS Grade Calculator -->
-        <div class="project-card project-card--grid gsap-project-card
-                    transition-all duration-300 ease-out
-                    hover:scale-[1.03] hover:shadow-[0_8px_40px_rgba(245,158,11,0.35)]"
-             id="project-grade-calc">
-          <div class="project-card__header">
-            <div class="project-card__icon">🎓</div>
-            <span class="project-card__tag">Custom Logic · Academic Tool</span>
-          </div>
-          <h3 class="project-card__title">COMSATS Grade Calculator</h3>
-          <p class="project-card__desc">
-            A <strong>custom-logic academic calculator</strong> tailored to COMSATS University's grading
-            policy — handling weighted GPA computation, credit hours, and semester breakdowns
-            with a clean, intuitive UI built for fellow students.
-          </p>
-          <p class="project-card__meta">GPA logic · Semester breakdown · Student-focused UX</p>
-          <div class="project-card__stack">
-            <span class="stack-badge">HTML5</span>
-            <span class="stack-badge">CSS3</span>
-            <span class="stack-badge">JavaScript</span>
-          </div>
-          <div class="project-card__links">
-            <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener"
-               class="project-card__link" aria-label="View COMSATS Grade Calculator source code on GitHub">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
-              Code
-            </a>
-          </div>
-        </div>
-
-      </div><!-- /projects-grid -->
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ SKILLS ═══════════════ -->
-  <section class="skills section" id="skills">
-    <div class="section__inner">
-      <span class="section__label reveal">Toolkit</span>
-      <h2 class="section__title reveal">Skills & <span class="gradient-text">Technologies</span>.</h2>
-      <p class="section__description reveal reveal-delay-1">
-        The tools and technologies I use to bring ideas to life.
-      </p>
-
-      <div class="skills__categories">
-
-        <!-- Languages -->
-        <div class="reveal">
-          <h3 class="skill-category__title">Languages</h3>
-          <div class="skill-category__grid">
-            <span class="skill-badge" style="--float-delay: 0s"><span class="skill-badge__dot"></span>Python<span
-                class="skill-badge__level">Advanced</span></span>
-            <span class="skill-badge" style="--float-delay: 0.4s"><span class="skill-badge__dot"></span>Java<span
-                class="skill-badge__level">Intermediate</span></span>
-            <span class="skill-badge" style="--float-delay: 0.8s"><span class="skill-badge__dot"></span>HTML<span
-                class="skill-badge__level">Advanced</span></span>
-            <span class="skill-badge" style="--float-delay: 1.2s"><span class="skill-badge__dot"></span>CSS<span
-                class="skill-badge__level">Advanced</span></span>
-            <span class="skill-badge" style="--float-delay: 1.6s"><span class="skill-badge__dot"></span>JavaScript<span
-                class="skill-badge__level">Intermediate</span></span>
-          </div>
-        </div>
-
-        <!-- Frameworks -->
-        <div class="reveal reveal-delay-1">
-          <h3 class="skill-category__title">Frameworks</h3>
-          <div class="skill-category__grid">
-            <span class="skill-badge" style="--float-delay: 0.2s"><span class="skill-badge__dot"></span>Flask<span
-                class="skill-badge__level">Intermediate</span></span>
-          </div>
-        </div>
-
-        <!-- Areas -->
-        <div class="reveal reveal-delay-2">
-          <h3 class="skill-category__title">Areas of Focus</h3>
-          <div class="skill-category__grid">
-            <span class="skill-badge" style="--float-delay: 0s"><span class="skill-badge__dot"></span>Frontend
-              Dev</span>
-            <span class="skill-badge" style="--float-delay: 0.3s"><span class="skill-badge__dot"></span>Backend
-              Dev</span>
-            <span class="skill-badge" style="--float-delay: 0.6s"><span class="skill-badge__dot"></span>Machine Learning
-              / AI</span>
-            <span class="skill-badge" style="--float-delay: 0.9s"><span class="skill-badge__dot"></span>Data Structures
-              & Algorithms</span>
-            <span class="skill-badge" style="--float-delay: 1.2s"><span class="skill-badge__dot"></span>Web
-              Scraping</span>
-          </div>
-        </div>
-
-        <!-- Currently Learning -->
-        <div class="reveal reveal-delay-3">
-          <h3 class="skill-category__title">Currently Learning</h3>
-          <div class="skill-category__grid">
-            <span class="skill-badge skill-badge--learning" style="--float-delay: 0.1s"><span
-                class="skill-badge__dot"></span>Full-Stack Development</span>
-            <span class="skill-badge skill-badge--learning" style="--float-delay: 0.5s"><span
-                class="skill-badge__dot"></span>AI / ML</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ JOURNEY ═══════════════ -->
-  <section class="testimonials section" id="testimonials">
-    <div class="section__inner">
-      <span class="section__label reveal">Journey</span>
-      <h2 class="section__title reveal">How I'm <span class="gradient-text">growing</span>.</h2>
-      <div class="testimonials__grid">
-
-        <div class="testimonial-card reveal">
-          <p class="testimonial-card__quote">Started by building static websites, then moved into Flask apps with auth,
-            CRUD workflows, and deployment basics.</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">01</div>
-            <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Foundation</div>
-              <div class="testimonial-card__role">HTML, CSS, JavaScript, Flask</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-1">
-          <p class="testimonial-card__quote">Built student-focused products and learned to prioritize user feedback over
-            unnecessary features or visual noise.</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">02</div>
-            <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Product Thinking</div>
-              <div class="testimonial-card__role">User-first development mindset</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card reveal reveal-delay-2">
-          <p class="testimonial-card__quote">Now focusing on stronger backend systems, AI-assisted features, and code
-            quality to ship production-ready projects.</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">03</div>
-            <div class="testimonial-card__info">
-              <div class="testimonial-card__name">Current Focus</div>
-              <div class="testimonial-card__role">Backend, AI features, maintainable code</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ VISION ═══════════════ -->
-  <section class="vision section" id="vision">
-    <div class="section__inner">
-      <span class="section__label reveal" style="justify-content: center;">My Vision</span>
-      <div class="vision__quote">
-        I want to start an AI Society at my university and build platforms that make education free for every Pakistani
-        student.
-      </div>
-      <p class="vision__author reveal reveal-delay-1">
-        — <strong>Mushtaq Ahmad Saqi</strong>, always building for impact.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ CONTACT ═══════════════ -->
-  <section class="contact section" id="contact">
-    <div class="section__inner">
-      <span class="section__label reveal">Get In Touch</span>
-      <h2 class="section__title reveal">Let's build something<br /><span class="gradient-text">great together</span>.
-      </h2>
-
-      <div class="contact__grid">
-        <div class="contact__info reveal">
-          <p>
-            If you're building in education, student productivity, or social impact tech, I'd love to connect. Send me a
-            message and I'll get back to you as soon as I can.
-          </p>
-          <div class="contact__socials">
-            <!-- GitHub -->
-            <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener" class="social-link"
-              id="githubLink" aria-label="GitHub Profile">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <!-- TODO: Update with your actual LinkedIn URL -->
-            <a href="https://linkedin.com/in/mushtaqahmadsaqi" target="_blank" rel="noopener" class="social-link"
-              id="linkedinLink" aria-label="LinkedIn Profile">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <!-- Email -->
-            <a href="mailto:mushtaqahmadsaqi@gmail.com" class="social-link" id="emailLink" aria-label="Send Email">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <form class="contact__form reveal reveal-delay-1" id="contactForm" aria-label="Contact form">
-          <!-- TODO: Set up Formspree — replace YOUR_FORM_ID in main.js with your real form ID from formspree.io -->
-          <div class="form__group">
-            <label class="form__label" for="formName">Your Name</label>
-            <input class="form__input" type="text" id="formName" placeholder="John Doe" required />
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="formEmail">Your Email</label>
-            <input class="form__input" type="email" id="formEmail" placeholder="john@example.com" required />
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="formMessage">Message</label>
-            <textarea class="form__textarea" id="formMessage" placeholder="Tell me about your project or idea..."
-              required></textarea>
-          </div>
-          <button class="form__submit" type="submit" id="formSubmit">
-            Send Message →
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════ FOOTER ═══════════════ -->
-  <footer class="footer">
-    <p class="footer__text">
-      Designed & built by <span>Mushtaq Ahmad Saqi</span> · © 2026
-    </p>
-  </footer>
-
-
-  <!-- ═══════════════ BACK TO TOP ═══════════════ -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-
-  <!-- ═══════════════ SCRIPTS ═══════════════ -->
-
-  <!-- Three.js for 3D Background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
-
-  <!-- Lenis for Smooth Scrolling -->
-  <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
-
-  <!-- GSAP for animations -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-    integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
-    crossorigin="anonymous"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-    integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d"
-    crossorigin="anonymous"></script>
-
-  <!-- Main JS -->
   <script defer src="main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
+  <div class="site-shell">
+    <header class="site-header" id="siteHeader">
+      <div class="container header-inner">
+        <a class="brand" href="#hero" aria-label="Go to homepage">
+          <span class="brand-mark">MAS</span>
+          <span class="brand-text">Mushtaq Ahmad Saqi</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#journey">Journey</a>
+          <a href="#vision">Vision</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="Toggle theme"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+            <span class="theme-toggle-text">Theme</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#journey">Journey</a>
+        <a href="#vision">Vision</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section" id="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy" data-reveal>
+            <p class="eyebrow">Full-Stack Developer · AI Enthusiast · COMSATS University</p>
+            <h1>
+              I build practical digital products with clean UX, strong fundamentals,
+              and a focus on real people.
+            </h1>
+            <p class="hero-lead">
+              I'm Mushtaq Ahmad Saqi, a computer science student focused on full-stack web
+              development, backend systems, and education-driven software that solves useful problems.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">View Projects</a>
+              <a class="button button-secondary" href="#contact">Let’s Connect</a>
+            </div>
+
+            <ul class="hero-points" aria-label="Highlights">
+              <li>4+ shipped projects</li>
+              <li>2.1K+ MCQs created</li>
+              <li>Open to internships and freelance work</li>
+            </ul>
+          </div>
+
+          <aside class="hero-panel card" data-reveal data-reveal-delay="100">
+            <div class="hero-panel-top">
+              <span class="status-dot"></span>
+              <span>Currently building education-focused products</span>
+            </div>
+
+            <div class="hero-metrics">
+              <article>
+                <strong>Frontend</strong>
+                <span>Responsive interfaces with accessible, maintainable UI.</span>
+              </article>
+              <article>
+                <strong>Backend</strong>
+                <span>Flask, logic design, data handling, and product workflows.</span>
+              </article>
+              <article>
+                <strong>Applied AI</strong>
+                <span>Exploring AI features that make learning and workflow tools better.</span>
+              </article>
+            </div>
+
+            <div class="hero-links">
+              <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://linkedin.com/in/mushtaqahmadsaqi" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="mailto:mushtaqahmadsaqi@gmail.com">Email</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">About</p>
+            <h2>Building useful products for real users.</h2>
+            <p class="section-intro">
+              My work mostly centers on education and practical software. I like taking rough
+              ideas, turning them into working products, and improving them through feedback.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-copy" data-reveal>
+              <p>
+                I am a computer science student at <strong>COMSATS University Islamabad</strong>.
+                I care about clean interfaces, dependable logic, and software that reduces friction
+                instead of adding it.
+              </p>
+              <p>
+                My process is straightforward: <strong>listen, build, test, improve</strong>.
+                I enjoy moving from concept to implementation and then refining the product based
+                on how people actually use it.
+              </p>
+              <p>
+                Right now I am growing in <strong>full-stack development</strong>,
+                <strong>backend architecture</strong>, and <strong>applied AI</strong>, while
+                staying grounded in strong programming fundamentals.
+              </p>
+
+              <div class="availability">
+                <strong>Currently:</strong> Available for internship opportunities and
+                freelance education-focused web projects.
+              </div>
+
+              <div class="inline-actions">
+                <a class="button button-primary" href="assets/resume.txt" download>Download Resume</a>
+                <a class="button button-secondary" href="#contact">Start a Conversation</a>
+              </div>
+            </article>
+
+            <aside class="profile-card card" data-reveal data-reveal-delay="100">
+              <div class="profile-media">
+                <img
+                  src="assets/photo.jpg"
+                  alt="Portrait of Mushtaq Ahmad Saqi"
+                  loading="lazy"
+                  onerror="this.style.display='none';this.parentElement.classList.add('profile-media-fallback');"
+                />
+                <span class="profile-fallback-text" aria-hidden="true">MAS</span>
+              </div>
+
+              <div class="profile-summary">
+                <h3>Mushtaq Ahmad Saqi</h3>
+                <p>Full-Stack Developer · AI/CS Student · Pakistan</p>
+              </div>
+
+              <ul class="stat-grid">
+                <li>
+                  <strong>4+</strong>
+                  <span>Projects shipped</span>
+                </li>
+                <li>
+                  <strong>2.1K+</strong>
+                  <span>MCQs created</span>
+                </li>
+                <li>
+                  <strong>500+</strong>
+                  <span>Commits made</span>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="projects">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Projects</p>
+            <h2>Selected work with a practical focus.</h2>
+            <p class="section-intro">
+              These projects reflect what I care about most: useful products, thoughtful UX,
+              strong logic, and software that solves a specific problem clearly.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card card" data-reveal>
+              <div class="project-topline">
+                <span class="project-tag">Education · AI-powered</span>
+                <span class="project-number">01</span>
+              </div>
+              <h3>OpenPrep Platform</h3>
+              <p>
+                A student-focused learning platform built to help Pakistani students prepare
+                for entrance exams with structured MCQ practice, adaptive quizzes, and an open
+                contribution workflow.
+              </p>
+              <ul class="project-highlights">
+                <li>2,100+ MCQs prepared for scale</li>
+                <li>AI-assisted content workflow</li>
+                <li>Focused on free, accessible educational value</li>
+              </ul>
+              <div class="tech-list">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>AI/ML</span>
+                <span>HTML</span>
+                <span>CSS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">GitHub Profile</a>
+                <a href="mailto:mushtaqahmadsaqi@gmail.com?subject=OpenPrep%20Project%20Discussion">Discuss Project</a>
+              </div>
+            </article>
+
+            <article class="project-card card" data-reveal data-reveal-delay="100">
+              <div class="project-topline">
+                <span class="project-tag">Java · OOP</span>
+                <span class="project-number">02</span>
+              </div>
+              <h3>Hotel Management System</h3>
+              <p>
+                A Java application created to demonstrate strong object-oriented programming
+                concepts through room booking, staff handling, and persistent hotel data workflows.
+              </p>
+              <ul class="project-highlights">
+                <li>Built around inheritance, encapsulation, and polymorphism</li>
+                <li>Included room and staff management flows</li>
+                <li>Used JSON-based persistence</li>
+              </ul>
+              <div class="tech-list">
+                <span>Java</span>
+                <span>Swing</span>
+                <span>OOP</span>
+                <span>JSON</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">GitHub Profile</a>
+                <a href="mailto:mushtaqahmadsaqi@gmail.com?subject=Hotel%20Management%20Project%20Discussion">Discuss Project</a>
+              </div>
+            </article>
+
+            <article class="project-card card" data-reveal data-reveal-delay="200">
+              <div class="project-topline">
+                <span class="project-tag">Academic tool</span>
+                <span class="project-number">03</span>
+              </div>
+              <h3>COMSATS Grade Calculator</h3>
+              <p>
+                A student-first academic calculator designed around COMSATS grading rules,
+                making GPA calculations, weighted breakdowns, and semester planning easier.
+              </p>
+              <ul class="project-highlights">
+                <li>Custom logic for local academic use cases</li>
+                <li>Clear, low-friction interface for students</li>
+                <li>Focused on utility over complexity</li>
+              </ul>
+              <div class="tech-list">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">GitHub Profile</a>
+                <a href="mailto:mushtaqahmadsaqi@gmail.com?subject=Grade%20Calculator%20Project%20Discussion">Discuss Project</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Skills</p>
+            <h2>Tools I use and areas I am sharpening.</h2>
+            <p class="section-intro">
+              My stack is still growing, but I focus on solid fundamentals, maintainable code,
+              and choosing tools that fit the problem.
+            </p>
+          </div>
+
+          <div class="skill-layout">
+            <article class="card skill-card" data-reveal>
+              <h3>Languages</h3>
+              <ul class="skill-list">
+                <li><span>Python</span><strong>Advanced</strong></li>
+                <li><span>Java</span><strong>Intermediate</strong></li>
+                <li><span>HTML</span><strong>Advanced</strong></li>
+                <li><span>CSS</span><strong>Advanced</strong></li>
+                <li><span>JavaScript</span><strong>Intermediate</strong></li>
+              </ul>
+            </article>
+
+            <article class="card skill-card" data-reveal data-reveal-delay="100">
+              <h3>Frameworks & Tools</h3>
+              <ul class="skill-list">
+                <li><span>Flask</span><strong>Intermediate</strong></li>
+                <li><span>Git & GitHub</span><strong>Daily use</strong></li>
+                <li><span>REST-style workflows</span><strong>Working knowledge</strong></li>
+                <li><span>JSON data handling</span><strong>Comfortable</strong></li>
+              </ul>
+            </article>
+
+            <article class="card skill-card" data-reveal data-reveal-delay="200">
+              <h3>Focus Areas</h3>
+              <div class="pill-group">
+                <span>Frontend development</span>
+                <span>Backend development</span>
+                <span>Applied AI</span>
+                <span>Machine learning</span>
+                <span>Data structures</span>
+                <span>Algorithms</span>
+                <span>Web scraping</span>
+                <span>Product thinking</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="journey">
+        <div class="container">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">Journey</p>
+            <h2>How I’ve been growing as a developer.</h2>
+            <p class="section-intro">
+              My path has been shaped by building, learning from users, and gradually moving
+              toward more robust systems and production-ready habits.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item card" data-reveal>
+              <span class="timeline-step">01</span>
+              <div>
+                <h3>Foundation</h3>
+                <p>
+                  Started with static websites and core frontend development, then moved into
+                  Flask apps, CRUD workflows, and stronger programming fundamentals.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item card" data-reveal data-reveal-delay="100">
+              <span class="timeline-step">02</span>
+              <div>
+                <h3>Product Thinking</h3>
+                <p>
+                  Began prioritizing usability, student value, and feedback instead of unnecessary
+                  complexity or effects that do not improve the product.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item card" data-reveal data-reveal-delay="200">
+              <span class="timeline-step">03</span>
+              <div>
+                <h3>Current Focus</h3>
+                <p>
+                  Now concentrating on better backend architecture, applied AI features, and
+                  writing cleaner, more maintainable code for real-world projects.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vision">
+        <div class="container">
+          <div class="vision-card card" data-reveal>
+            <p class="eyebrow">Vision</p>
+            <blockquote>
+              I want to help make education more accessible in Pakistan and eventually start an
+              AI Society at my university that encourages building useful tools, not just talking about them.
+            </blockquote>
+            <p class="vision-signature">— Mushtaq Ahmad Saqi</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="contact">
+        <div class="container contact-grid">
+          <div class="contact-copy" data-reveal>
+            <p class="eyebrow">Contact</p>
+            <h2>Let’s build something worthwhile.</h2>
+            <p class="section-intro">
+              If you are working on education, student productivity, or impact-driven software,
+              I would be glad to connect and explore how I can help.
+            </p>
+
+            <div class="contact-cards">
+              <a class="contact-card card" href="mailto:mushtaqahmadsaqi@gmail.com">
+                <span>Email</span>
+                <strong>mushtaqahmadsaqi@gmail.com</strong>
+              </a>
+              <a class="contact-card card" href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">
+                <span>GitHub</span>
+                <strong>@MushtaqAhmadSaqi</strong>
+              </a>
+              <a class="contact-card card" href="https://linkedin.com/in/mushtaqahmadsaqi" target="_blank" rel="noopener">
+                <span>LinkedIn</span>
+                <strong>mushtaqahmadsaqi</strong>
+              </a>
+            </div>
+          </div>
+
+          <div class="card contact-panel" data-reveal data-reveal-delay="100">
+            <form id="contactForm" novalidate>
+              <div class="form-field">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Your email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="form-field">
+                <label for="message">Project details</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="button button-primary" type="submit">Send via Email</button>
+                <p class="form-note">
+                  This form opens your email client with a prefilled message. Replace it with a
+                  backend endpoint later if you want direct form submissions.
+                </p>
+              </div>
+
+              <p id="formStatus" class="form-status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="currentYear"></span> Mushtaq Ahmad Saqi. Built with HTML, CSS, and JavaScript.</p>
+        <a href="#hero">Back to top</a>
+      </div>
+    </footer>
+  </div>
 </body>
-
 </html>
