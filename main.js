@@ -237,6 +237,48 @@
     }
   }
 
+  function initCounters() {
+    const nodes = selectAll("[data-count]");
+    if (!nodes.length) return;
+
+    const animate = (el) => {
+      const target = Number(el.dataset.count);
+      const suffix = el.dataset.suffix || "";
+      const duration = 1600;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        const value = Math.floor(eased * target);
+        el.textContent = value.toLocaleString() + (p === 1 ? suffix : "");
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+
+    nodes.forEach((n) => io.observe(n));
+  }
+
+  function initTilt() {
+    if (window.matchMedia("(hover: none)").matches) return;
+    selectAll(".project-card, .skill-card, .profile-card, .hero-panel").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width  - 0.5;
+        const y = (e.clientY - r.top)  / r.height - 0.5;
+        card.style.transform = `translateY(-4px) rotateX(${(-y * 3).toFixed(2)}deg) rotateY(${(x * 3).toFixed(2)}deg)`;
+      });
+      card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+    });
+  }
+
   function init() {
     setRevealDelays();
     initHeaderShadow();
@@ -246,6 +288,8 @@
     initActiveNavigation();
     initContactForm();
     setCurrentYear();
+    initCounters();
+    initTilt();
   }
 
   document.addEventListener("DOMContentLoaded", init);
