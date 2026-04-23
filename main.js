@@ -398,7 +398,7 @@
       dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
       // Check for nearest magnetic target to snap ring to
-      const mags = document.querySelectorAll("[data-magnetic]");
+      const mags = document.querySelectorAll(".magnetic");
       let snapped = false;
       mags.forEach((el) => {
         const r = el.getBoundingClientRect();
@@ -474,86 +474,78 @@
     if (window.matchMedia("(hover: none)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const targets = selectAll("[data-magnetic]");
-    if (!targets.length) return;
+    const buttons = selectAll(".magnetic");
+    if (!buttons.length) return;
 
-    // Wrap each target's contents in .magnetic-inner so text can move independently
-    targets.forEach((el) => {
-      if (!el.querySelector(".magnetic-inner")) {
-        const inner = document.createElement("span");
-        inner.className = "magnetic-inner";
-        while (el.firstChild) inner.appendChild(el.firstChild);
-        el.appendChild(inner);
-      }
-    });
+    const STRENGTH = 0.35;     // how strongly the button follows the cursor (0–0.6)
+    const LABEL_LAG = 0.55;    // inner label moves further for depth
+    const FIELD = 80;          // px outside the button where the effect starts
 
-    const RADIUS = 90;       // px — how close the cursor must be to activate
-    const STRENGTH = 0.35;   // 0–1 — how far the button follows the cursor
-    const TEXT_STRENGTH = 0.6; // inner text follows more eagerly for parallax
-    const active = new Map();  // el → { rafId }
+    buttons.forEach((btn) => {
+      const label = btn.querySelector(".button-label");
 
-    const onMove = (e) => {
-      targets.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
+      const onMove = (e) => {
+        const r = btn.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
         const dx = e.clientX - cx;
         const dy = e.clientY - cy;
-        const dist = Math.hypot(dx, dy);
 
-        // Influence radius scales with button size (bigger buttons = bigger field)
-        const influence = Math.max(RADIUS, Math.max(rect.width, rect.height) * 0.75);
+        // Normalized position inside the button for the glow ring
+        const mx = ((e.clientX - r.left) / r.width) * 100;
+        const my = ((e.clientY - r.top) / r.height) * 100;
+        btn.style.setProperty("--mx", `${mx}%`);
+        btn.style.setProperty("--my", `${my}%`);
 
-        if (dist < influence) {
-          const pull = 1 - dist / influence;
-          const tx = dx * STRENGTH * pull;
-          const ty = dy * STRENGTH * pull;
-          const ix = dx * TEXT_STRENGTH * pull;
-          const iy = dy * TEXT_STRENGTH * pull;
+        const tx = dx * STRENGTH;
+        const ty = dy * STRENGTH;
 
-          el.classList.add("is-magnetic-active");
-          el.classList.remove("is-magnetic-reset");
-          el.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
+        btn.style.transform = `translate(${tx}px, ${ty}px)`;
+        btn.style.setProperty("--tx", `${tx}px`);
+        btn.style.setProperty("--ty", `${ty}px`);
 
-          const inner = el.querySelector(".magnetic-inner");
-          if (inner) inner.style.transform = `translate(${ix.toFixed(2)}px, ${iy.toFixed(2)}px)`;
-
-          active.set(el, true);
-        } else if (active.has(el)) {
-          releaseMagnet(el);
+        if (label) {
+          label.style.transform = `translate(${tx * LABEL_LAG}px, ${ty * LABEL_LAG}px)`;
         }
-      });
-    };
+      };
 
-    const releaseMagnet = (el) => {
-      el.classList.remove("is-magnetic-active");
-      el.classList.add("is-magnetic-reset");
-      el.style.transform = "";
-      const inner = el.querySelector(".magnetic-inner");
-      if (inner) inner.style.transform = "";
-      active.delete(el);
+      const onEnterField = () => btn.classList.add("is-near");
 
-      // Clean up the reset class once the transition ends
-      setTimeout(() => el.classList.remove("is-magnetic-reset"), 620);
-    };
+      const onLeave = () => {
+        btn.classList.remove("is-near");
+        btn.style.transform = "";
+        btn.style.setProperty("--tx", "0px");
+        btn.style.setProperty("--ty", "0px");
+        if (label) label.style.transform = "";
+      };
 
-    // Throttle with rAF so we never run more than once per frame
-    let ticking = false;
-    let lastEvent = null;
-    window.addEventListener("mousemove", (e) => {
-      lastEvent = e;
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (lastEvent) onMove(lastEvent);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
+      // Attach a larger "gravity field" to each button using a proxy zone
+      btn.addEventListener("mouseenter", onEnterField);
+      btn.addEventListener("mousemove", onMove);
+      btn.addEventListener("mouseleave", onLeave);
 
-    // Release all magnets when leaving the window
-    window.addEventListener("mouseleave", () => {
-      targets.forEach((el) => { if (active.has(el)) releaseMagnet(el); });
+      // Wider field detection: use mousemove on document with distance check
+      document.addEventListener("mousemove", (e) => {
+        const r = btn.getBoundingClientRect();
+        const inside =
+          e.clientX >= r.left - FIELD &&
+          e.clientX <= r.right + FIELD &&
+          e.clientY >= r.top - FIELD &&
+          e.clientY <= r.bottom + FIELD;
+
+        if (inside && !btn.matches(":hover")) {
+          // Soft pre-pull when cursor is near but not yet inside
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const dx = (e.clientX - cx) * STRENGTH * 0.35;
+          const dy = (e.clientY - cy) * STRENGTH * 0.35;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
+          btn.classList.add("is-near");
+        } else if (!inside && !btn.matches(":hover")) {
+          btn.style.transform = "";
+          btn.classList.remove("is-near");
+        }
+      }, { passive: true });
     });
   }
 

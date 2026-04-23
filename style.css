@@ -1365,37 +1365,53 @@ body::after {
 }
 
 /* ---------- Magnetic buttons ---------- */
-[data-magnetic] {
-  display: inline-flex;
+.magnetic {
+  position: relative;
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms ease,
+    background 300ms ease;
   will-change: transform;
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Inner span lets us move text independently for a richer "pull" feel */
-[data-magnetic] > .magnetic-inner {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: inherit;
-  pointer-events: none; /* so child doesn't eat hover events */
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+.magnetic .button-label {
+  display: inline-block;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  pointer-events: none; /* let the parent own the mouse events */
 }
 
-/* While actively being pulled, kill transitions so movement feels live */
-[data-magnetic].is-magnetic-active,
-[data-magnetic].is-magnetic-active > .magnetic-inner {
-  transition: transform 120ms ease-out;
+/* Glow ring that intensifies as the cursor approaches */
+.magnetic::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    var(--accent-soft),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* When the magnetic is released, snap back smoothly */
-[data-magnetic].is-magnetic-reset,
-[data-magnetic].is-magnetic-reset > .magnetic-inner {
-  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+.magnetic.is-near::before { opacity: 1; }
+
+/* Slight boost on active-press so the click feels tactile */
+.magnetic:active {
+  transition-duration: 120ms;
+  transform: translate(var(--tx, 0), var(--ty, 0)) scale(0.97) !important;
 }
 
-/* Slight depth boost during pull */
-[data-magnetic].is-magnetic-active {
-  filter: drop-shadow(0 14px 28px rgba(14, 165, 233, 0.25));
+@media (prefers-reduced-motion: reduce) {
+  .magnetic,
+  .magnetic .button-label {
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1407,4 +1423,5 @@ body::after {
     mix-blend-mode: plus-lighter;
   }
 }
+
 
