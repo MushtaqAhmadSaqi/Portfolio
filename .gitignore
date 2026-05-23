@@ -1,2 +1,27 @@
 # Added by code-review-graph
 .code-review-graph/
+
+# AI Agent configuration files & local caches
+.agent/
+.agents/
+.claude/
+.cursorrules
+.mcp.json
+.opencode.json
+.windsurfrules
+AGENT.md
+skills-lock.json
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

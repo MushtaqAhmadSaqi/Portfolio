@@ -1,0 +1,101 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1200 >>
+stream
+BT
+/F2 22 Tf
+72 720 Td
+(MUSHTAQ AHMAD SAQI) Tj
+0 -26 Td
+/F1 12 Tf
+(Computer Science Student at COMSATS University Islamabad) Tj
+0 -16 Td
+(Email: mushtaqahmadsaqi@gmail.com | GitHub: github.com/MushtaqAhmadSaqi) Tj
+0 -30 Td
+/F2 14 Tf
+(Education) Tj
+0 -20 Td
+/F1 11 Tf
+(Bachelor of Science in Computer Science - COMSATS University Islamabad) Tj
+0 -14 Td
+(Focus on software engineering, web development, and practical systems) Tj
+0 -30 Td
+/F2 14 Tf
+(Technical Skills) Tj
+0 -20 Td
+/F1 11 Tf
+(Languages: Python, JavaScript, HTML5, CSS3, Java, SQL) Tj
+0 -16 Td
+(Frameworks & Libraries: Flask, Vanilla JS, Node.js, OOP Concepts) Tj
+0 -16 Td
+(Tools & Methods: Git, GitHub, Responsive Design, RESTful flows, JSON data handling) Tj
+0 -30 Td
+/F2 14 Tf
+(Featured Projects) Tj
+0 -20 Td
+/F2 12 Tf
+(1. COMSATSPrepHub (Flagship Project)) Tj
+0 -15 Td
+/F1 11 Tf
+(Exam preparation platform for COMSATS students featuring past papers and practice quizzes.) Tj
+0 -14 Td
+(Built with: HTML, CSS, JavaScript, Python, Supabase, Vercel) Tj
+0 -22 Td
+/F2 12 Tf
+(2. EduLearn) Tj
+0 -15 Td
+/F1 11 Tf
+(A distraction-free learning dashboard for structured educational video study.) Tj
+0 -14 Td
+(Built with: JavaScript, HTML, CSS, Lunr.js search engine integration) Tj
+0 -22 Td
+/F2 12 Tf
+(3. MultiVid / Video Downloader) Tj
+0 -15 Td
+/F1 11 Tf
+(Local media utility that downloads and parses stream metadata cleanly.) Tj
+0 -14 Td
+(Built with: Python, Flask, yt-dlp, FFmpeg, Docker) Tj
+0 -22 Td
+/F2 12 Tf
+(4. OpenPrep (Contributor)) Tj
+0 -15 Td
+/F1 11 Tf
+(Assisted with MCQ content structures, improved quiz workflows and layout design.) Tj
+0 -35 Td
+/F1 11 Tf
+(Note: A full comprehensive print-ready resume PDF is available upon direct request.) Tj
+0 -15 Td
+(Please contact mushtaqahmadsaqi@gmail.com for internships or junior roles.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001550 00000 n 
+0000001601 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1657
+%%EOF
