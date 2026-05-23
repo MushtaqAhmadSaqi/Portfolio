@@ -210,6 +210,20 @@
     }
   }
 
+  function initScrollProgress() {
+    const bar = select("#scrollProgress");
+    if (!bar) return;
+
+    const update = () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = total > 0 ? `${(scrolled / total) * 100}%` : "0%";
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
   function init() {
     setRevealDelays();
     initHeaderShadow();
@@ -218,6 +232,7 @@
     initRevealAnimations();
     initActiveNavigation();
     initContactForm();
+    initScrollProgress();
     setCurrentYear();
   }
 
