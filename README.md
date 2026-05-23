@@ -1,6 +1,6 @@
 # Mushtaq Ahmad Saqi — Portfolio
 
-A high-performance, accessible, and elegant developer portfolio built to showcase full-stack projects, student productivity utilities, and educational tools. 
+A clean, accessible developer portfolio showcasing full-stack projects, student productivity tools, and educational software.
 
 ## 🌐 Live Website
 You can view the live site here: **[https://mushtaqahmadsaqi.github.io/Portfolio/](https://mushtaqahmadsaqi.github.io/Portfolio/)**
@@ -10,12 +10,12 @@ You can view the live site here: **[https://mushtaqahmadsaqi.github.io/Portfolio
 ## 🛠️ Built With
 - **Structure:** Semantic HTML5 and ARIA landmark structures for maximum accessibility.
 - **Styling:** Vanilla CSS3 with custom HSL variables, fluid typography, dark/light theme systems, and responsive layouts.
-- **Interactivity:** Performant, lightweight Vanilla JavaScript (under 130 lines) for smooth transitions, dynamic theme toggling, active section tracking, and form handling.
+- **Interactivity:** Lightweight Vanilla JavaScript for theme toggling, section tracking, scroll progress, and form handling.
 
 ---
 
 ## 🚀 Key Features
-- **Visual Excellence:** Custom editorial serif typography, sleek glassmorphic container treatments, vibrant gradients, and a fluid layout.
+- **Responsive Design:** Dark/light theme, fluid layout, and clean typography that works across devices.
 - **Accessibility (A11y):** Includes skip-to-content navigation, precise semantic structuring, ARIA label tags, theme toggle state preservation, and immediate support for `prefers-reduced-motion`.
 - **SEO Ready:** Complete Person Schema metadata, Open Graph (OG) cards, Twitter cards, canonical tags, and descriptive headers for lightning-fast crawling.
 - **Clean Architecture:** Zero heavy frameworks or slow libraries. Clean file directories with auto-ignored local tooling setups.
