@@ -42,13 +42,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Set theme before first paint -->
+  <!-- Set theme before first paint and gate reveal styles behind .js class -->
   <script>
-    try {
-      var t = localStorage.getItem("theme") ||
-        (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-      document.documentElement.setAttribute("data-theme", t);
-    } catch (e) {}
+    (function () {
+      var root = document.documentElement, theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (e) {}
+      if (theme !== "light" && theme !== "dark") {
+        theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      root.setAttribute("data-theme", theme);
+      root.classList.add("js"); // enables .js [data-reveal] hiding in CSS
+    })();
   </script>
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 
@@ -75,7 +79,7 @@
         </nav>
 
         <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to light theme">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
             <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
             <span class="theme-toggle-text">Theme</span>
           </button>
@@ -93,7 +97,7 @@
       </nav>
     </header>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
 
       <!-- HERO -->
       <section class="section hero" id="top" aria-labelledby="hero-title">
