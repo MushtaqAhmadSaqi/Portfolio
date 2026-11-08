@@ -1,27 +1,35 @@
-# Added by code-review-graph
-.code-review-graph/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# AI Agent configuration files & local caches
-.agent/
-.agents/
-.claude/
-.cursorrules
-.mcp.json
-.opencode.json
-.windsurfrules
-AGENT.md
-skills-lock.json
+node_modules
+dist
+dist-ssr
+*.local
 
-# Virtual environments
-.venv/
-venv/
-ENV/
+# Dependency directories
+node_modules/
 
-# Editor and IDE settings
-.vscode/
-.idea/
+# Optional: Ignore logs and build files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.swp
+*.sw?

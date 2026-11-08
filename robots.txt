@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mushtaqahmadsaqi.github.io/Portfolio/sitemap.xml

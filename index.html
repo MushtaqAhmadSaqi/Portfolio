@@ -1,373 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <title>Mushtaq Ahmad Saqi | Full-Stack Developer Portfolio | Flask, Python, JavaScript</title>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mushtaq Ahmad — AI Undergraduate &amp; Frontend Developer | Lab Notebook</title>
+    <meta
+      name="description"
+      content="Working lab notebook and engineering portfolio of Mushtaq Ahmad — BS Artificial Intelligence student at COMSATS Islamabad building OpenPrep, COMSATSPrepHub, and web interfaces in public."
+    />
+    <meta name="author" content="Mushtaq Ahmad" />
+    <meta name="theme-color" content="#F7F4EB" />
 
-  <!-- ↓↓ KEEP YOUR EXISTING SEO BLOCK: replace with your originals if they differ ↓↓ -->
-  <meta name="description" content="Mushtaq Ahmad Saqi is a Computer Science student at COMSATS University Islamabad building exam-prep and study tools with Python, Flask and JavaScript.">
-  <link rel="canonical" href="https://mushtaqahmadsaqi.github.io/Portfolio/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Mushtaq Ahmad Saqi | Full-Stack Developer">
-  <meta property="og:description" content="Study tools for Pakistani students, built with Python, Flask and JavaScript.">
-  <meta property="og:url" content="https://mushtaqahmadsaqi.github.io/Portfolio/">
-  <meta property="og:image" content="https://mushtaqahmadsaqi.github.io/Portfolio/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mushtaq Ahmad Saqi | Full-Stack Developer">
-  <meta name="twitter:image" content="https://mushtaqahmadsaqi.github.io/Portfolio/og-image.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mushtaq Ahmad Saqi",
-    "url": "https://mushtaqahmadsaqi.github.io/Portfolio/",
-    "email": "mailto:mushtaqahmadsaqi@gmail.com",
-    "jobTitle": "Full-Stack Developer",
-    "affiliation": { "@type": "CollegeOrUniversity", "name": "COMSATS University Islamabad" },
-    "sameAs": [
-      "https://github.com/MushtaqAhmadSaqi",
-      "https://linkedin.com/in/mushtaqahmadsaqi"
-    ]
-  }
-  </script>
-  <!-- ↑↑ END SEO BLOCK ↑↑ -->
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mushtaq Ahmad — Engineering Lab Notebook &amp; Portfolio" />
+    <meta
+      property="og:description"
+      content="BS Artificial Intelligence student at COMSATS Islamabad shipping live student platforms (OpenPrep, COMSATSPrepHub) and documenting AI &amp; software engineering in public."
+    />
+    <meta property="og:url" content="https://github.com/MushtaqAhmadSaqi" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mushtaq Ahmad — Engineering Lab Notebook" />
 
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Custom SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preconnect & Google Fonts: Fraunces (Display Serif), IBM Plex Sans (Body), IBM Plex Mono (Labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Set theme before first paint and gate reveal styles behind .js class -->
-  <script>
-    (function () {
-      var root = document.documentElement, theme = null;
-      try { theme = localStorage.getItem("theme"); } catch (e) {}
-      if (theme !== "light" && theme !== "dark") {
-        theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mushtaq Ahmad",
+        "alternateName": "Mushtaq Ahmad Saqi",
+        "url": "https://github.com/MushtaqAhmadSaqi",
+        "email": "mailto:mushtaqahmedsaqi1234@gmail.com",
+        "jobTitle": "AI Undergraduate & Frontend Developer",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "COMSATS University Islamabad"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Islamabad",
+          "addressCountry": "PK"
+        },
+        "sameAs": [
+          "https://github.com/MushtaqAhmadSaqi",
+          "https://www.linkedin.com/in/mushtaqahmad12/",
+          "https://openprep.com.pk",
+          "https://comsatsprephub.vercel.app"
+        ]
       }
-      root.setAttribute("data-theme", theme);
-      root.classList.add("js"); // enables .js [data-reveal] hiding in CSS
-    })();
-  </script>
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
-
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="site-shell">
-    <header class="site-header" id="siteHeader">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Mushtaq Ahmad Saqi, back to top">
-          <span class="brand-mark" aria-hidden="true">MAS</span>
-          <span class="brand-text">Mushtaq Ahmad Saqi</span>
-        </a>
-
-        <nav class="site-nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#resume">Resume</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
-            <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
-            <span class="theme-toggle-text">Theme</span>
-          </button>
-          <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-
-      <nav class="mobile-nav container" id="mobileMenu" aria-label="Mobile">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main id="main" tabindex="-1">
-
-      <!-- HERO -->
-      <section class="section hero" id="top" aria-labelledby="hero-title">
-        <div class="container">
-          <p class="eyebrow">Computer Science student &amp; developer</p>
-          <h1 id="hero-title">Study tools for <em>Pakistani students</em>, built by one of them.</h1>
-
-          <div class="hero-body">
-            <div class="hero-copy">
-              <p class="hero-lead">
-                I'm Mushtaq, a CS student at COMSATS University Islamabad. I write JavaScript,
-                Python and Flask, and I build what students actually need: past-paper
-                libraries, quiz trainers and a video classroom with no distractions.
-              </p>
-              <div class="hero-actions">
-                <a class="button button-primary" href="#work">See COMSATSPrepHub</a>
-                <a class="button button-secondary" href="assets/Mushtaq_Ahmad_Saqi_Resume.pdf" download>Download resume</a>
-              </div>
-            </div>
-
-            <aside class="hero-aside" aria-label="Availability and links">
-              <p class="status"><span class="status-dot" aria-hidden="true"></span>Open to internships, junior roles and freelance work</p>
-              <ul class="hero-links" aria-label="Find me online">
-                <li><a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
-                <li><a href="https://linkedin.com/in/mushtaqahmadsaqi" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
-                <li><a href="mailto:mushtaqahmadsaqi@gmail.com">Email <span aria-hidden="true">↗</span></a></li>
-              </ul>
-            </aside>
-          </div>
-
-          <dl class="hero-stats">
-            <div><dt>Projects completed</dt><dd>4</dd></div>
-            <div><dt>MCQs structured</dt><dd>2,100+</dd></div>
-            <div><dt>Commits you can check</dt><dd>500+</dd></div>
-          </dl>
-        </div>
-      </section>
-
-      <!-- WORK -->
-      <section class="section" id="work" aria-labelledby="work-title">
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">Selected work</p>
-            <h2 id="work-title">Four projects, each fixing one real student problem.</h2>
-            <p class="section-intro">Each one starts with a need, gets built in small pieces, and stays simple enough to maintain.</p>
-          </div>
-
-          <div class="project-list">
-
-            <article class="project project--lead" data-reveal>
-              <header class="project-head">
-                <span class="project-number" aria-hidden="true">01</span>
-                <span class="project-kind">Education · Exam prep · Flagship</span>
-              </header>
-              <div class="project-body">
-                <h3>COMSATSPrepHub</h3>
-                <p class="project-lede">Verified past papers, practice quizzes and score tracking for COMSATS students, in one place.</p>
-                <ul class="project-points">
-                  <li>Past papers checked and sorted by subject, so you're not guessing which one is right.</li>
-                  <li>Quizzes that show you where you're weak, not just what you scored.</li>
-                </ul>
-                <p class="project-note"><strong>Under the hood:</strong> quiz progress is saved in your browser, so a refresh doesn't wipe your attempt.</p>
-              </div>
-              <div class="project-side">
-                <ul class="tags" aria-label="Tech stack">
-                  <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>Supabase</li><li>Vercel</li>
-                </ul>
-                <div class="project-links">
-                  <a href="https://comsatsprephub.vercel.app/" target="_blank" rel="noopener">Live demo <span aria-hidden="true">↗</span></a>
-                  <a href="https://github.com/MushtaqAhmadSaqi/COMSATSPrepHub" target="_blank" rel="noopener">Source code <span aria-hidden="true">↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project" data-reveal>
-              <header class="project-head">
-                <span class="project-number" aria-hidden="true">02</span>
-                <span class="project-kind">Education · Video learning</span>
-              </header>
-              <div class="project-body">
-                <h3>EduLearn</h3>
-                <p class="project-lede">A video classroom with the distractions removed.</p>
-                <p>Embed YouTube videos and playlists, take timestamped notes, search them later, and run a Pomodoro timer alongside.</p>
-                <p class="project-note"><strong>Under the hood:</strong> modular JavaScript files keep the study state and note search separate.</p>
-              </div>
-              <div class="project-side">
-                <ul class="tags" aria-label="Tech stack">
-                  <li>JavaScript</li><li>HTML</li><li>CSS</li><li>Lunr.js</li>
-                </ul>
-                <div class="project-links">
-                  <a href="https://github.com/MushtaqAhmadSaqi/EduLearn" target="_blank" rel="noopener">Source code <span aria-hidden="true">↗</span></a>
-                  <span class="project-aside">Runs locally</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project" data-reveal>
-              <header class="project-head">
-                <span class="project-number" aria-hidden="true">03</span>
-                <span class="project-kind">Utility · Flask</span>
-              </header>
-              <div class="project-body">
-                <h3>MultiVid</h3>
-                <p class="project-lede">Paste a link, pick a quality, download.</p>
-                <ul class="project-points">
-                  <li>Shows title, thumbnail and duration before you download.</li>
-                  <li>Choose your quality, or pull MP3 audio with FFmpeg.</li>
-                </ul>
-                <p class="project-note"><strong>Under the hood:</strong> a local utility for permitted downloads, with runtime output and media caches git-ignored.</p>
-              </div>
-              <div class="project-side">
-                <ul class="tags" aria-label="Tech stack">
-                  <li>Python</li><li>Flask</li><li>yt-dlp</li><li>FFmpeg</li><li>JavaScript</li>
-                </ul>
-                <div class="project-links">
-                  <a href="https://github.com/MushtaqAhmadSaqi/Video-Downloader" target="_blank" rel="noopener">Source code <span aria-hidden="true">↗</span></a>
-                  <span class="project-aside">Local utility</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project" data-reveal>
-              <header class="project-head">
-                <span class="project-number" aria-hidden="true">04</span>
-                <span class="project-kind">Education · Entrance prep · Contributor</span>
-              </header>
-              <div class="project-body">
-                <h3>OpenPrep</h3>
-                <p class="project-lede">MCQ practice for Pakistani university entrance exams.</p>
-                <ul class="project-points">
-                  <li>Prepared and structured 2,100+ entrance-exam MCQs.</li>
-                  <li>Improved quiz flow, mobile layout and navigation.</li>
-                </ul>
-                <p class="project-note"><strong>Under the hood:</strong> cleaned the data schemas and added feedback states to quizzes.</p>
-              </div>
-              <div class="project-side">
-                <ul class="tags" aria-label="Tech stack">
-                  <li>Python</li><li>Flask</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
-                </ul>
-                <div class="project-links">
-                  <span class="project-aside">Private repo while it's being rebuilt</span>
-                </div>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section class="section section-alt" id="about" aria-labelledby="about-title">
-        <div class="container about-grid">
-          <div class="about-copy" data-reveal>
-            <p class="eyebrow">About</p>
-            <h2 id="about-title">I like software that solves a plain, real problem.</h2>
-            <p>I'm a <strong>Computer Science student at COMSATS University Islamabad</strong>, and most of my work sits in full-stack development, backend logic and education tech.</p>
-            <p>My projects start with a simple student problem: finding trustworthy past papers, staying focused on a lecture video, practising entrance-test MCQs. I build the fix, ship it, then improve it from feedback.</p>
-            <p>Right now I'm getting sharper at <strong>Python</strong>, <strong>Flask</strong> and <strong>JavaScript</strong>, and learning to use AI tools properly inside real workflows.</p>
-            <p class="availability"><strong>Looking for:</strong> internships, junior full-stack roles, and freelance projects in education, productivity or practical tools.</p>
-            <div class="inline-actions">
-              <a class="button button-primary" href="assets/Mushtaq_Ahmad_Saqi_Resume.pdf" download>Download resume</a>
-              <a class="button button-secondary" href="#contact">Let's talk</a>
-            </div>
-          </div>
-
-          <aside class="about-card" data-reveal data-reveal-delay="120" aria-label="Profile summary">
-            <p class="monogram" aria-hidden="true">MAS</p>
-            <h3>Mushtaq Ahmad Saqi</h3>
-            <p class="about-role">Full-stack developer · CS student · Pakistan</p>
-            <dl class="facts">
-              <div><dt>Studying</dt><dd>Computer Science, COMSATS University Islamabad</dd></div>
-              <div><dt>Learning</dt><dd>Python, Flask, JavaScript, applied AI</dd></div>
-              <div><dt>Available for</dt><dd>Internships, junior roles, freelance</dd></div>
-            </dl>
-          </aside>
-        </div>
-      </section>
-
-      <!-- RESUME / SKILLS -->
-      <section class="section" id="resume" aria-labelledby="skills-title">
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">Skills</p>
-            <h2 id="skills-title">Tools I've actually shipped with.</h2>
-            <p class="section-intro">Each skill below is tied to something I've built.</p>
-          </div>
-
-          <div class="skill-table">
-            <div class="skill-row" data-reveal>
-              <h3>Languages</h3>
-              <dl class="skill-dl">
-                <div><dt>Python</dt><dd>Backend and learning-platform work</dd></div>
-                <div><dt>JavaScript</dt><dd>Interaction, logic and UI behaviour</dd></div>
-                <div><dt>HTML</dt><dd>Responsive, accessible front ends</dd></div>
-                <div><dt>CSS</dt><dd>Layout, responsiveness and polish</dd></div>
-                <div><dt>Java</dt><dd>OOP and data-structures coursework</dd></div>
-              </dl>
-            </div>
-
-            <div class="skill-row" data-reveal>
-              <h3>Frameworks &amp; tools</h3>
-              <dl class="skill-dl">
-                <div><dt>Flask</dt><dd>Backend development and routing</dd></div>
-                <div><dt>Git &amp; GitHub</dt><dd>Version control and collaboration</dd></div>
-                <div><dt>REST-style workflows</dt><dd>Working knowledge</dd></div>
-                <div><dt>JSON</dt><dd>Structured data storage and handling</dd></div>
-                <div><dt>Responsive design</dt><dd>Mobile-friendly, accessibility-aware layouts</dd></div>
-              </dl>
-            </div>
-
-            <div class="skill-row" data-reveal>
-              <h3>Focus areas</h3>
-              <ul class="tags tags--loose" aria-label="Focus areas">
-                <li>Full-stack development</li><li>Backend logic</li><li>Frontend UI</li>
-                <li>Applied AI</li><li>Education technology</li><li>Data structures</li>
-                <li>Algorithms</li><li>Product thinking</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section section-alt" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-grid">
-          <div class="contact-copy" data-reveal>
-            <p class="eyebrow">Contact</p>
-            <h2 id="contact-title">Got something useful to build? Write to me.</h2>
-            <p class="section-intro">I'm open to internships, junior developer roles, freelance work and collaborations in web development, education tech or practical software.</p>
-
-            <ul class="contact-list">
-              <li><a href="mailto:mushtaqahmadsaqi@gmail.com"><span>Email</span><strong>mushtaqahmadsaqi@gmail.com</strong></a></li>
-              <li><a href="https://github.com/MushtaqAhmadSaqi" target="_blank" rel="noopener"><span>GitHub</span><strong>Projects and repositories</strong></a></li>
-              <li><a href="https://linkedin.com/in/mushtaqahmadsaqi" target="_blank" rel="noopener"><span>LinkedIn</span><strong>Connect professionally</strong></a></li>
-            </ul>
-          </div>
-
-          <div class="contact-panel" data-reveal data-reveal-delay="120">
-            <form id="contactForm" novalidate>
-              <div class="form-field">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name">
-              </div>
-              <div class="form-field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
-              </div>
-              <div class="form-field">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="What are you working on?"></textarea>
-              </div>
-              <div class="form-actions">
-                <button class="button button-primary" type="submit">Send message</button>
-              </div>
-              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-              <p class="form-note">This opens your email app with the message filled in. Or just write to
-                <a href="mailto:mushtaqahmadsaqi@gmail.com">mushtaqahmadsaqi@gmail.com</a>.</p>
-            </form>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>© <span id="currentYear">2026</span> Mushtaq Ahmad Saqi. Hand-built with HTML, CSS and JavaScript.</p>
-        <a href="#top">Back to top ↑</a>
-      </div>
-    </footer>
-  </div>
-</body>
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main notebook content</a>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
