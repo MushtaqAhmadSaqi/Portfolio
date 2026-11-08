@@ -17,7 +17,7 @@ export const siteContent = {
     lastUpdated: "November 2026",
     email: "mushtaqahmedsaqi1234@gmail.com",
     phone: "+92 340 8500976",
-    resumeUrl: "/Mushtaq_Ahmad_Resume.pdf",
+    resumeUrl: "/CV.png",
     formspreeEndpoint: "https://formspree.io/f/YOUR_FORM_ID", // Replace YOUR_FORM_ID when connecting Formspree
     socials: {
       github: "https://github.com/MushtaqAhmadSaqi",
@@ -55,7 +55,7 @@ export const siteContent = {
     },
     ctas: {
       primary: { label: "See selected work", href: "#work" },
-      secondary: { label: "Résumé PDF", href: "/Mushtaq_Ahmad_Resume.pdf" }
+      secondary: { label: "View CV", href: "/CV.png" }
     }
   },
 

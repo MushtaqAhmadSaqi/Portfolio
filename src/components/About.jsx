@@ -26,31 +26,26 @@ export default function About({ about }) {
         </div>
 
         <div className="about-spread">
-          {/* Left Column: Tactile Polaroid Frame (Replace src in content.js when ready) */}
+          {/* Left Column: Tactile Polaroid Frame */}
           <figure className="polaroid-frame">
-            <div className="polaroid-sketch-canvas" role="img" aria-label="Portrait frame of Mushtaq Ahmad">
-              <svg width="88" height="88" viewBox="0 0 88 88" fill="none" aria-hidden="true">
-                <circle cx="44" cy="44" r="40" stroke="var(--ink-primary)" strokeWidth="2" strokeDasharray="4 4" />
-                <circle cx="44" cy="34" r="14" stroke="var(--accent-ink)" strokeWidth="2.2" />
-                <path
-                  d="M20 72C24 56 64 56 68 72"
-                  stroke="var(--ink-primary)"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-              </svg>
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.72rem',
-                  color: 'var(--stamp-ink)',
-                  marginTop: '0.5rem',
-                }}
-              >
-                [PORTRAIT SLOT // DROP PHOTO IN public/photo.jpg]
+            <div className="portrait-card-topline" aria-hidden="true">
+              <span>PORTRAIT / 05</span>
+              <span className="portrait-card-status">
+                <span className="portrait-card-dot" />
+                FIELD NOTE
               </span>
             </div>
-            <figcaption className="polaroid-caption">{about.photoCaption}</figcaption>
+            <div className="polaroid-sketch-canvas">
+              <img
+                className="polaroid-photo"
+                src={`${import.meta.env.BASE_URL}photo.jpeg`}
+                alt="Portrait of Mushtaq Ahmad"
+              />
+            </div>
+            <figcaption className="polaroid-caption">
+              <span className="polaroid-caption-mark" aria-hidden="true" />
+              {about.photoCaption}
+            </figcaption>
           </figure>
 
           {/* Right Column: Warm First-Person Story */}

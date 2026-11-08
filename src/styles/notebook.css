@@ -945,36 +945,102 @@ a {
   background: var(--bg-paper-elevated);
   border: 1.5px solid var(--ink-primary);
   border-radius: var(--radius-sm);
-  padding: 1rem 1rem 1.25rem;
+  padding: 1rem 1rem 1.1rem;
   box-shadow: var(--shadow-card);
   position: relative;
+  max-width: 430px;
+  overflow: hidden;
 }
 
 @media (min-width: 820px) {
   .polaroid-frame {
     transform: rotate(-1.1deg);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
+
+  .polaroid-frame:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+.portrait-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  color: var(--stamp-ink);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.portrait-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink-muted);
+  font-size: 0.6rem;
+  white-space: nowrap;
+}
+
+.portrait-card-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .polaroid-sketch-canvas {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1;
   background: var(--bg-paper-inset);
   border: 1px solid var(--rule-line-strong);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0;
   margin-bottom: 0.75rem;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.polaroid-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(0.94) contrast(1.02);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.polaroid-frame:hover .polaroid-photo {
+  transform: scale(1.025);
+  filter: saturate(1) contrast(1.04);
 }
 
 .polaroid-caption {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--ink-muted);
   line-height: 1.4;
+}
+
+.polaroid-caption-mark {
+  width: 1.35rem;
+  height: 2px;
+  flex: 0 0 auto;
+  margin-top: 0.5rem;
+  background: var(--accent-ink);
 }
 
 .about-story-prose {

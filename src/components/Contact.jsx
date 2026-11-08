@@ -108,7 +108,7 @@ export default function Contact({ contact, meta }) {
                   rel="noopener noreferrer"
                   className="ink-link"
                 >
-                  Résumé PDF ↗
+                  View CV ↗
                 </a>
               </li>
               <li>

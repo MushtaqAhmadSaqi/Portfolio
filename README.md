@@ -14,7 +14,7 @@ mushtaq-ahmad-portfolio/
 ├── vercel.json                       # SPA URL rewrites for /projects/[slug]
 ├── public/
 │   ├── favicon.svg                   # Custom Lab Notebook SVG icon
-│   ├── Mushtaq_Ahmad_Resume.pdf      # Downloadable Résumé PDF
+│   ├── CV.png                         # Viewable CV image
 │   ├── robots.txt                    # Search crawler directives
 │   ├── sitemap.xml                   # Sitemap for Home + Case Study pages
 │   └── 404.html                      # GitHub Pages SPA redirect helper
