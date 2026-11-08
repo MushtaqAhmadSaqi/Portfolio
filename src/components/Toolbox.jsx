@@ -1,6 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HandUnderline } from './HandDrawnSvg';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+
+function ToolboxCard({ skill }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <li
+      className={`toolbox-item ${flipped ? 'is-flipped' : ''}`}
+      onClick={() => setFlipped((prev) => !prev)}
+      role="button"
+      tabIndex={0}
+      aria-label={`${skill.name}. Click or tap to view details.`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped((prev) => !prev);
+        }
+      }}
+    >
+      <div className="toolbox-item-inner">
+        <div className="toolbox-item-front">
+          <div className="toolbox-front-content">
+            <h3 className="toolbox-item-name">{skill.name}</h3>
+            <span className="toolbox-tap-hint" aria-hidden="true">
+              tap to flip ↻
+            </span>
+          </div>
+        </div>
+        <div className="toolbox-item-back">
+          <p className="toolbox-item-context">{skill.context}</p>
+        </div>
+      </div>
+    </li>
+  );
+}
 
 export default function Toolbox({ toolbox }) {
   const sectionRef = useScrollReveal();
@@ -34,16 +68,7 @@ export default function Toolbox({ toolbox }) {
 
               <ul className="toolbox-items-list">
                 {group.items.map((skill) => (
-                  <li key={skill.name} className="toolbox-item">
-                    <div className="toolbox-item-inner">
-                      <div className="toolbox-item-front">
-                        <h3 className="toolbox-item-name" style={{ marginBottom: 0 }}>{skill.name}</h3>
-                      </div>
-                      <div className="toolbox-item-back">
-                        <p className="toolbox-item-context">{skill.context}</p>
-                      </div>
-                    </div>
-                  </li>
+                  <ToolboxCard key={skill.name} skill={skill} />
                 ))}
               </ul>
             </div>

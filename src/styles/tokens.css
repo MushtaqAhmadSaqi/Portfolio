@@ -90,8 +90,8 @@
   --text-base: 1.03125rem;/* 16.5px — Comfortable editorial reading size */
   --text-lg: 1.1875rem;   /* 19px — Lead paragraphs */
   --text-xl: 1.45rem;     /* 23px — Card titles */
-  --text-2xl: clamp(1.65rem, 2.6vw, 2.25rem); /* Section headings */
-  --text-hero: clamp(2.25rem, 4.4vw, 3.65rem); /* Hero display serif */
+  --text-2xl: clamp(1.5rem, 2.6vw, 2.25rem); /* Section headings */
+  --text-hero: clamp(1.85rem, 5.5vw, 3.65rem); /* Hero display serif */
 
   /* Layout Rhythm */
   --container-max: 1180px;
