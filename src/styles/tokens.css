@@ -1,0 +1,105 @@
+/**
+ * ============================================================================
+ * DESIGN TOKENS: "The Lab Notebook" (src/styles/tokens.css)
+ * ============================================================================
+ * All colors, typography, spacing, and tactile paper shadows live here as
+ * CSS Custom Properties. Switching [data-theme="dark"] flips the entire
+ * palette to "Notebook at Night" (dark carbon paper + warm chalk ink).
+ */
+
+:root,
+[data-theme="light"] {
+  /* Surfaces: Warm archival paper & pressed cotton index cards */
+  --bg-paper: #F7F4EB;
+  --bg-paper-elevated: #EFECE2;
+  --bg-paper-inset: #EAE5D7;
+  --bg-glass-header: rgba(247, 244, 235, 0.92);
+
+  /* Ink Tiers (All WCAG AA+ verified against --bg-paper) */
+  --ink-primary: #181816;
+  --ink-secondary: #383631;
+  --ink-muted: #57554E;
+
+  /* Ruled Lines & Margin Grid */
+  --rule-line: #DCD7C8;
+  --rule-line-strong: #B8B19E;
+  --grid-dot: rgba(24, 24, 22, 0.065);
+
+  /* Single Confident Accent: Drafting Vermilion Red + Prussian Stamp Blue */
+  --accent-ink: #C83E2B;
+  --accent-ink-hover: #A62F1E;
+  --accent-soft: rgba(200, 62, 43, 0.11);
+  --stamp-ink: #1F4E5B;
+  --stamp-soft: rgba(31, 78, 91, 0.10);
+  --success-ink: #23633D;
+
+  /* Tactile Offset Ink Shadows */
+  --shadow-card: 3px 3px 0px #181816;
+  --shadow-card-hover: 6px 6px 0px #C83E2B;
+  --shadow-subtle: 0 2px 8px rgba(24, 24, 22, 0.06);
+
+  /* Selection Highlight */
+  --selection-bg: rgba(200, 62, 43, 0.22);
+  --selection-text: #181816;
+}
+
+[data-theme="dark"] {
+  /* Surfaces: "Notebook at Night" — Deep carbon slate & graphite cards */
+  --bg-paper: #121417;
+  --bg-paper-elevated: #1A1D22;
+  --bg-paper-inset: #0D0F12;
+  --bg-glass-header: rgba(18, 20, 23, 0.92);
+
+  /* Ink Tiers (Warm chalk & weathered silver) */
+  --ink-primary: #ECE9E0;
+  --ink-secondary: #C8C4B8;
+  --ink-muted: #9E9A8E;
+
+  /* Ruled Lines & Margin Grid */
+  --rule-line: #2A2E35;
+  --rule-line-strong: #3E444E;
+  --grid-dot: rgba(236, 233, 224, 0.045);
+
+  /* Accents adjusted for dark paper legibility */
+  --accent-ink: #E85D4A;
+  --accent-ink-hover: #FF7461;
+  --accent-soft: rgba(232, 93, 74, 0.15);
+  --stamp-ink: #68A6B8;
+  --stamp-soft: rgba(104, 166, 184, 0.14);
+  --success-ink: #56B87A;
+
+  /* Tactile Offset Shadows */
+  --shadow-card: 3px 3px 0px #070809;
+  --shadow-card-hover: 6px 6px 0px #E85D4A;
+  --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.35);
+
+  /* Selection Highlight */
+  --selection-bg: rgba(232, 93, 74, 0.32);
+  --selection-text: #ECE9E0;
+}
+
+/* Typography & Spacing Scale */
+:root {
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Fluid Type Scale */
+  --text-xs: 0.75rem;     /* 12px — Monospace stamps & indices */
+  --text-sm: 0.875rem;    /* 14px — Captions, tags, metadata */
+  --text-base: 1.03125rem;/* 16.5px — Comfortable editorial reading size */
+  --text-lg: 1.1875rem;   /* 19px — Lead paragraphs */
+  --text-xl: 1.45rem;     /* 23px — Card titles */
+  --text-2xl: clamp(1.65rem, 2.6vw, 2.25rem); /* Section headings */
+  --text-hero: clamp(2.25rem, 4.4vw, 3.65rem); /* Hero display serif */
+
+  /* Layout Rhythm */
+  --container-max: 1180px;
+  --reading-max: 68ch;
+  --margin-col-width: 190px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  /* Motion Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
