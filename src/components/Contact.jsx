@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { HandUnderline } from './HandDrawnSvg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Contact({ contact, meta }) {
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const sectionRef = useScrollReveal();
 
   const handleCopyEmail = () => {
     const email = meta.email;
@@ -43,7 +45,8 @@ export default function Contact({ contact, meta }) {
 
   return (
     <section
-      className="notebook-section observe-section is-visible"
+      ref={sectionRef}
+      className="notebook-section observe-section"
       id="contact"
       aria-labelledby="contact-heading"
       style={{ borderBottom: 'none' }}
@@ -161,11 +164,22 @@ export default function Contact({ contact, meta }) {
                 id="sender-message"
                 rows="4"
                 required
+                maxLength={500}
                 className="form-textarea"
                 placeholder="Tell me about the role, project, or question..."
                 value={formState.message}
                 onChange={(e) => setFormState({ ...formState, message: e.target.value })}
               />
+              <div style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-xs)',
+                color: formState.message.length > 400 ? 'var(--accent-ink)' : 'var(--ink-muted)',
+                marginTop: '0.25rem'
+              }}>
+                {formState.message.length} / 500 chars
+              </div>
             </div>
 
             <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start' }}>

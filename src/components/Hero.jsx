@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HandCircleHighlight } from './HandDrawnSvg';
 
+function useCountUp(end, duration = 1200, decimals = 0) {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    let start = 0;
+    const step = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) { setCount(end); clearInterval(timer); }
+      else setCount(parseFloat(start.toFixed(decimals)));
+    }, 16);
+    return () => clearInterval(timer);
+  }, [end, duration, decimals]);
+  return count;
+}
+
+function AnimatedCGPA() {
+  const cgpa = useCountUp(3.60, 1400, 2);
+  return (
+    <p className="status-primary-text">
+      BS AI · COMSATS Islamabad · CGPA{' '}
+      <span style={{ color: 'var(--accent-ink)', fontWeight: 700 }}>{cgpa.toFixed(2)}</span>
+      /4.00
+    </p>
+  );
+}
+
 export default function Hero({ hero, meta }) {
+  const [displayedText, setDisplayedText] = useState('');
+  const [charIndex, setCharIndex] = useState(0);
+  const fullText = hero.positioning;
+
+  useEffect(() => {
+    if (charIndex < fullText.length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[charIndex]);
+        setCharIndex(prev => prev + 1);
+      }, 22);
+      return () => clearTimeout(timer);
+    }
+  }, [charIndex, fullText]);
+
   const scrollToWork = (e) => {
     e.preventDefault();
     const el = document.querySelector('#work');
@@ -9,7 +49,7 @@ export default function Hero({ hero, meta }) {
   };
 
   return (
-    <section className="hero-section" id="top" aria-labelledby="hero-heading">
+    <section className="hero-section is-visible" id="top" aria-labelledby="hero-heading">
       <div className="hero-grid">
         {/* Left 7 Columns: Positioning & Actions */}
         <div>
@@ -31,7 +71,10 @@ export default function Hero({ hero, meta }) {
             {hero.headlineSuffix}
           </h1>
 
-          <p className="hero-lead">{hero.positioning}</p>
+          <p className="hero-lead">
+            {displayedText}
+            {charIndex < fullText.length && <span className="cursor-blink" aria-hidden="true">|</span>}
+          </p>
 
           <div className="hero-actions">
             <a href="#work" onClick={scrollToWork} className="btn-primary">
@@ -48,6 +91,13 @@ export default function Hero({ hero, meta }) {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
+
+          <div className="scroll-hint" aria-hidden="true">
+            <span className="scroll-hint-label">scroll</span>
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+              <path d="M8 4v16M2 14l6 6 6-6" stroke="var(--accent-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
         </div>
 
         {/* Right 5 Columns: Pinned Index Card with Current Status */}
@@ -60,7 +110,7 @@ export default function Hero({ hero, meta }) {
             <span>REF // 00-A</span>
           </div>
 
-          <p className="status-primary-text">{hero.currentStatus.primary}</p>
+          <AnimatedCGPA />
 
           <ul className="status-ledger-list">
             {hero.currentStatus.items.map((item) => (

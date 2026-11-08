@@ -1,10 +1,13 @@
 import React from 'react';
 import { HandUnderline } from './HandDrawnSvg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Toolbox({ toolbox }) {
+  const sectionRef = useScrollReveal();
   return (
     <section
-      className="notebook-section observe-section is-visible"
+      ref={sectionRef}
+      className="notebook-section observe-section"
       id="toolbox"
       aria-labelledby="toolbox-heading"
     >
@@ -31,9 +34,15 @@ export default function Toolbox({ toolbox }) {
 
               <ul className="toolbox-items-list">
                 {group.items.map((skill) => (
-                  <li key={skill.name}>
-                    <h3 className="toolbox-item-name">{skill.name}</h3>
-                    <p className="toolbox-item-context">{skill.context}</p>
+                  <li key={skill.name} className="toolbox-item">
+                    <div className="toolbox-item-inner">
+                      <div className="toolbox-item-front">
+                        <h3 className="toolbox-item-name" style={{ marginBottom: 0 }}>{skill.name}</h3>
+                      </div>
+                      <div className="toolbox-item-back">
+                        <p className="toolbox-item-context">{skill.context}</p>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>

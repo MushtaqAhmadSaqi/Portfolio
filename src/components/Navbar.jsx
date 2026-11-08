@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Navbar({ meta, theme, onToggleTheme, onNavigateHome, activeView }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   const navItems = [
     { num: '01', label: 'Work', href: '#work' },
@@ -10,6 +11,22 @@ export default function Navbar({ meta, theme, onToggleTheme, onNavigateHome, act
     { num: '04', label: 'About', href: '#about' },
     { num: '05', label: 'Contact', href: '#contact' },
   ];
+
+  useEffect(() => {
+    if (activeView !== 'home') return;
+    const sectionIds = ['work', 'lab-log', 'toolbox', 'about', 'contact'];
+    const observers = sectionIds.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.3, rootMargin: '-80px 0px -40% 0px' }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach((obs) => obs?.disconnect());
+  }, [activeView]);
 
   const handleAnchor = (href) => {
     setMobileOpen(false);
@@ -41,7 +58,7 @@ export default function Navbar({ meta, theme, onToggleTheme, onNavigateHome, act
                 <li key={item.num}>
                   <button
                     type="button"
-                    className="nav-item-btn"
+                    className={`nav-item-btn ${activeSection === item.href.replace('#', '') ? 'active' : ''}`}
                     onClick={() => handleAnchor(item.href)}
                   >
                     <span className="nav-index-num">{item.num}.</span>
@@ -84,7 +101,7 @@ export default function Navbar({ meta, theme, onToggleTheme, onNavigateHome, act
             <button
               key={item.num}
               type="button"
-              className="nav-item-btn"
+              className={`nav-item-btn ${activeSection === item.href.replace('#', '') ? 'active' : ''}`}
               onClick={() => handleAnchor(item.href)}
             >
               <span className="nav-index-num">{item.num}.</span>

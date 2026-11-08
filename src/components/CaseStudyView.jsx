@@ -1,9 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function CaseStudyView({ project, allProjects, onBackHome, onSelectProject }) {
+  const [readProgress, setReadProgress] = useState(0);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [project.slug]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = document.documentElement;
+      const scrollTop = el.scrollTop || document.body.scrollTop;
+      const scrollHeight = el.scrollHeight - el.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      setReadProgress(Math.min(100, progress));
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const currentIndex = allProjects.findIndex((p) => p.slug === project.slug);
   const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
@@ -19,6 +33,9 @@ export default function CaseStudyView({ project, allProjects, onBackHome, onSele
 
   return (
     <article className="case-study-wrapper" aria-labelledby="cs-title">
+      <div className="reading-progress-bar" aria-hidden="true">
+        <div className="reading-progress-fill" style={{ width: `${readProgress}%` }} />
+      </div>
       <button type="button" className="back-to-notebook-btn" onClick={() => onBackHome('#work')}>
         <span aria-hidden="true">←</span>
         <span>Back to Selected Work</span>

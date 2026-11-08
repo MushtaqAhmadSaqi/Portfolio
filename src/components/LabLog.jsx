@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { HandUnderline } from './HandDrawnSvg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function LabLog({ entries }) {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [expandedId, setExpandedId] = useState(null);
+  const sectionRef = useScrollReveal();
   const categories = ['ALL', 'AI / ML', 'Web', 'Systems / OOP'];
 
   const visibleEntries =
@@ -12,7 +15,8 @@ export default function LabLog({ entries }) {
 
   return (
     <section
-      className="notebook-section observe-section is-visible"
+      ref={sectionRef}
+      className="notebook-section observe-section"
       id="lab-log"
       aria-labelledby="lab-log-heading"
     >
@@ -45,27 +49,46 @@ export default function LabLog({ entries }) {
 
         {/* Chronological Ledger Timeline */}
         <ol className="lab-timeline">
-          {visibleEntries.map((entry) => (
-            <li key={entry.id} className="lab-entry">
-              <div className="lab-entry-meta">
-                <span className="lab-date-stamp">
-                  {entry.id} · {entry.date} · [{entry.category}]
-                </span>
-                <span className="lab-metric-badge">{entry.metric}</span>
-              </div>
+          {visibleEntries.map((entry) => {
+            const isOpen = expandedId === entry.id;
+            return (
+              <li
+                key={entry.id}
+                className={`lab-entry ${isOpen ? 'is-open' : ''}`}
+                onClick={() => setExpandedId(isOpen ? null : entry.id)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isOpen}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setExpandedId(isOpen ? null : entry.id);
+                  }
+                }}
+              >
+                <div className="lab-entry-meta">
+                  <span className="lab-date-stamp">
+                    {entry.id} · {entry.date} · [{entry.category}]
+                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span className="lab-metric-badge">{entry.metric}</span>
+                    <span className="lab-entry-expand-icon" aria-hidden="true">▾</span>
+                  </div>
+                </div>
 
-              <h3 className="lab-entry-title">{entry.title}</h3>
-              <p className="lab-entry-summary">{entry.summary}</p>
+                <h3 className="lab-entry-title">{entry.title}</h3>
+                <p className="lab-entry-summary">{entry.summary}</p>
 
-              <ul className="tech-tag-row" style={{ marginBottom: 0 }}>
-                {entry.tags.map((tag) => (
-                  <li key={tag} className="tech-tag">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
+                <ul className="tech-tag-row" style={{ marginBottom: 0 }}>
+                  {entry.tags.map((tag) => (
+                    <li key={tag} className="tech-tag">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { HandUnderline } from './HandDrawnSvg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function About({ about }) {
   const [showNotes, setShowNotes] = useState(false);
+  const sectionRef = useScrollReveal();
   return (
     <section
-      className="notebook-section observe-section is-visible"
+      ref={sectionRef}
+      className="notebook-section observe-section"
       id="about"
       aria-labelledby="about-heading"
     >
@@ -73,8 +76,8 @@ export default function About({ about }) {
           </div>
         </div>
 
-        {/* 4 Personal Margin Cards */}
-        <div className={`human-notes-grid ${showNotes ? 'is-expanded' : ''}`}>
+        {/* 4 Personal Margin Cards — always visible */}
+        <div className="human-notes-grid">
           {about.humanDetails.map((detail) => (
             <div key={detail.label} className="human-note-card">
               <div className="human-note-label">{detail.label}</div>

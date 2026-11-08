@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { HandUnderline } from './HandDrawnSvg';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function SelectedWork({ projects, onOpenCaseStudy }) {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const sectionRef = useScrollReveal();
   const categories = ['ALL', 'WEB', 'AI', 'SYSTEMS'];
   const filteredProjects =
     selectedCategory === 'ALL'
@@ -15,7 +17,7 @@ export default function SelectedWork({ projects, onOpenCaseStudy }) {
   );
 
   return (
-    <section className="notebook-section observe-section is-visible" id="work" aria-labelledby="work-heading">
+    <section ref={sectionRef} className="notebook-section observe-section" id="work" aria-labelledby="work-heading">
       {/* Left Margin Index */}
       <div className="section-margin">
         <span className="margin-index">01 // SELECTED WORK</span>
@@ -128,8 +130,12 @@ export default function SelectedWork({ projects, onOpenCaseStudy }) {
 
         {/* Secondary Projects 02–04: Asymmetric Staggered 2-Column Ledger */}
         <div className="work-staggered-grid">
-          {secondaryProjects.map((project) => (
-            <article key={project.slug} className="work-secondary-card work-card-interactive">
+          {secondaryProjects.map((project, idx) => (
+            <article
+              key={project.slug}
+              className="work-secondary-card work-card-interactive"
+              style={{ animationDelay: `${idx * 0.12}s` }}
+            >
               <div>
                 <div className="project-meta-top">
                   <span className="project-fig">

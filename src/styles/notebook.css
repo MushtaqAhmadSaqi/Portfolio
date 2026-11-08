@@ -994,14 +994,6 @@ a {
   gap: 1.15rem;
 }
 
-.human-note-card:nth-child(n + 2) {
-  display: none;
-}
-
-.human-notes-grid.is-expanded .human-note-card:nth-child(n + 2) {
-  display: block;
-}
-
 .text-toggle {
   align-self: flex-start;
   border: 0;
@@ -1293,6 +1285,171 @@ a {
 .is-visible .svg-draw-path,
 .svg-draw-immediate .svg-draw-path {
   stroke-dashoffset: 0;
+}
+
+/* ============================================================================
+ * 12. INTERACTIVE ENHANCEMENTS
+ * ============================================================================ */
+
+/* 1. Scroll-triggered section reveal */
+.observe-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+}
+.observe-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Typewriter cursor blink */
+.cursor-blink {
+  display: inline-block;
+  color: var(--accent-ink);
+  animation: blink 0.85s step-end infinite;
+  font-weight: 300;
+  margin-left: 1px;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 4. Lab entry expand/collapse */
+.lab-entry {
+  cursor: pointer;
+}
+.lab-entry-summary {
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease-out-expo), opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+.lab-entry.is-open .lab-entry-summary {
+  max-height: 300px;
+  opacity: 1;
+  margin-bottom: 0.9rem;
+}
+.lab-entry-expand-icon {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-ink);
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+.lab-entry.is-open .lab-entry-expand-icon {
+  transform: rotate(180deg);
+}
+
+/* 5. Toolbox flip card */
+.toolbox-item {
+  perspective: 600px;
+  height: 100px;
+  cursor: default;
+}
+.toolbox-item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+.toolbox-item:hover .toolbox-item-inner {
+  transform: rotateY(180deg);
+}
+.toolbox-item-front,
+.toolbox-item-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid var(--rule-line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  align-items: center;
+}
+.toolbox-item-front {
+  background: var(--bg-paper);
+}
+.toolbox-item-back {
+  background: var(--accent-soft);
+  border-color: var(--accent-ink);
+  transform: rotateY(180deg);
+  font-size: var(--text-xs);
+  color: var(--ink-secondary);
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+/* 6. Active nav highlight */
+.nav-item-btn.active {
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+/* 8. Project cards staggered animation */
+.work-secondary-card {
+  animation: cardSlideUp 0.55s var(--ease-out-expo) both;
+}
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 9. Hero scroll hint */
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+.scroll-hint-label {
+  letter-spacing: 0.08em;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* 10. Status pulse dot ping effect */
+.status-pulse-dot {
+  position: relative;
+}
+.status-pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--success-ink);
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  80%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* 12. Reading progress bar */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--rule-line);
+  z-index: 200;
+}
+.reading-progress-fill {
+  height: 100%;
+  background: var(--accent-ink);
+  transition: width 0.1s linear;
 }
 
 @media (prefers-reduced-motion: reduce) {
