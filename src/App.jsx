@@ -26,6 +26,10 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#121316' : '#F5F2EB');
+    }
     try {
       localStorage.setItem('mushtaq_notebook_theme', theme);
     } catch (_) {}
@@ -35,7 +39,7 @@ export default function App() {
   useEffect(() => {
     console.log(
       '%c NB-2026 // MUSHTAQ AHMAD — LAB NOTEBOOK ',
-      'background: #111111; color: #FFFFFF; font-family: monospace; font-weight: bold; padding: 4px 8px;'
+      'background: #C93A20; color: #FFFFFF; font-family: monospace; font-weight: bold; padding: 4px 8px; border-radius: 2px;'
     );
     console.log(
       'Curious how this portfolio is structured? All projects, lab logs, and skills live in one clean file: src/data/content.js.\nSay salam: ' +

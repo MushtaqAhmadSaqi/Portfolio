@@ -2,96 +2,187 @@
  * ============================================================================
  * DESIGN TOKENS: "The Lab Notebook" (src/styles/tokens.css)
  * ============================================================================
- * All colors, typography, spacing, and tactile paper shadows live here as
- * CSS Custom Properties. Switching [data-theme="dark"] keeps the same neutral
- * palette with deeper graphite surfaces.
+ * Palette: Warm paper background, near-black ink, and one sharp accent.
+ * 60-30-10 Rule: 60% page background, 30% surfaces & text, 10% sharp accent.
+ *
+ * Typography:
+ * - Primary: Instrument Serif (Display 400, italic 400)
+ * - Secondary: IBM Plex Sans (Body 400, 500, 600)
+ * - Numbers and labels: IBM Plex Mono (Labels/metrics 400, 500)
  */
 
 :root,
 [data-theme="light"] {
-  /* Surfaces: white paper and cool gray index cards */
-  --bg-paper: #FFFFFF;
-  --bg-paper-elevated: #F1F3F5;
-  --bg-paper-inset: #E9ECEF;
-  --bg-glass-header: rgba(255, 255, 255, 0.92);
+  /* --------------------------------------------------------------------------
+   * 1. CORE COLOR PALETTE (Light Mode: Warm Paper & Ink)
+   * -------------------------------------------------------------------------- */
+  --bg: #F5F2EB;                 /* Page: Warm paper (60%) */
+  --surface: #EBE7DC;            /* Cards, sections: Milled index card (30%) */
+  --surface-inset: #E1DBCF;      /* Inset wells & code frames */
+  --border: #D6D0C2;             /* Lines, dividers */
+  --border-strong: #B8B09F;      /* Structural rules, active card borders */
+  --text: #15171B;               /* Headings, body: Near-black ink (16.05:1 WCAG AAA) */
+  --text-secondary: #3D4148;     /* Secondary reading copy */
+  --muted: #5A5E66;              /* Captions, dates, meta (5.82:1 WCAG AA) */
+  --accent: #C93A20;             /* Links, buttons, hover: Sharp terracotta (4.57:1 WCAG AA) */
+  --accent-hover: #AB2F19;       /* Deepened terracotta on hover */
+  --accent-soft: rgba(201, 58, 32, 0.10); /* Restrained 10% accent tint */
+  --accent-contrast-text: #FFFFFF; /* High contrast text on solid accent (4.56:1 WCAG AA) */
 
-  /* Ink Tiers (All WCAG AA+ verified against --bg-paper) */
-  --ink-primary: #111111;
-  --ink-secondary: #343A40;
-  --ink-muted: #6C757D;
+  /* Accent 2 (Optional: Tags, chart colors, ledger stamps) */
+  --accent-2: #1E5B5A;           /* Deep slate teal (6.96:1 WCAG AA) */
+  --accent-2-soft: rgba(30, 91, 90, 0.10);
 
-  /* Ruled Lines & Margin Grid */
-  --rule-line: #DEE2E6;
-  --rule-line-strong: #ADB5BD;
-  --grid-dot: rgba(17, 17, 17, 0.07);
+  /* --------------------------------------------------------------------------
+   * 2. SEMANTIC NOTEBOOK ALIASES
+   * -------------------------------------------------------------------------- */
+  --bg-paper: var(--bg);
+  --bg-paper-elevated: var(--surface);
+  --bg-paper-inset: var(--surface-inset);
+  --bg-glass-header: rgba(245, 242, 235, 0.94);
 
-  /* Neutral hierarchy: black actions, gray stamps, and graphite fills */
-  --accent-ink: #111111;
-  --accent-ink-hover: #343A40;
-  --accent-soft: rgba(17, 17, 17, 0.09);
-  --stamp-ink: #495057;
-  --stamp-soft: rgba(73, 80, 87, 0.10);
-  --success-ink: #343A40;
+  --ink-primary: var(--text);
+  --ink-secondary: var(--text-secondary);
+  --ink-muted: var(--muted);
+
+  --rule-line: var(--border);
+  --rule-line-strong: var(--border-strong);
+  --grid-dot: rgba(21, 23, 27, 0.055);
+
+  --accent-ink: var(--accent);
+  --accent-ink-hover: var(--accent-hover);
+  --stamp-ink: var(--accent-2);
+  --stamp-soft: var(--accent-2-soft);
+  --success-ink: var(--accent-2);
 
   /* Tactile Offset Ink Shadows */
-  --shadow-card: 3px 3px 0px #111111;
-  --shadow-card-hover: 6px 6px 0px #343A40;
-  --shadow-subtle: 0 2px 8px rgba(17, 17, 17, 0.08);
+  --shadow-card: 3px 3px 0px var(--text);
+  --shadow-card-hover: 6px 6px 0px var(--accent);
+  --shadow-subtle: 0 2px 8px rgba(21, 23, 27, 0.08);
 
   /* Selection Highlight */
-  --selection-bg: rgba(17, 17, 17, 0.16);
-  --selection-text: #111111;
+  --selection-bg: rgba(201, 58, 32, 0.20);
+  --selection-text: #15171B;
 }
 
 [data-theme="dark"] {
-  /* Surfaces: charcoal graphite and gray cards */
-  --bg-paper: #17191C;
-  --bg-paper-elevated: #24282D;
-  --bg-paper-inset: #0F1113;
-  --bg-glass-header: rgba(23, 25, 28, 0.92);
+  /* --------------------------------------------------------------------------
+   * 1. CORE COLOR PALETTE (Dark Mode: Graphite & Coral)
+   * -------------------------------------------------------------------------- */
+  --bg: #121316;                 /* Page: Deep near-black night (60%) */
+  --surface: #1B1C20;            /* Cards, sections: Charcoal graphite (30%) */
+  --surface-inset: #151619;      /* Inset wells */
+  --border: #2C2E34;             /* Lines, dividers */
+  --border-strong: #3F424B;      /* Structural rules */
+  --text: #EDEAE2;               /* Headings, body: Chalk paper (15.45:1 WCAG AAA) */
+  --text-secondary: #C8C6BF;     /* Secondary reading copy */
+  --muted: #A3A6AD;              /* Captions, dates, meta (7.62:1 WCAG AAA) */
+  --accent: #FF6A4D;             /* Links, buttons, hover: Sharp coral (6.56:1 WCAG AA) */
+  --accent-hover: #FF856D;       /* Brightened coral on dark hover */
+  --accent-soft: rgba(255, 106, 77, 0.16);
+  --accent-contrast-text: #121316; /* High contrast text on solid coral (6.56:1 WCAG AA) */
 
-  /* Ink Tiers (Warm chalk & weathered silver) */
-  --ink-primary: #F8F9FA;
-  --ink-secondary: #DEE2E6;
-  --ink-muted: #ADB5BD;
+  /* Accent 2 (Optional: Tags, chart colors, ledger stamps) */
+  --accent-2: #5FB3AE;           /* Soft sage seafoam (7.56:1 WCAG AAA) */
+  --accent-2-soft: rgba(95, 179, 174, 0.16);
 
-  /* Ruled Lines & Margin Grid */
-  --rule-line: #343A40;
-  --rule-line-strong: #6C757D;
-  --grid-dot: rgba(248, 249, 250, 0.055);
+  /* --------------------------------------------------------------------------
+   * 2. SEMANTIC NOTEBOOK ALIASES
+   * -------------------------------------------------------------------------- */
+  --bg-paper: var(--bg);
+  --bg-paper-elevated: var(--surface);
+  --bg-paper-inset: var(--surface-inset);
+  --bg-glass-header: rgba(18, 19, 22, 0.94);
 
-  /* Neutral accents adjusted for dark paper legibility */
-  --accent-ink: #F8F9FA;
-  --accent-ink-hover: #DEE2E6;
-  --accent-soft: rgba(248, 249, 250, 0.14);
-  --stamp-ink: #CED4DA;
-  --stamp-soft: rgba(206, 212, 218, 0.14);
-  --success-ink: #CED4DA;
+  --ink-primary: var(--text);
+  --ink-secondary: var(--text-secondary);
+  --ink-muted: var(--muted);
+
+  --rule-line: var(--border);
+  --rule-line-strong: var(--border-strong);
+  --grid-dot: rgba(237, 234, 226, 0.045);
+
+  --accent-ink: var(--accent);
+  --accent-ink-hover: var(--accent-hover);
+  --stamp-ink: var(--accent-2);
+  --stamp-soft: var(--accent-2-soft);
+  --success-ink: var(--accent-2);
 
   /* Tactile Offset Shadows */
-  --shadow-card: 3px 3px 0px #050505;
-  --shadow-card-hover: 6px 6px 0px #F8F9FA;
-  --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --shadow-card: 3px 3px 0px #08090B;
+  --shadow-card-hover: 6px 6px 0px var(--accent);
+  --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.45);
 
   /* Selection Highlight */
-  --selection-bg: rgba(248, 249, 250, 0.28);
-  --selection-text: #F8F9FA;
+  --selection-bg: rgba(255, 106, 77, 0.28);
+  --selection-text: #EDEAE2;
 }
 
-/* Typography & Spacing Scale */
-:root {
-  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+/* System Dark Preference Fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121316;
+    --surface: #1B1C20;
+    --surface-inset: #151619;
+    --border: #2C2E34;
+    --border-strong: #3F424B;
+    --text: #EDEAE2;
+    --text-secondary: #C8C6BF;
+    --muted: #A3A6AD;
+    --accent: #FF6A4D;
+    --accent-hover: #FF856D;
+    --accent-soft: rgba(255, 106, 77, 0.16);
+    --accent-contrast-text: #121316;
 
-  /* Fluid Type Scale */
-  --text-xs: 0.75rem;     /* 12px — Monospace stamps & indices */
-  --text-sm: 0.875rem;    /* 14px — Captions, tags, metadata */
-  --text-base: 1.03125rem;/* 16.5px — Comfortable editorial reading size */
-  --text-lg: 1.1875rem;   /* 19px — Lead paragraphs */
-  --text-xl: 1.45rem;     /* 23px — Card titles */
-  --text-2xl: clamp(1.5rem, 2.6vw, 2.25rem); /* Section headings */
-  --text-hero: clamp(1.85rem, 5.5vw, 3.65rem); /* Hero display serif */
+    --accent-2: #5FB3AE;
+    --accent-2-soft: rgba(95, 179, 174, 0.16);
+
+    --bg-paper: var(--bg);
+    --bg-paper-elevated: var(--surface);
+    --bg-paper-inset: var(--surface-inset);
+    --bg-glass-header: rgba(18, 19, 22, 0.94);
+
+    --ink-primary: var(--text);
+    --ink-secondary: var(--text-secondary);
+    --ink-muted: var(--muted);
+
+    --rule-line: var(--border);
+    --rule-line-strong: var(--border-strong);
+    --grid-dot: rgba(237, 234, 226, 0.045);
+
+    --accent-ink: var(--accent);
+    --accent-ink-hover: var(--accent-hover);
+    --stamp-ink: var(--accent-2);
+    --stamp-soft: var(--accent-2-soft);
+    --success-ink: var(--accent-2);
+
+    --shadow-card: 3px 3px 0px #08090B;
+    --shadow-card-hover: 6px 6px 0px var(--accent);
+    --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.45);
+
+    --selection-bg: rgba(255, 106, 77, 0.28);
+    --selection-text: #EDEAE2;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY & LAYOUT SCALE
+ * ---------------------------------------------------------------------------- */
+:root {
+  /* Font Families: Instrument Serif (Display 400), IBM Plex Sans (Body 400/500/600), IBM Plex Mono (400/500) */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Fluid Type Scale (Body text 16–18px, Line-height 1.6) */
+  --text-xs: 0.75rem;       /* 12px — Monospace stamps & indices */
+  --text-sm: 0.875rem;      /* 14px — Captions, tags, metadata */
+  --text-base: 1.0625rem;   /* 17px — Editorial body text (16–18px) */
+  --text-lg: 1.1875rem;     /* 19px — Lead paragraphs */
+  --text-xl: 1.45rem;       /* 23px — Card titles */
+  --text-2xl: clamp(1.5rem, 2.6vw, 2.25rem); /* Section headings (line-height 1.05–1.15) */
+  --text-hero: clamp(1.85rem, 5.5vw, 3.65rem); /* Hero display serif clamp() */
 
   /* Layout Rhythm */
   --container-max: 1180px;
@@ -100,6 +191,8 @@
   --radius-sm: 3px;
   --radius-md: 6px;
 
-  /* Motion Easing */
+  /* Motion Easing & Standard 150-250ms Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 180ms ease;
+  --transition-normal: 220ms ease;
 }
