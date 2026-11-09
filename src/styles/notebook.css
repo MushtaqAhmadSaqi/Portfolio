@@ -37,6 +37,18 @@ body {
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 82% 8%, var(--accent-soft), transparent 22rem),
+    radial-gradient(circle at 8% 52%, var(--stamp-soft), transparent 18rem);
+  opacity: 0.8;
+}
+
 ::selection {
   background-color: var(--selection-bg);
   color: var(--selection-text);
@@ -335,6 +347,8 @@ a {
   font-size: var(--text-2xl);
   display: inline-block;
   position: relative;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
 /* ============================================================================
@@ -343,6 +357,26 @@ a {
 .hero-section {
   padding: 3rem 0 4rem;
   border-bottom: 1.5px solid var(--ink-primary);
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  width: min(34vw, 360px);
+  aspect-ratio: 1;
+  right: -7rem;
+  top: 3rem;
+  border: 1px solid var(--stamp-ink);
+  border-radius: 50%;
+  opacity: 0.22;
+  box-shadow:
+    0 0 0 18px var(--stamp-soft),
+    0 0 0 42px transparent,
+    0 0 0 43px var(--accent-soft);
+  pointer-events: none;
+  z-index: -1;
 }
 
 @media (min-width: 920px) {
@@ -393,6 +427,8 @@ a {
   font-weight: 600;
   line-height: 1.08;
   margin-bottom: 1.35rem;
+  max-width: 13ch;
+  text-wrap: balance;
 }
 
 .hero-highlight-wrap {
@@ -1103,6 +1139,7 @@ a {
  * 8. CONTACT SECTION (Stamped Sign-Off Sheet + Copy Clipboard + Form)
  * ============================================================================ */
 .contact-sheet {
+  position: relative;
   background: var(--bg-paper-elevated);
   border: 1.5px solid var(--ink-primary);
   border-radius: var(--radius-md);
@@ -2505,5 +2542,133 @@ a {
   }
   .work-card-interactive:hover {
     transform: none !important;
+  }
+}
+
+/* ============================================================================
+ * 15. SIGNAL LAB VISUAL POLISH
+ * ============================================================================ */
+
+.notebook-header {
+  box-shadow: 0 1px 0 var(--stamp-soft), 0 8px 24px rgba(24, 24, 22, 0.05);
+}
+
+.brand-stamp,
+.nav-item-btn,
+.theme-tab-btn,
+.mobile-menu-btn {
+  letter-spacing: 0.07em;
+}
+
+.hero-stamp {
+  box-shadow: 3px 3px 0 var(--stamp-ink);
+  transform: rotate(-1deg);
+}
+
+.hero-highlight-wrap {
+  text-shadow: 2px 2px 0 var(--accent-soft);
+}
+
+.status-index-card,
+.work-featured-card,
+.work-secondary-card,
+.toolbox-column,
+.contact-sheet {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 42%),
+    var(--bg-paper-elevated);
+}
+
+[data-theme="dark"] .status-index-card,
+[data-theme="dark"] .work-featured-card,
+[data-theme="dark"] .work-secondary-card,
+[data-theme="dark"] .toolbox-column,
+[data-theme="dark"] .contact-sheet {
+  background:
+    linear-gradient(135deg, rgba(236, 233, 224, 0.06), transparent 42%),
+    var(--bg-paper-elevated);
+}
+
+.work-featured-card::before,
+.work-secondary-card::before,
+.contact-sheet::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.project-title {
+  letter-spacing: -0.035em;
+}
+
+.project-metrics-matrix {
+  position: relative;
+}
+
+.metric-tile-number {
+  color: var(--stamp-ink);
+}
+
+.interactive-schematic-card {
+  background:
+    linear-gradient(var(--grid-dot) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-dot) 1px, transparent 1px),
+    var(--bg-paper);
+  background-size: 16px 16px;
+}
+
+.schematic-tab-btn.active,
+.filter-pill.active,
+.copy-email-btn {
+  box-shadow: 3px 3px 0 var(--ink-primary);
+}
+
+.schematic-tab-btn.active:hover,
+.filter-pill.active:hover,
+.copy-email-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.toolbox-column {
+  transition: transform 0.24s var(--ease-out-expo), box-shadow 0.24s var(--ease-out-expo);
+}
+
+.toolbox-column:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.email-copy-box {
+  border-color: var(--stamp-ink);
+  box-shadow: 3px 3px 0 var(--stamp-ink);
+}
+
+@media (max-width: 919px) {
+  .hero-section::after {
+    width: 230px;
+    right: -7rem;
+    top: 8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-headline {
+    max-width: 15ch;
+  }
+
+  .hero-section::after {
+    opacity: 0.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::after {
+    animation: none;
   }
 }
