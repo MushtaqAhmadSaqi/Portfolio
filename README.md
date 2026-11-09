@@ -1,6 +1,6 @@
 # Mushtaq Ahmad — "The Lab Notebook" Portfolio (React + Vite)
 
-A hand-crafted personal engineering portfolio and public learning journal built with **React + Vite** and **Plain CSS Custom Properties**. Designed around **"The Lab Notebook"** aesthetic: warm archival field paper (`#F7F4EB`) by day, carbon blueprint slate (`#121417`) at night, editorial **Fraunces** serif headings, **IBM Plex Sans** body copy, and **IBM Plex Mono** metadata stamps.
+A hand-crafted personal engineering portfolio and public learning journal built with **React + Vite** and **Plain CSS Custom Properties**. Designed around **"The Lab Notebook"** aesthetic: white paper, graphite surfaces, black ink, editorial **DM Serif Display** headings, **Plus Jakarta Sans** body copy, and **IBM Plex Mono** metadata stamps.
 
 ---
 

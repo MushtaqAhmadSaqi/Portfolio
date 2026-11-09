@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mushtaq Ahmad Lab Notebook Icon">
-  <rect x="6" y="4" width="52" height="56" rx="4" fill="#F7F4EB" stroke="#181816" stroke-width="3"/>
-  <line x1="16" y1="4" x2="16" y2="60" stroke="#C83E2B" stroke-width="2.5"/>
-  <line x1="22" y1="18" x2="48" y2="18" stroke="#DCD7C8" stroke-width="2"/>
-  <line x1="22" y1="28" x2="48" y2="28" stroke="#DCD7C8" stroke-width="2"/>
-  <line x1="22" y1="38" x2="48" y2="38" stroke="#DCD7C8" stroke-width="2"/>
-  <text x="23" y="46" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#181816">M.</text>
-  <circle cx="48" cy="43" r="4" fill="#C83E2B"/>
+  <rect x="6" y="4" width="52" height="56" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+  <line x1="16" y1="4" x2="16" y2="60" stroke="#6C757D" stroke-width="2.5"/>
+  <line x1="22" y1="18" x2="48" y2="18" stroke="#DEE2E6" stroke-width="2"/>
+  <line x1="22" y1="28" x2="48" y2="28" stroke="#DEE2E6" stroke-width="2"/>
+  <line x1="22" y1="38" x2="48" y2="38" stroke="#DEE2E6" stroke-width="2"/>
+  <text x="23" y="46" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#111111">M.</text>
+  <circle cx="48" cy="43" r="4" fill="#111111"/>
 </svg>

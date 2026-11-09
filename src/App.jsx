@@ -35,7 +35,7 @@ export default function App() {
   useEffect(() => {
     console.log(
       '%c NB-2026 // MUSHTAQ AHMAD — LAB NOTEBOOK ',
-      'background: #C83E2B; color: #F7F4EB; font-family: monospace; font-weight: bold; padding: 4px 8px;'
+      'background: #111111; color: #FFFFFF; font-family: monospace; font-weight: bold; padding: 4px 8px;'
     );
     console.log(
       'Curious how this portfolio is structured? All projects, lab logs, and skills live in one clean file: src/data/content.js.\nSay salam: ' +

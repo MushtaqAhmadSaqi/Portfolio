@@ -3,79 +3,79 @@
  * DESIGN TOKENS: "The Lab Notebook" (src/styles/tokens.css)
  * ============================================================================
  * All colors, typography, spacing, and tactile paper shadows live here as
- * CSS Custom Properties. Switching [data-theme="dark"] flips the entire
- * palette to "Notebook at Night" (dark carbon paper + warm chalk ink).
+ * CSS Custom Properties. Switching [data-theme="dark"] keeps the same neutral
+ * palette with deeper graphite surfaces.
  */
 
 :root,
 [data-theme="light"] {
-  /* Surfaces: Warm archival paper & pressed cotton index cards */
-  --bg-paper: #F7F4EB;
-  --bg-paper-elevated: #EFECE2;
-  --bg-paper-inset: #EAE5D7;
-  --bg-glass-header: rgba(247, 244, 235, 0.92);
+  /* Surfaces: white paper and cool gray index cards */
+  --bg-paper: #FFFFFF;
+  --bg-paper-elevated: #F1F3F5;
+  --bg-paper-inset: #E9ECEF;
+  --bg-glass-header: rgba(255, 255, 255, 0.92);
 
   /* Ink Tiers (All WCAG AA+ verified against --bg-paper) */
-  --ink-primary: #181816;
-  --ink-secondary: #383631;
-  --ink-muted: #57554E;
+  --ink-primary: #111111;
+  --ink-secondary: #343A40;
+  --ink-muted: #6C757D;
 
   /* Ruled Lines & Margin Grid */
-  --rule-line: #DCD7C8;
-  --rule-line-strong: #B8B19E;
-  --grid-dot: rgba(24, 24, 22, 0.065);
+  --rule-line: #DEE2E6;
+  --rule-line-strong: #ADB5BD;
+  --grid-dot: rgba(17, 17, 17, 0.07);
 
-  /* Single Confident Accent: Drafting Vermilion Red + Prussian Stamp Blue */
-  --accent-ink: #C83E2B;
-  --accent-ink-hover: #A62F1E;
-  --accent-soft: rgba(200, 62, 43, 0.11);
-  --stamp-ink: #1F4E5B;
-  --stamp-soft: rgba(31, 78, 91, 0.10);
-  --success-ink: #23633D;
+  /* Neutral hierarchy: black actions, gray stamps, and graphite fills */
+  --accent-ink: #111111;
+  --accent-ink-hover: #343A40;
+  --accent-soft: rgba(17, 17, 17, 0.09);
+  --stamp-ink: #495057;
+  --stamp-soft: rgba(73, 80, 87, 0.10);
+  --success-ink: #343A40;
 
   /* Tactile Offset Ink Shadows */
-  --shadow-card: 3px 3px 0px #181816;
-  --shadow-card-hover: 6px 6px 0px #C83E2B;
-  --shadow-subtle: 0 2px 8px rgba(24, 24, 22, 0.06);
+  --shadow-card: 3px 3px 0px #111111;
+  --shadow-card-hover: 6px 6px 0px #343A40;
+  --shadow-subtle: 0 2px 8px rgba(17, 17, 17, 0.08);
 
   /* Selection Highlight */
-  --selection-bg: rgba(200, 62, 43, 0.22);
-  --selection-text: #181816;
+  --selection-bg: rgba(17, 17, 17, 0.16);
+  --selection-text: #111111;
 }
 
 [data-theme="dark"] {
-  /* Surfaces: "Notebook at Night" — Deep carbon slate & graphite cards */
-  --bg-paper: #121417;
-  --bg-paper-elevated: #1A1D22;
-  --bg-paper-inset: #0D0F12;
-  --bg-glass-header: rgba(18, 20, 23, 0.92);
+  /* Surfaces: charcoal graphite and gray cards */
+  --bg-paper: #17191C;
+  --bg-paper-elevated: #24282D;
+  --bg-paper-inset: #0F1113;
+  --bg-glass-header: rgba(23, 25, 28, 0.92);
 
   /* Ink Tiers (Warm chalk & weathered silver) */
-  --ink-primary: #ECE9E0;
-  --ink-secondary: #C8C4B8;
-  --ink-muted: #9E9A8E;
+  --ink-primary: #F8F9FA;
+  --ink-secondary: #DEE2E6;
+  --ink-muted: #ADB5BD;
 
   /* Ruled Lines & Margin Grid */
-  --rule-line: #2A2E35;
-  --rule-line-strong: #3E444E;
-  --grid-dot: rgba(236, 233, 224, 0.045);
+  --rule-line: #343A40;
+  --rule-line-strong: #6C757D;
+  --grid-dot: rgba(248, 249, 250, 0.055);
 
-  /* Accents adjusted for dark paper legibility */
-  --accent-ink: #E85D4A;
-  --accent-ink-hover: #FF7461;
-  --accent-soft: rgba(232, 93, 74, 0.15);
-  --stamp-ink: #68A6B8;
-  --stamp-soft: rgba(104, 166, 184, 0.14);
-  --success-ink: #56B87A;
+  /* Neutral accents adjusted for dark paper legibility */
+  --accent-ink: #F8F9FA;
+  --accent-ink-hover: #DEE2E6;
+  --accent-soft: rgba(248, 249, 250, 0.14);
+  --stamp-ink: #CED4DA;
+  --stamp-soft: rgba(206, 212, 218, 0.14);
+  --success-ink: #CED4DA;
 
   /* Tactile Offset Shadows */
-  --shadow-card: 3px 3px 0px #070809;
-  --shadow-card-hover: 6px 6px 0px #E85D4A;
+  --shadow-card: 3px 3px 0px #050505;
+  --shadow-card-hover: 6px 6px 0px #F8F9FA;
   --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.35);
 
   /* Selection Highlight */
-  --selection-bg: rgba(232, 93, 74, 0.32);
-  --selection-text: #ECE9E0;
+  --selection-bg: rgba(248, 249, 250, 0.28);
+  --selection-text: #F8F9FA;
 }
 
 /* Typography & Spacing Scale */
