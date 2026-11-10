@@ -1,98 +1,56 @@
 /**
  * ============================================================================
- * DESIGN TOKENS: "The Lab Notebook" (src/styles/tokens.css)
+ * DESIGN TOKENS: "Dark DevSync / Bento Impact" (src/styles/tokens.css)
  * ============================================================================
- * Palette: Warm paper background, near-black ink, and one sharp accent.
- * 60-30-10 Rule: 60% page background, 30% surfaces & text, 10% sharp accent.
- *
- * Typography:
- * - Primary: Instrument Serif (Display 400, italic 400)
- * - Secondary: IBM Plex Sans (Body 400, 500, 600)
- * - Numbers and labels: IBM Plex Mono (Labels/metrics 400, 500)
+ * High-impact modern developer palette:
+ * - Primary Background: Deep Space Black (#0A0A0F)
+ * - Accent: Electric Emerald (#00E86C)
+ * - Secondary Accent: Warm Amber (#FFB547)
+ * - Typography: Space Grotesk (Headings), Inter (Body), JetBrains Mono (Code/Stats)
  */
 
 :root,
-[data-theme="light"] {
-  /* --------------------------------------------------------------------------
-   * 1. CORE COLOR PALETTE (Light Mode: Warm Paper & Ink)
-   * -------------------------------------------------------------------------- */
-  --bg: #F5F2EB;                 /* Page: Warm paper (60%) */
-  --surface: #EBE7DC;            /* Cards, sections: Milled index card (30%) */
-  --surface-inset: #E1DBCF;      /* Inset wells & code frames */
-  --border: #D6D0C2;             /* Lines, dividers */
-  --border-strong: #B8B09F;      /* Structural rules, active card borders */
-  --text: #15171B;               /* Headings, body: Near-black ink (16.05:1 WCAG AAA) */
-  --text-secondary: #3D4148;     /* Secondary reading copy */
-  --muted: #5A5E66;              /* Captions, dates, meta (5.82:1 WCAG AA) */
-  --accent: #C93A20;             /* Links, buttons, hover: Sharp terracotta (4.57:1 WCAG AA) */
-  --accent-hover: #AB2F19;       /* Deepened terracotta on hover */
-  --accent-soft: rgba(201, 58, 32, 0.10); /* Restrained 10% accent tint */
-  --accent-contrast-text: #FFFFFF; /* High contrast text on solid accent (4.56:1 WCAG AA) */
-
-  /* Accent 2 (Optional: Tags, chart colors, ledger stamps) */
-  --accent-2: #1E5B5A;           /* Deep slate teal (6.96:1 WCAG AA) */
-  --accent-2-soft: rgba(30, 91, 90, 0.10);
-
-  /* --------------------------------------------------------------------------
-   * 2. SEMANTIC NOTEBOOK ALIASES
-   * -------------------------------------------------------------------------- */
-  --bg-paper: var(--bg);
-  --bg-paper-elevated: var(--surface);
-  --bg-paper-inset: var(--surface-inset);
-  --bg-glass-header: rgba(245, 242, 235, 0.94);
-
-  --ink-primary: var(--text);
-  --ink-secondary: var(--text-secondary);
-  --ink-muted: var(--muted);
-
-  --rule-line: var(--border);
-  --rule-line-strong: var(--border-strong);
-  --grid-dot: rgba(21, 23, 27, 0.055);
-
-  --accent-ink: var(--accent);
-  --accent-ink-hover: var(--accent-hover);
-  --stamp-ink: var(--accent-2);
-  --stamp-soft: var(--accent-2-soft);
-  --success-ink: var(--accent-2);
-
-  /* Tactile Offset Ink Shadows */
-  --shadow-card: 3px 3px 0px var(--text);
-  --shadow-card-hover: 6px 6px 0px var(--accent);
-  --shadow-subtle: 0 2px 8px rgba(21, 23, 27, 0.08);
-
-  /* Selection Highlight */
-  --selection-bg: rgba(201, 58, 32, 0.20);
-  --selection-text: #15171B;
-}
-
 [data-theme="dark"] {
   /* --------------------------------------------------------------------------
-   * 1. CORE COLOR PALETTE (Dark Mode: Graphite & Coral)
+   * 1. CORE DARK PALETTE (Default)
    * -------------------------------------------------------------------------- */
-  --bg: #121316;                 /* Page: Deep near-black night (60%) */
-  --surface: #1B1C20;            /* Cards, sections: Charcoal graphite (30%) */
-  --surface-inset: #151619;      /* Inset wells */
-  --border: #2C2E34;             /* Lines, dividers */
-  --border-strong: #3F424B;      /* Structural rules */
-  --text: #EDEAE2;               /* Headings, body: Chalk paper (15.45:1 WCAG AAA) */
-  --text-secondary: #C8C6BF;     /* Secondary reading copy */
-  --muted: #A3A6AD;              /* Captions, dates, meta (7.62:1 WCAG AAA) */
-  --accent: #FF6A4D;             /* Links, buttons, hover: Sharp coral (6.56:1 WCAG AA) */
-  --accent-hover: #FF856D;       /* Brightened coral on dark hover */
-  --accent-soft: rgba(255, 106, 77, 0.16);
-  --accent-contrast-text: #121316; /* High contrast text on solid coral (6.56:1 WCAG AA) */
+  --bg: #0A0A0F;
+  --surface: #12131A;
+  --surface-elevated: #171822;
+  --surface-inset: #0D0E14;
+  --surface-glass: rgba(18, 19, 26, 0.72);
 
-  /* Accent 2 (Optional: Tags, chart colors, ledger stamps) */
-  --accent-2: #5FB3AE;           /* Soft sage seafoam (7.56:1 WCAG AAA) */
-  --accent-2-soft: rgba(95, 179, 174, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(0, 232, 108, 0.35);
 
-  /* --------------------------------------------------------------------------
-   * 2. SEMANTIC NOTEBOOK ALIASES
-   * -------------------------------------------------------------------------- */
+  --text: #F0F2F7;
+  --text-secondary: #9FA4B2;
+  --muted: #656A7A;
+
+  /* Primary Accent: Electric Emerald */
+  --accent: #00E86C;
+  --accent-hover: #15FF7F;
+  --accent-soft: rgba(0, 232, 108, 0.12);
+  --accent-glow: rgba(0, 232, 108, 0.28);
+  --accent-contrast-text: #050608;
+
+  /* Secondary Accent: Warm Amber / Gold */
+  --accent-2: #FFB547;
+  --accent-2-hover: #FFC56E;
+  --accent-2-soft: rgba(255, 181, 71, 0.12);
+
+  /* Cyan & Gradient highlights */
+  --accent-cyan: #00D4FF;
+  --gradient-emerald-cyan: linear-gradient(135deg, #00E86C 0%, #00D4FF 100%);
+  --gradient-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+
+  /* Semantic Aliases */
   --bg-paper: var(--bg);
   --bg-paper-elevated: var(--surface);
   --bg-paper-inset: var(--surface-inset);
-  --bg-glass-header: rgba(18, 19, 22, 0.94);
+  --bg-glass-header: rgba(10, 10, 15, 0.82);
 
   --ink-primary: var(--text);
   --ink-secondary: var(--text-secondary);
@@ -100,99 +58,121 @@
 
   --rule-line: var(--border);
   --rule-line-strong: var(--border-strong);
-  --grid-dot: rgba(237, 234, 226, 0.045);
+  --grid-dot: rgba(255, 255, 255, 0.045);
 
   --accent-ink: var(--accent);
   --accent-ink-hover: var(--accent-hover);
   --stamp-ink: var(--accent-2);
   --stamp-soft: var(--accent-2-soft);
-  --success-ink: var(--accent-2);
+  --success-ink: var(--accent);
 
-  /* Tactile Offset Shadows */
-  --shadow-card: 3px 3px 0px #08090B;
-  --shadow-card-hover: 6px 6px 0px var(--accent);
-  --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.45);
+  /* Modern Glass & Glow Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 12px 36px rgba(0, 232, 108, 0.16), 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.3);
 
   /* Selection Highlight */
-  --selection-bg: rgba(255, 106, 77, 0.28);
-  --selection-text: #EDEAE2;
+  --selection-bg: var(--accent);
+  --selection-text: #050608;
 }
 
-/* System Dark Preference Fallback */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #121316;
-    --surface: #1B1C20;
-    --surface-inset: #151619;
-    --border: #2C2E34;
-    --border-strong: #3F424B;
-    --text: #EDEAE2;
-    --text-secondary: #C8C6BF;
-    --muted: #A3A6AD;
-    --accent: #FF6A4D;
-    --accent-hover: #FF856D;
-    --accent-soft: rgba(255, 106, 77, 0.16);
-    --accent-contrast-text: #121316;
+[data-theme="light"] {
+  /* --------------------------------------------------------------------------
+   * 2. CLEAN STUDIO LIGHT PALETTE
+   * -------------------------------------------------------------------------- */
+  --bg: #F8F9FA;
+  --surface: #FFFFFF;
+  --surface-elevated: #F1F3F5;
+  --surface-inset: #E9ECEF;
+  --surface-glass: rgba(255, 255, 255, 0.85);
 
-    --accent-2: #5FB3AE;
-    --accent-2-soft: rgba(95, 179, 174, 0.16);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --border-strong: rgba(0, 0, 0, 0.16);
+  --border-accent: rgba(0, 158, 73, 0.35);
 
-    --bg-paper: var(--bg);
-    --bg-paper-elevated: var(--surface);
-    --bg-paper-inset: var(--surface-inset);
-    --bg-glass-header: rgba(18, 19, 22, 0.94);
+  --text: #0E1015;
+  --text-secondary: #3B4252;
+  --muted: #64748B;
 
-    --ink-primary: var(--text);
-    --ink-secondary: var(--text-secondary);
-    --ink-muted: var(--muted);
+  --accent: #009E49;
+  --accent-hover: #00803B;
+  --accent-soft: rgba(0, 158, 73, 0.1);
+  --accent-glow: rgba(0, 158, 73, 0.2);
+  --accent-contrast-text: #FFFFFF;
 
-    --rule-line: var(--border);
-    --rule-line-strong: var(--border-strong);
-    --grid-dot: rgba(237, 234, 226, 0.045);
+  --accent-2: #D97706;
+  --accent-2-hover: #B45309;
+  --accent-2-soft: rgba(217, 119, 6, 0.1);
 
-    --accent-ink: var(--accent);
-    --accent-ink-hover: var(--accent-hover);
-    --stamp-ink: var(--accent-2);
-    --stamp-soft: var(--accent-2-soft);
-    --success-ink: var(--accent-2);
+  --accent-cyan: #0284C7;
+  --gradient-emerald-cyan: linear-gradient(135deg, #009E49 0%, #0284C7 100%);
+  --gradient-glass: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
 
-    --shadow-card: 3px 3px 0px #08090B;
-    --shadow-card-hover: 6px 6px 0px var(--accent);
-    --shadow-subtle: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --bg-paper: var(--bg);
+  --bg-paper-elevated: var(--surface);
+  --bg-paper-inset: var(--surface-inset);
+  --bg-glass-header: rgba(248, 249, 250, 0.88);
 
-    --selection-bg: rgba(255, 106, 77, 0.28);
-    --selection-text: #EDEAE2;
-  }
+  --ink-primary: var(--text);
+  --ink-secondary: var(--text-secondary);
+  --ink-muted: var(--muted);
+
+  --rule-line: var(--border);
+  --rule-line-strong: var(--border-strong);
+  --grid-dot: rgba(0, 0, 0, 0.045);
+
+  --accent-ink: var(--accent);
+  --accent-ink-hover: var(--accent-hover);
+  --stamp-ink: var(--accent-2);
+  --stamp-soft: var(--accent-2-soft);
+  --success-ink: var(--accent);
+
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 10px 28px rgba(0, 158, 73, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-subtle: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+  --selection-bg: var(--accent);
+  --selection-text: #FFFFFF;
 }
 
 /* ----------------------------------------------------------------------------
  * 3. TYPOGRAPHY & LAYOUT SCALE
  * ---------------------------------------------------------------------------- */
 :root {
-  /* Font Families: Instrument Serif (Display 400), IBM Plex Sans (Body 400/500/600), IBM Plex Mono (400/500) */
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Space Grotesk (Headings), Inter (Body), JetBrains Mono (Code/Stats) */
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Fluid Type Scale (Body text 16–18px, Line-height 1.6) */
-  --text-xs: 0.75rem;       /* 12px — Monospace stamps & indices */
-  --text-sm: 0.875rem;      /* 14px — Captions, tags, metadata */
-  --text-base: 1.0625rem;   /* 17px — Editorial body text (16–18px) */
-  --text-lg: 1.1875rem;     /* 19px — Lead paragraphs */
-  --text-xl: 1.45rem;       /* 23px — Card titles */
-  --text-2xl: clamp(1.5rem, 2.6vw, 2.25rem); /* Section headings (line-height 1.05–1.15) */
-  --text-hero: clamp(1.85rem, 5.5vw, 3.65rem); /* Hero display serif clamp() */
+  /* Fluid Type Scale */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.35rem;       /* 21.6px */
+  --text-2xl: clamp(1.6rem, 2.8vw, 2.25rem);
+  --text-3xl: clamp(2rem, 4vw, 3rem);
+  --text-hero: clamp(2.2rem, 5.8vw, 4.4rem);
 
-  /* Layout Rhythm */
-  --container-max: 1180px;
+  /* Containers & Radii */
+  --container-max: 1220px;
   --reading-max: 68ch;
   --margin-col-width: 190px;
-  --radius-sm: 3px;
-  --radius-md: 6px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
 
-  /* Motion Easing & Standard 150-250ms Transitions */
+  /* Motion & Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: 180ms ease;
-  --transition-normal: 220ms ease;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 150ms ease;
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }

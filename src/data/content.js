@@ -60,6 +60,49 @@ export const siteContent = {
   },
 
   /**
+   * KEY ACHIEVEMENTS & METRICS (Animated Stats Strip)
+   * Inspired by DevSync & SIFT counters
+   */
+  stats: [
+    {
+      id: "stat-mcqs",
+      value: 12100,
+      suffix: "+",
+      decimals: 0,
+      label: "Practice Questions Built",
+      subtext: "OpenPrep national question bank",
+      tag: "PRODUCTION"
+    },
+    {
+      id: "stat-projects",
+      value: 4,
+      suffix: "+",
+      decimals: 0,
+      label: "Live Engineering Projects",
+      subtext: "AI study hubs & full-stack apps",
+      tag: "SHIPPED"
+    },
+    {
+      id: "stat-internships",
+      value: 2,
+      suffix: "",
+      decimals: 0,
+      label: "Industry Internships",
+      subtext: "Horquva LLC (FE) & FlyRank (BE)",
+      tag: "EXPERIENCE"
+    },
+    {
+      id: "stat-cgpa",
+      value: 3.60,
+      suffix: " / 4.00",
+      decimals: 2,
+      label: "Academic CGPA",
+      subtext: "BS Artificial Intelligence @ COMSATS",
+      tag: "ACADEMICS"
+    }
+  ],
+
+  /**
    * SELECTED WORK (4 real projects from CV & GitHub)
    * The first item (featured: true) renders as a full-width architectural blueprint card.
    * Items 2-4 render in an asymmetric staggered 2-column ledger below it.

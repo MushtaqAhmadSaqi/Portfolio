@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { siteContent } from './data/content';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import StatsBar from './components/StatsBar';
 import SelectedWork from './components/SelectedWork';
 import LabLog from './components/LabLog';
 import Toolbox from './components/Toolbox';
@@ -12,13 +13,13 @@ import CaseStudyView from './components/CaseStudyView';
 import NotFound404 from './components/NotFound404';
 
 export default function App() {
-  // 1. Theme state ("light" = Field Paper, "dark" = Notebook at Night)
+  // 1. Theme state ("dark" = Premium Night Studio, "light" = Clean Studio)
   const [theme, setTheme] = useState(() => {
     try {
-      const saved = localStorage.getItem('mushtaq_notebook_theme');
+      const saved = localStorage.getItem('mushtaq_portfolio_theme') || localStorage.getItem('mushtaq_notebook_theme');
       if (saved === 'light' || saved === 'dark') return saved;
     } catch (_) {}
-    return 'light';
+    return 'dark';
   });
 
   // 2. View router state: supports '/', '/projects/:slug', '#projects/:slug', and '404'
@@ -28,21 +29,21 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#121316' : '#F5F2EB');
+      metaTheme.setAttribute('content', theme === 'dark' ? '#0A0A0F' : '#F8F9FA');
     }
     try {
-      localStorage.setItem('mushtaq_notebook_theme', theme);
+      localStorage.setItem('mushtaq_portfolio_theme', theme);
     } catch (_) {}
   }, [theme]);
 
   // Console Easter Egg for curious developers & recruiters
   useEffect(() => {
     console.log(
-      '%c NB-2026 // MUSHTAQ AHMAD — LAB NOTEBOOK ',
-      'background: #C93A20; color: #FFFFFF; font-family: monospace; font-weight: bold; padding: 4px 8px; border-radius: 2px;'
+      '%c // MUSHTAQ AHMAD — AI & FRONTEND DEVELOPER ',
+      'background: #00E86C; color: #0A0A0F; font-family: monospace; font-weight: bold; padding: 4px 8px; border-radius: 4px;'
     );
     console.log(
-      'Curious how this portfolio is structured? All projects, lab logs, and skills live in one clean file: src/data/content.js.\nSay salam: ' +
+      'Looking under the hood? Built with React, Vite, Space Grotesk, Inter & JetBrains Mono.\nSay salam: ' +
         siteContent.meta.email
     );
   }, []);
@@ -134,6 +135,7 @@ export default function App() {
         {route.view === 'home' && (
           <>
             <Hero hero={siteContent.hero} meta={siteContent.meta} />
+            <StatsBar stats={siteContent.stats} />
             <SelectedWork
               projects={siteContent.projects}
               onOpenCaseStudy={openCaseStudy}

@@ -1,43 +1,41 @@
 import React, { useState } from 'react';
-import { HandUnderline } from './HandDrawnSvg';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-function ToolboxCard({ skill }) {
-  const [flipped, setFlipped] = useState(false);
+function SkillCard({ skill }) {
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <li
-      className={`toolbox-item ${flipped ? 'is-flipped' : ''}`}
-      onClick={() => setFlipped((prev) => !prev)}
+      className={`skill-item-card ${expanded ? 'is-expanded' : ''}`}
+      onClick={() => setExpanded((prev) => !prev)}
       role="button"
       tabIndex={0}
-      aria-label={`${skill.name}. Click or tap to view details.`}
+      aria-label={`${skill.name}. Click to toggle details.`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          setFlipped((prev) => !prev);
+          setExpanded((prev) => !prev);
         }
       }}
     >
-      <div className="toolbox-item-inner">
-        <div className="toolbox-item-front">
-          <div className="toolbox-front-content">
-            <h3 className="toolbox-item-name">{skill.name}</h3>
-            <span className="toolbox-tap-hint" aria-hidden="true">
-              tap to flip ↻
-            </span>
-          </div>
+      <div className="skill-card-header">
+        <div className="skill-title-group">
+          <span className="skill-dot" aria-hidden="true" />
+          <h3 className="skill-item-name">{skill.name}</h3>
         </div>
-        <div className="toolbox-item-back">
-          <p className="toolbox-item-context">{skill.context}</p>
-        </div>
+        <span className="skill-expand-icon" aria-hidden="true">
+          {expanded ? '−' : '+'}
+        </span>
       </div>
+
+      <p className="skill-item-context">{skill.context}</p>
     </li>
   );
 }
 
 export default function Toolbox({ toolbox }) {
   const sectionRef = useScrollReveal();
+
   return (
     <section
       ref={sectionRef}
@@ -47,28 +45,33 @@ export default function Toolbox({ toolbox }) {
     >
       <div className="section-margin">
         <span className="margin-index">03 // TOOLBOX</span>
-        <p className="margin-handnote">What I use and study.</p>
+        <p className="margin-handnote">Core skills &amp; stack</p>
       </div>
 
-      <div>
+      <div className="toolbox-content-wrap">
         <div className="section-header-block">
           <h2 id="toolbox-heading" className="section-title">
-            Toolbox
-            <HandUnderline width={195} />
+            Technical Arsenal &amp; Toolbox
           </h2>
+          <p className="section-subtitle">
+            An honest breakdown of technologies I build with, ship to production, and study daily.
+          </p>
         </div>
 
         <div className="toolbox-grid">
-          {toolbox.map((group) => (
+          {toolbox.map((group, gIdx) => (
             <div key={group.tier} className="toolbox-column">
               <div className="toolbox-tier-header">
-                <div className="toolbox-tier-title">{group.tier}</div>
+                <div className="toolbox-tier-badge">
+                  <span className="tier-num">0{gIdx + 1}</span>
+                  <span className="tier-tag">{group.tier.replace(/^[0-9]+\s*\/\/\s*/, '')}</span>
+                </div>
                 <p className="toolbox-tier-sub">{group.subtitle}</p>
               </div>
 
               <ul className="toolbox-items-list">
                 {group.items.map((skill) => (
-                  <ToolboxCard key={skill.name} skill={skill} />
+                  <SkillCard key={skill.name} skill={skill} />
                 ))}
               </ul>
             </div>

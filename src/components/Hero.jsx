@@ -1,31 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { HandCircleHighlight } from './HandDrawnSvg';
-
-function useCountUp(end, duration = 1200, decimals = 0) {
-  const [count, setCount] = React.useState(0);
-  React.useEffect(() => {
-    let start = 0;
-    const step = end / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= end) { setCount(end); clearInterval(timer); }
-      else setCount(parseFloat(start.toFixed(decimals)));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [end, duration, decimals]);
-  return count;
-}
-
-function AnimatedCGPA() {
-  const cgpa = useCountUp(3.60, 1400, 2);
-  return (
-    <p className="status-primary-text">
-      BS AI · COMSATS Islamabad · CGPA{' '}
-      <span style={{ color: 'var(--accent-ink)', fontWeight: 700 }}>{cgpa.toFixed(2)}</span>
-      /4.00
-    </p>
-  );
-}
 
 export default function Hero({ hero, meta }) {
   const [displayedText, setDisplayedText] = useState('');
@@ -35,9 +8,9 @@ export default function Hero({ hero, meta }) {
   useEffect(() => {
     if (charIndex < fullText.length) {
       const timer = setTimeout(() => {
-        setDisplayedText(prev => prev + fullText[charIndex]);
-        setCharIndex(prev => prev + 1);
-      }, 22);
+        setDisplayedText((prev) => prev + fullText[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      }, 20);
       return () => clearTimeout(timer);
     }
   }, [charIndex, fullText]);
@@ -51,76 +24,132 @@ export default function Hero({ hero, meta }) {
   return (
     <section className="hero-section is-visible" id="top" aria-labelledby="hero-heading">
       <div className="hero-grid">
-        {/* Left 7 Columns: Positioning & Actions */}
-        <div>
-          <div className="hero-stamp">
-            <span>●</span>
-            <span>{hero.stamp}</span>
+        {/* Left Column: Heading, Positioning, Socials & CTAs */}
+        <div className="hero-content-col">
+          <div className="hero-badge-row">
+            <span className="hero-kicker-badge">
+              <span className="pulse-dot" aria-hidden="true" />
+              <span>BS AI · COMSATS ISLAMABAD</span>
+            </span>
+            <span className="hero-exp-badge">&lt; 2+ Years Building &gt;</span>
           </div>
 
           <p className="hero-name-kicker">
-            {meta.name} · {meta.location}
+            Mushtaq Ahmad Saqi · Islamabad, Pakistan
           </p>
 
           <h1 id="hero-heading" className="hero-headline">
-            {hero.headlinePrefix}
-            <span className="hero-highlight-wrap">
-              {hero.headlineHighlight}
-              <HandCircleHighlight />
-            </span>
-            {hero.headlineSuffix}
+            BUILDING FAST, SCALABLE &amp;{' '}
+            <span className="hero-highlight-word">INTELLIGENT</span>
+            <br className="hero-br-desktop" /> WEB APPLICATIONS
           </h1>
 
           <p className="hero-lead">
             {displayedText}
-            {charIndex < fullText.length && <span className="cursor-blink" aria-hidden="true">|</span>}
+            {charIndex < fullText.length && (
+              <span className="cursor-blink" aria-hidden="true">|</span>
+            )}
           </p>
 
+          {/* Social Row with DevSync style "/" prefix */}
+          <div className="hero-socials-row" aria-label="Direct profile links">
+            <a
+              href={meta.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+            >
+              <span className="social-slash">/</span> GitHub
+            </a>
+            <a
+              href={meta.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+            >
+              <span className="social-slash">/</span> LinkedIn
+            </a>
+            <a
+              href={meta.socials.openprep}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+            >
+              <span className="social-slash">/</span> OpenPrep
+            </a>
+            <a
+              href={meta.socials.comsatsprephub}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-social-link"
+            >
+              <span className="social-slash">/</span> COMSATSPrepHub
+            </a>
+          </div>
+
+          {/* Action CTAs */}
           <div className="hero-actions">
-            <a href="#work" onClick={scrollToWork} className="btn-primary">
-              <span>{hero.ctas.primary.label}</span>
-              <span aria-hidden="true">↓</span>
+            <a href="#work" onClick={scrollToWork} className="btn-primary hero-btn-main">
+              <span>See Selected Work</span>
+              <span className="btn-arrow" aria-hidden="true">↓</span>
             </a>
             <a
               href={meta.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary"
+              className="btn-secondary hero-btn-sub"
             >
-              <span>{hero.ctas.secondary.label}</span>
-              <span aria-hidden="true">↗</span>
+              <span>Download CV</span>
+              <span className="btn-arrow" aria-hidden="true">↗</span>
             </a>
-          </div>
-
-          <div className="scroll-hint" aria-hidden="true">
-            <span className="scroll-hint-label">scroll</span>
-            <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
-              <path d="M8 4v16M2 14l6 6 6-6" stroke="var(--accent-ink)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
           </div>
         </div>
 
-        {/* Right 5 Columns: Pinned Index Card with Current Status */}
-        <aside className="status-index-card" aria-label="Current Academic and Engineering Status">
-          <div className="status-card-header">
-            <span className="status-pulse">
-              <span className="status-pulse-dot" aria-hidden="true" />
-              <span>{hero.currentStatus.badge}</span>
-            </span>
-            <span>REF // 00-A</span>
+        {/* Right Column: Hero Portrait Stage with Abstract Elements & Floating Badges */}
+        <div className="hero-visual-col">
+          <div className="hero-portrait-stage" aria-label="Mushtaq Ahmad Portrait Preview">
+            {/* Ambient Green & Amber Backdrop Glow Orbs */}
+            <div className="hero-ambient-glow" aria-hidden="true" />
+            
+            {/* Geometric Framing Accents (Coder/DevSync inspired) */}
+            <div className="hero-corner-accent corner-tl" aria-hidden="true" />
+            <div className="hero-corner-accent corner-br" aria-hidden="true" />
+
+            <div className="hero-portrait-card">
+              <div className="portrait-image-wrapper">
+                <img
+                  src={`${import.meta.env.BASE_URL}photo.jpeg`}
+                  alt="Portrait of Mushtaq Ahmad"
+                  className="hero-portrait-img"
+                  loading="eager"
+                />
+                <div className="portrait-gradient-overlay" />
+              </div>
+
+              {/* Floating Top Badge: Open to Internships */}
+              <div className="hero-float-badge">
+                <span className="status-live-dot" aria-hidden="true" />
+                <span>OPEN TO WORK // AUTUMN 2026</span>
+              </div>
+
+              {/* Floating Bottom Spec Card */}
+              <div className="hero-float-spec-card">
+                <div className="spec-card-topline">
+                  <span className="spec-badge">CURRENT FOCUS</span>
+                  <span className="spec-sem">4TH SEMESTER</span>
+                </div>
+                <div className="spec-cgpa-row">
+                  <span className="spec-label">BS AI · CGPA</span>
+                  <span className="spec-value">3.60</span>
+                  <span className="spec-max">/4.00</span>
+                </div>
+                <p className="spec-subtext">
+                  Co-founder of OpenPrep · 12,100+ live exam questions
+                </p>
+              </div>
+            </div>
           </div>
-
-          <AnimatedCGPA />
-
-          <ul className="status-ledger-list">
-            {hero.currentStatus.items.map((item) => (
-              <li key={item.label} className="status-ledger-item">
-                <span className="status-item-label">{item.label}</span>
-                <span className="status-item-val">{item.text}</span>
-              </li>
-            ))}
-          </ul>
-        </aside>
+        </div>
       </div>
     </section>
   );
