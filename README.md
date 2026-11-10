@@ -1,96 +1,151 @@
-# Mushtaq Ahmad — "The Lab Notebook" Portfolio (React + Vite)
+<div align="center">
 
-A hand-crafted personal engineering portfolio and public learning journal built with **React + Vite** and **Plain CSS Custom Properties**. Designed around **"The Lab Notebook"** aesthetic: white paper, graphite surfaces, black ink, editorial **DM Serif Display** headings, **Plus Jakarta Sans** body copy, and **IBM Plex Mono** metadata stamps.
+<img src="./public/favicon.svg" alt="Lab Notebook logo" width="92" />
+
+# Mushtaq Ahmad
+
+### AI Undergraduate · Frontend Developer · Builder of student-first tools
+
+<p>
+  A hand-crafted portfolio and public learning journal inspired by a technical lab notebook.
+  Built to show the work, thinking, and experiments behind every project.
+</p>
+
+<p>
+  <a href="https://github.com/MushtaqAhmadSaqi"><img src="https://img.shields.io/badge/GitHub-MushtaqAhmadSaqi-111827?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
+  <a href="https://openprep.com.pk"><img src="https://img.shields.io/badge/Live-OpenPrep-00a86b?style=for-the-badge&logo=vercel&logoColor=white" alt="OpenPrep live site" /></a>
+  <a href="https://comsatsprephub.vercel.app"><img src="https://img.shields.io/badge/Live-COMSATSPrepHub-2563eb?style=for-the-badge&logo=vercel&logoColor=white" alt="COMSATSPrepHub live site" /></a>
+</p>
+
+<p>
+  <a href="#-what-is-inside">Explore the portfolio</a> ·
+  <a href="#-run-it-locally">Run it locally</a> ·
+  <a href="https://www.linkedin.com/in/mushtaqahmad12/">Connect on LinkedIn</a>
+</p>
+
+</div>
 
 ---
 
-## 1. Folder Structure
+## ✦ What is inside
 
-```text
-mushtaq-ahmad-portfolio/
-├── index.html                        # Preloaded Google Fonts, SEO/OG tags, JSON-LD schema
-├── package.json                      # Minimal dependencies (React 18 + Vite)
-├── vite.config.js                    # Clean build configuration with relative base support
-├── vercel.json                       # SPA URL rewrites for /projects/[slug]
-├── public/
-│   ├── favicon.svg                   # Custom Lab Notebook SVG icon
-│   ├── CV.png                         # Viewable CV image
-│   ├── robots.txt                    # Search crawler directives
-│   ├── sitemap.xml                   # Sitemap for Home + Case Study pages
-│   └── 404.html                      # GitHub Pages SPA redirect helper
-└── src/
-    ├── main.jsx                      # React root entry point
-    ├── App.jsx                       # Theme manager, router (Home / Case Studies / 404), console easter egg
-    ├── data/
-    │   └── content.js                # ★ SINGLE SOURCE OF TRUTH: edit all text, projects & links here
-    ├── styles/
-    │   ├── tokens.css                # CSS Custom Properties (Light/Dark palettes, fluid type scale)
-    │   └── notebook.css              # Asymmetric margin ledger, paper-lift hover, reduced-motion rules
-    └── components/
-        ├── Navbar.jsx                # Sticky index bar + tactile Day Paper / Night Carbon toggle
-        ├── Hero.jsx                  # Asymmetric 7:5 split hero + pinned Current Sprint index card
-        ├── SelectedWork.jsx          # Full-width featured Project 01 + staggered 2-col ledger
-        ├── LabLog.jsx                # Filterable "Learning in Public" chronological timeline
-        ├── Toolbox.jsx               # Honest 3-tier skill specification table (zero percentage bars)
-        ├── About.jsx                 # First-person story (Skardu → Islamabad) + personal margin cards
-        ├── Contact.jsx               # Sign-off sheet with 1-click Copy Email + Formspree-ready form
-        ├── CaseStudyView.jsx         # 68ch editorial case study reader with sticky Table of Contents
-        ├── NotFound404.jsx           # Custom "This page was torn out of the notebook" 404 view
-        ├── Footer.jsx                # Live Asia/Karachi (PKT) clock + metadata
-        └── HandDrawnSvg.jsx          # Self-drawing SVG vermilion underlines, circles, and torn paper edge
+| Section | Purpose |
+| --- | --- |
+| **Hero** | A clear introduction, current sprint, and primary calls to action |
+| **Selected Work** | Featured projects with metrics, architecture notes, and detailed case studies |
+| **Lab Log** | A filterable timeline of learning, experiments, and shipped improvements |
+| **Toolbox** | An honest, tiered view of technologies and working strengths |
+| **About** | The story behind the work, from Skardu to Islamabad |
+| **Contact** | A focused sign-off sheet with quick links and a Formspree-ready form |
+
+### Highlights
+
+- **12,100+** practice questions represented through the OpenPrep project
+- **Live project case studies** with problem, approach, challenge, and lessons learned
+- **Day Paper / Night Carbon** theme switch with persisted preference
+- **Responsive notebook layout** with reduced-motion support
+- **Hash-based case-study navigation** that works on static hosting
+- **Asia/Karachi live clock** and small developer-friendly details throughout
+
+## ✎ Design direction
+
+The interface treats the browser like an open engineering notebook:
+
+`paper surfaces` · `graphite panels` · `ink typography` · `vermilion annotations`
+
+The visual system combines editorial headings, mono-spaced metadata, asymmetric ledger layouts,
+hand-drawn SVG accents, animated counters, and subtle paper-lift interactions. It stays
+deliberately lightweight: React, Vite, and plain CSS custom properties with no UI framework.
+
+## ⚙️ Tech stack
+
+<p>
+  <img src="https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React 18" />
+  <img src="https://img.shields.io/badge/Vite_5-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite 5" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=111827" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Plain_CSS-1572B6?style=flat-square&logo=css3&logoColor=white" alt="Plain CSS" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
+</p>
+
+## ◌ Architecture
+
+```mermaid
+flowchart LR
+  A[index.html] --> B[src/main.jsx]
+  B --> C[src/App.jsx]
+  C --> D[Home sections]
+  C --> E[Case study view]
+  C --> F[404 view]
+  D --> G[src/data/content.js]
+  D --> H[src/styles]
+  E --> G
 ```
 
----
+Content is intentionally centralized in [`src/data/content.js`](./src/data/content.js).
+That means projects, lab notes, links, metrics, and personal copy can be updated without
+digging through presentation components.
 
-## 2. How to Run Locally
+## ◉ Run it locally
 
-Make sure you have [Node.js](https://nodejs.org/) (v18 or newer) installed:
+Requires [Node.js](https://nodejs.org/) 18 or newer.
 
 ```bash
-# 1. Unzip the folder and navigate into it
-cd mushtaq-ahmad-portfolio
-
-# 2. Install dependencies
+git clone https://github.com/MushtaqAhmadSaqi/Portfolio.git
+cd Portfolio
 npm install
-
-# 3. Start the local Vite development server
 npm run dev
 ```
 
-Open the local URL printed in your terminal (usually `http://localhost:5173`).
+Open the local URL printed by Vite, usually `http://localhost:5173`.
 
-To test a production build locally:
+To create and preview a production build:
 
 ```bash
 npm run build
 npm run preview
 ```
 
----
+## ✍️ Make it yours
 
-## 3. How to Edit Your Content (`src/data/content.js`)
+1. Open [`src/data/content.js`](./src/data/content.js).
+2. Update `siteContent.meta` for identity, links, contact details, and CV.
+3. Edit `siteContent.projects` to add or update project cards and case studies.
+4. Prepend entries to `siteContent.labLog` for new learning notes.
+5. Replace [`public/photo.jpeg`](./public/photo.jpeg) if you want to use a new portrait.
+6. Replace the placeholder Formspree endpoint before enabling production contact submissions.
 
-You never need to dig through JSX components to update your portfolio. Open **`src/data/content.js`**:
+The components are already split by portfolio section, so visual changes can be made in
+[`src/styles/notebook.css`](./src/styles/notebook.css) and [`src/styles/tokens.css`](./src/styles/tokens.css)
+without changing content data.
 
-1. **Update your status or links:** Edit `siteContent.meta` or `siteContent.hero.currentStatus`.
-2. **Add or edit a project & case study:** Add an object to `siteContent.projects`. Set `featured: true` on the project you want displayed full-width at the top of Selected Work.
-3. **Add a new Lab Log note:** Prepend a new dated object (`id`, `date`, `category`, `title`, `summary`, `tags`, `metric`) to `siteContent.labLog`.
-4. **Add your real portrait photo:** Drop your photo into `public/photo.jpg` and replace the `<svg>` placeholder inside `src/components/About.jsx` with `<img src="/photo.jpg" alt="Mushtaq Ahmad" loading="lazy" />`.
-5. **Connect Formspree (optional):** Replace `formspreeEndpoint` in `src/data/content.js` with your real Formspree endpoint URL.
+## ▲ Deploy
 
----
+### Vercel
 
-## 4. How to Deploy (Vercel, Netlify, or GitHub Pages)
+Import the repository at [vercel.com/new](https://vercel.com/new). Vercel detects Vite
+automatically and uses `npm run build` with `dist` as the output directory.
 
-### Option A: Vercel (Recommended — 60 seconds)
-1. Push this repository to your GitHub (`https://github.com/MushtaqAhmadSaqi`).
-2. Go to [vercel.com/new](https://vercel.com/new) and import your repository.
-3. Vercel automatically detects **Vite** (`npm run build`, output directory `dist`) and applies `vercel.json`. Click **Deploy**.
+### Netlify
 
-### Option B: Netlify
-1. Push to GitHub and import the repo into [app.netlify.com](https://app.netlify.com/).
-2. Set **Build command** to `npm run build` and **Publish directory** to `dist`.
+Set the build command to `npm run build` and the publish directory to `dist`.
 
-### Option C: GitHub Pages
-1. Run `npm run build` locally (or via a GitHub Actions workflow).
-2. Publish the `dist/` folder to your `gh-pages` branch (or configure GitHub Pages -> Source: GitHub Actions). Because `vite.config.js` uses `base: './'` and `public/404.html` is included, assets and routes resolve cleanly.
+### GitHub Pages
+
+Build with `npm run build`, then publish `dist` through GitHub Pages or a GitHub Actions
+workflow. The relative Vite base and [`public/404.html`](./public/404.html) support static
+hosting and client-side routes.
+
+## Contact
+
+**Mushtaq Ahmad Saqi** · Islamabad, Pakistan
+[Email](mailto:mushtaqahmedsaqi1234@gmail.com) ·
+[LinkedIn](https://www.linkedin.com/in/mushtaqahmad12/) ·
+[GitHub](https://github.com/MushtaqAhmadSaqi)
+
+<div align="center">
+
+<br />
+
+_Built with curiosity, shipped with intent._
+
+</div>
