@@ -13,7 +13,7 @@ export default function Footer({ meta, onOpen404 }) {
           second: '2-digit',
           hour12: true,
         }).format(new Date());
-        setPktTime(`${formatted} PKT (UTC+5)`);
+        setPktTime(`${formatted} PKT`);
       } catch (_) {
         setPktTime('Islamabad, PK (UTC+5)');
       }
@@ -23,26 +23,56 @@ export default function Footer({ meta, onOpen404 }) {
     return () => clearInterval(timer);
   }, [meta.timezone]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="notebook-footer">
+    <footer className="notebook-footer" aria-label="Site Footer">
+      <div className="footer-top-gradient" aria-hidden="true" />
       <div className="footer-inner">
-        <div>
-          <strong>Designed &amp; built by {meta.name}</strong> · Last updated {meta.lastUpdated}
+        <div className="footer-col-left">
+          <div className="footer-brand">
+            <span className="brand-bracket">&lt;</span>
+            <span className="brand-name">M.Ahmad</span>
+            <span className="brand-bracket"> /&gt;</span>
+          </div>
+          <p className="footer-credit">
+            Designed &amp; engineered by <strong>{meta.name}</strong>
+          </p>
+          <p className="footer-subtext">
+            BS Artificial Intelligence · COMSATS University Islamabad
+          </p>
         </div>
 
-        <div>
-          Local time in {meta.location}: <strong>{pktTime}</strong> · Reading: <em>Kafka</em> &amp;{' '}
-          <em>One Piece</em>
+        <div className="footer-col-center">
+          <div className="footer-clock-pill">
+            <span className="live-clock-dot" aria-hidden="true" />
+            <span>Local Time: <strong>{pktTime}</strong> (UTC+5)</span>
+          </div>
+          <p className="footer-reading-line">
+            Off-screen: <em>Franz Kafka</em> · <em>One Piece</em> · Table Tennis
+          </p>
         </div>
 
-        <div>
+        <div className="footer-col-right">
           <button
             type="button"
-            className="nav-item-btn"
-            onClick={onOpen404}
-            title="Preview the custom torn-page 404 route"
+            className="footer-top-btn"
+            onClick={scrollToTop}
+            aria-label="Scroll back to top"
           >
-            [Test 404 Torn Page]
+            <span>Back to top</span>
+            <span aria-hidden="true">↑</span>
+          </button>
+
+          <button
+            type="button"
+            className="footer-404-btn"
+            onClick={onOpen404}
+            title="Preview custom 404 route"
+          >
+            [Test 404 Route]
           </button>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { HandUnderline } from './HandDrawnSvg';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Contact({ contact, meta }) {
@@ -31,9 +30,7 @@ export default function Contact({ contact, meta }) {
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-    } catch (_) {
-      // Ignore fallback errors in restricted sandboxes
-    }
+    } catch (_) {}
   };
 
   const handleSubmit = (e) => {
@@ -52,147 +49,162 @@ export default function Contact({ contact, meta }) {
       style={{ borderBottom: 'none' }}
     >
       <div className="section-margin">
-        <span className="margin-index">05 // CONTACT</span>
+        <span className="margin-index">06 // CONTACT</span>
         <p className="margin-subnote">{contact.availabilityNote}</p>
       </div>
 
-      <div>
+      <div className="contact-content-wrap">
         <div className="section-header-block">
           <h2 id="contact-heading" className="section-title">
             {contact.heading}
-            <HandUnderline width={220} />
           </h2>
+          <p className="section-subtitle">
+            {contact.subtext} Let's build something exceptional together.
+          </p>
         </div>
 
         <div className="contact-sheet">
-          {/* Left Column: Direct Email + Copy to Clipboard + Socials */}
-          <div>
-            <p style={{ marginBottom: '1rem' }}>{contact.subtext}</p>
+          {/* Left Column: Direct Outreach & Quick Links */}
+          <div className="contact-left-col">
+            <p className="contact-lead-text">
+              Whether you're looking for an AI/Frontend engineer for an internship, want to collaborate on OpenPrep, or discuss system architecture — feel free to drop a message.
+            </p>
 
             <div className="email-copy-box">
-              <a className="email-address-mono" href={`mailto:${meta.email}`}>{meta.email}</a>
+              <div className="email-text-group">
+                <span className="email-label">DIRECT EMAIL</span>
+                <a className="email-address-mono" href={`mailto:${meta.email}`}>
+                  {meta.email}
+                </a>
+              </div>
               <button
                 type="button"
                 className={`copy-email-btn ${copied ? 'copied' : ''}`}
                 onClick={handleCopyEmail}
+                aria-label="Copy email address to clipboard"
               >
-                {copied ? 'COPIED TO CLIPBOARD ✓' : 'COPY EMAIL'}
+                {copied ? 'COPIED ✓' : 'COPY'}
               </button>
             </div>
 
-            <ul className="contact-links-list" aria-label="External profile links">
-              <li>
-                <a
-                  href={meta.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ink-link"
-                >
-                  GitHub ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={meta.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ink-link"
-                >
-                  LinkedIn ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={meta.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ink-link"
-                >
-                  View CV ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href={meta.socials.openprep}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ink-link"
-                >
-                  OpenPrep.com.pk ↗
-                </a>
-              </li>
-            </ul>
+            <div className="contact-social-grid" aria-label="External profiles">
+              <a
+                href={meta.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+              >
+                <span className="social-pill-dot" />
+                <span>GitHub ↗</span>
+              </a>
+              <a
+                href={meta.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+              >
+                <span className="social-pill-dot" />
+                <span>LinkedIn ↗</span>
+              </a>
+              <a
+                href={meta.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+              >
+                <span className="social-pill-dot" />
+                <span>Download CV ↗</span>
+              </a>
+              <a
+                href={meta.socials.openprep}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-social-pill"
+              >
+                <span className="social-pill-dot" />
+                <span>OpenPrep.com.pk ↗</span>
+              </a>
+            </div>
+
+            <div className="contact-live-status">
+              <span className="status-pulse-dot" aria-hidden="true" />
+              <span>Based in Islamabad (PKT / UTC+5) · Open for remote &amp; local roles</span>
+            </div>
           </div>
 
-          {/* Right Column: Frontend Message Slip (Ready for Formspree) */}
-          <form className="notebook-form" onSubmit={handleSubmit} aria-label="Send a note to Mushtaq Ahmad">
-            <div className="form-field">
-              <label htmlFor="sender-name" className="form-label">
-                01. YOUR NAME
-              </label>
-              <input
-                id="sender-name"
-                type="text"
-                required
-                className="form-input"
-                placeholder="e.g., Bilal Khan"
-                value={formState.name}
-                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="sender-email" className="form-label">
-                02. YOUR EMAIL
-              </label>
-              <input
-                id="sender-email"
-                type="email"
-                required
-                className="form-input"
-                placeholder="you@company.com"
-                value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="sender-message" className="form-label">
-                03. MESSAGE NOTE
-              </label>
-              <textarea
-                id="sender-message"
-                rows="4"
-                required
-                maxLength={500}
-                className="form-textarea"
-                placeholder="Tell me about the role, project, or question..."
-                value={formState.message}
-                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-              />
-              <div style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'var(--text-xs)',
-                color: formState.message.length > 400 ? 'var(--accent-ink)' : 'var(--ink-muted)',
-                marginTop: '0.25rem'
-              }}>
-                {formState.message.length} / 500 chars
+          {/* Right Column: Modern Glassmorphic Message Form */}
+          <div className="contact-right-col">
+            <form
+              className="notebook-form"
+              onSubmit={handleSubmit}
+              aria-label="Send a direct note to Mushtaq Ahmad"
+            >
+              <div className="form-top-title">
+                <span className="form-tag">DIRECT MESSAGE</span>
+                <span className="form-num">REF // 06</span>
               </div>
-            </div>
 
-            <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start' }}>
-              <span>Send note</span>
-              <span aria-hidden="true">→</span>
-            </button>
-
-            {submitted && (
-              <div className="form-status-note" role="status">
-                ✓ Preview saved. Use the email above to send it.
+              <div className="form-field">
+                <label htmlFor="sender-name" className="form-label">
+                  01. YOUR NAME
+                </label>
+                <input
+                  id="sender-name"
+                  type="text"
+                  required
+                  className="form-input"
+                  placeholder="e.g. Alex Carter or Recruiter"
+                  value={formState.name}
+                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                />
               </div>
-            )}
-          </form>
+
+              <div className="form-field">
+                <label htmlFor="sender-email" className="form-label">
+                  02. YOUR EMAIL
+                </label>
+                <input
+                  id="sender-email"
+                  type="email"
+                  required
+                  className="form-input"
+                  placeholder="name@company.com"
+                  value={formState.email}
+                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                />
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="sender-message" className="form-label">
+                  03. PROJECT OR ROLE NOTE
+                </label>
+                <textarea
+                  id="sender-message"
+                  rows="4"
+                  required
+                  maxLength={500}
+                  className="form-textarea"
+                  placeholder="Tell me about the role, project, or question..."
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                />
+                <div className="char-count-line">
+                  {formState.message.length} / 500 chars
+                </div>
+              </div>
+
+              <button type="submit" className="btn-primary form-submit-btn">
+                <span>Send Note</span>
+                <span aria-hidden="true">→</span>
+              </button>
+
+              {submitted && (
+                <div className="form-status-note" role="status">
+                  ✓ Message saved! Feel free to also send directly via email above.
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </section>

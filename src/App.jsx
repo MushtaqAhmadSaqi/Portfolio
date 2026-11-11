@@ -7,6 +7,7 @@ import SelectedWork from './components/SelectedWork';
 import LabLog from './components/LabLog';
 import Toolbox from './components/Toolbox';
 import About from './components/About';
+import Process from './components/Process';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CaseStudyView from './components/CaseStudyView';
@@ -143,6 +144,7 @@ export default function App() {
             <LabLog entries={siteContent.labLog} />
             <Toolbox toolbox={siteContent.toolbox} />
             <About about={siteContent.about} />
+            <Process processList={siteContent.process} />
             <Contact contact={siteContent.contact} meta={siteContent.meta} />
           </>
         )}

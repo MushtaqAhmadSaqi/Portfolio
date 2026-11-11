@@ -476,6 +476,53 @@ export const siteContent = {
     ]
   },
 
+  /**
+   * PROCESS / HOW I WORK
+   * Inspired by Alex Carter's interactive workflow stepper
+   */
+  process: [
+    {
+      step: "01",
+      title: "Discovery & Problem Framing",
+      tagline: "Uncovering the root problem and user friction",
+      description:
+        "Every project starts with the user: What is actively wasting students' or users' time? What do existing paid tools get wrong? We define strict acceptance criteria, data requirements, and the core metric of success before writing a single line of code.",
+      deliverables: ["Product Specification", "User Flow Diagrams", "Tech Stack Decision"]
+    },
+    {
+      step: "02",
+      title: "Data & System Architecture",
+      tagline: "Modeling schemas, indexes & API contracts",
+      description:
+        "Structuring the data layer for resilience and low latency. Whether configuring PostgreSQL schemas with Row-Level Security in Supabase or indexing 1,000+ MongoDB records for fast query filtering, I ensure the backend handles edge cases without data collision.",
+      deliverables: ["Database Schemas", "API Endpoint Specs", "Query Indexing Plan"]
+    },
+    {
+      step: "03",
+      title: "Iterative Frontend Engineering",
+      tagline: "Building responsive, accessible interfaces",
+      description:
+        "Engineering the UI with clean component hierarchies, custom design tokens, and defensive state management. I build mobile-first so budget Android phones on 3G connections receive the same instant, snappy experience as desktop workstations.",
+      deliverables: ["Component Hierarchy", "State Machine Logic", "Mobile Optimization"]
+    },
+    {
+      step: "04",
+      title: "AI Guardrails & Stress Testing",
+      tagline: "Preventing hallucinations & handling network drops",
+      description:
+        "When integrating LLMs like Google's Gemini API, I build client-and-edge schema validators, retry policies, and per-user rate limits. For interactive apps like OpenPrep, I test quiz state persistence across sudden offline disconnections.",
+      deliverables: ["JSON Schema Validator", "Rate-Limiting Quotas", "Offline LocalStorage Cache"]
+    },
+    {
+      step: "05",
+      title: "Production Deployment & Feedback",
+      tagline: "Zero-cost serverless hosting & continuous iterations",
+      description:
+        "Deploying to production on Vercel with automated CI/CD pipelines, SSL certificates, and performance auditing. Watching real students use the platform daily provides the direct feedback loop needed to refine features.",
+      deliverables: ["Live Production URL", "CI/CD Pipeline", "User Analytics & Feedback Loop"]
+    }
+  ],
+
   contact: {
     stamp: "SIGN-OFF SHEET // SECTION 06",
     heading: "Have a project in mind?",
